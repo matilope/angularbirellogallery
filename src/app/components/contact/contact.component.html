@@ -1,0 +1,60 @@
+<main class="contact">
+    <div class="container">
+        <div class="row">
+            <div class="c-col col-0 col-sm-0 col-md-2 col-lg-2"></div>
+            <div class="c-col col-12 col-sm-12 col-md-8 col-lg-8 enquiryform">
+                <h2 class="center contactcolor">{{title}}</h2>
+                <h3 class="center contactcolor infocontact">{{subtitle}}</h3>
+                    <form #form="ngForm" (ngSubmit)="contactForm()">
+                        <div class="form-group">
+                            <label class="formlabel" for="name">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Name" maxlength="60"
+                                name="name" #name="ngModel" [(ngModel)]="user.name" required pattern="[a-zA-Z]+" required>
+                                <small style="color:rgb(201, 201, 201);" *ngIf="!name.valid && name.touched">Name is not valid</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="formlabel" for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com"
+                                maxlength="120" name="email" #email="ngModel" [(ngModel)]="user.email" [email]="true" required>
+                                <small style="color:rgb(201, 201, 201);" *ngIf="!email.valid && email.touched">Email is not valid</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="formlabel" for="subject">Subject</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Subject" maxlength="120"
+                                name="subject" #subject="ngModel" [(ngModel)]="user.subject" required>
+                                <small style="color:rgb(201, 201, 201);" *ngIf="!subject.valid && subject.touched">Subject is not valid</small>
+                        </div>
+                        <div class="form-group">
+                            <label class="formlabel" for="inlineFormCustomSelectPref">Select the painting you are interested in</label>
+                            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" name="paint" #paint="ngModel" [(ngModel)]="user.paint"
+                                required>
+                                <small style="color:rgb(201, 201, 201);" *ngIf="!paint.valid && paint.touched">You must choose an option</small>
+                                <option disabled selected>Selecciona una opción</option>
+                                <option>Studio of Jules-Arsène Garnier (1847-1889)</option>
+                                <option>Workshop of Carlo Maratta (1625-1713)</option>
+                                <option>Circle of Jan Weenix (1640-1719)</option>
+                                <option>Follower of Anton Raphael Mengs (1728-1779)</option>
+                                <option>Follower of Frans Francken II (1581-1642)</option>
+                                <option>Louis Tannert (1833-1909)</option>
+                                <option>Pieter de Bloot (1601-1658)</option>
+                                <option>Virgilio Colombo (19th century)</option>
+                                <option>Tuscan School (second half of 16th century)</option>
+                                <option>Attr. to Elias Pieter van Bommel (1819-1890)</option>
+                                <option>David Matthieu (1697-1755)</option>
+                                <option>Studio of Sisto Badalocchio (1585-1647)</option>
+                                <option>Circle of Bon Boullogne (1649-1717)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="formlabel" for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="3" maxlength="250" name="textarea" #textarea="ngModel" [(ngModel)]="user.textarea"
+                                required></textarea>
+                                <small style="color:rgb(201, 201, 201);" *ngIf="!textarea.valid && textarea.touched">Message is empty</small>
+                        </div>
+                        <input type="submit" class="btn btn-light btncustomcontact" value="Submit" (click)="tiempo()" [disabled]="form.invalid">
+                    </form>
+            </div>
+            <div class="c-col col-0 col-sm-0 col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+</main>

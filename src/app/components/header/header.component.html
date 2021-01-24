@@ -1,0 +1,16 @@
+<header *ngIf="path !== '/404'">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid justify-content-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a class="navhover" routerLink="/">Artworks</a></li>
+                    <li class="breadcrumb-item collapse show"><a class="navhover" routerLink="/miscellaneous">Miscellaneous</a></li>
+                    <li class="breadcrumb-item collapse show"><a class="navhover" routerLink="/about">About</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        <a class="navhover" routerLink="/contact">Contact</a>
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Art | Birello Gallery</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/img/favicon/favicon.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="assets/js/parallax.min.js"></script>
+</head>
+
+<body>
+  <app-root></app-root>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
+  <script>
+    var userFeed = new Instafeed({
+      get: 'user',
+      userId: '3559366309',
+      accessToken: 'IGQVJYNDRBMy1QNElzOVJ2a2plZA2hwYjJqZAEQzLWlhYkJQRHJsU1RNbHl6Ni1XekNCREc2MDB6M29zU3hNeFlLUi1BRXpSaFBxX3ExQ0tIOWRKbEhUR1VLLWRFY3dDckxrZAGRuLXM4N0EwSjRaM08wdAZDZD',
+      resolution: 'standard_resolution',
+      template: '<a href="{{link}}" target="_blank" id="{{id}}"><img src="{{image}}" /></a>',
+      sortBy: 'most-recent',
+      limit: 5,
+      links: false
+    });
+    userFeed.run();
+  </script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 3000,
+      once: true,
+    });
+  </script>
+</body>
+
+</html>

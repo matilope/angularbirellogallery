@@ -1,0 +1,761 @@
+/* HTML */
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Body */
+
+body {
+    background-color:#1a1919 !important;
+    font-family: 'EB Garamond', serif;
+    letter-spacing: 0.5px;
+}
+
+
+/* Header/nav */
+
+header {
+    background-image:url("src/assets/img/portada.jpg");
+    height:440px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+nav {
+    background-color:transparent;
+}
+
+.navhover:hover{
+    text-decoration:none;
+    color:black;
+}
+
+.breadcrumb {
+    background-color:#a5a1a1a1 !important;
+}
+
+.breadcrumb-item a {
+    color:white;
+    text-shadow: 1px 1px 2px black;
+    font-size:26px;
+}
+
+    @media (min-width: 299px) {
+    .collapser{
+             display:none !important;
+            }
+    }
+
+    @media  (max-width: 780px) {
+    .navbar li a{
+             font-size: 26px !important;
+            }
+    }
+
+    @media  (max-width: 600px) {
+    .navbar li a{
+                 font-size: 22px !important;
+            }
+    }
+
+    @media  (max-width: 525px) {
+        .navbar li a{
+                     font-size: 18px !important;
+            }
+    }
+
+    @media  (max-width: 402px) {
+        .navbar li a{
+                     font-size: 17px !important;
+            }
+    }
+
+    @media  (max-width: 371px) {
+        .navbar li a{
+                     font-size: 15px !important;
+            }
+    }
+
+    @media  (max-width: 345px) {
+        .navbar li a{
+                     font-size: 14px !important;
+            }
+    }
+
+    @media  (max-width: 335px) {
+        .navbar li a{
+                     font-size: 13px !important;
+            }
+    }
+
+    @media  (max-width: 455px) {
+
+    .breadcrumb-item+.breadcrumb-item::before {
+        padding-right:0px !important;
+        content:"" !important;
+        
+       }
+    }
+
+
+/* Main-card-productos */
+
+.card {
+    margin-top:10px;
+    margin-bottom:10px;
+    border-radius:10px;
+    border: 1px groove black !important;
+    background-color:#1a1919 !important;
+}
+
+.cardmainimg {
+    background-color:#1a1919 !important;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,12);
+  }
+
+.card-body {
+      border: 1px groove black;
+      height:310px;
+      max-height:310px;    
+  }
+
+.shadowtext:hover {
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.638);
+  }
+
+
+  /* Animation form */
+
+  @keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+/* Contacto */
+
+.enquiryform {
+    margin-bottom:10px;
+    margin-top:10px;
+    border: 1px dashed black;
+    animation: 1s ease-out 0s 1 slideInFromLeft;
+ }
+
+ .contactcolor {
+    color:white;
+    text-shadow: 1px 1px 2px black;
+    padding-top:10px;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.btncustomcontact{
+    margin-bottom:10px;
+}
+
+.formlabel {
+    color:#515151;
+}
+
+@media (max-width:526px)
+{
+.infocontact{
+    font-size:22px;
+}}
+
+@media (max-width:432px)
+{
+.infocontact{
+    font-size:18px;
+}}
+
+@media (max-width:365px)
+{
+.infocontact{
+    font-size:16px;
+}}
+
+@media (max-width:322px)
+{
+.infocontact{
+    font-size:14px;
+}}
+
+@media (max-width:282px)
+{
+.infocontact{
+    font-size:12px;
+}}
+
+
+/* Animation for api response */
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(+200%);
+    }
+    200% {
+        transform: translateX(0);
+    }
+}
+
+
+/* API Request ART*/
+
+.apiresponse{
+    animation: 2s ease-out 0s 1 slideInFromRight;
+}
+
+.btn-custom{
+    margin-bottom:15px;
+    color: #fff !important;
+    background-color: #301918 !important;
+    border-color: #000000 !important;
+}
+
+.btn-custom:hover{
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,12) !important;
+    border:1px solid black;
+    background-color: #301918 !important;
+}
+
+.btn-custom:active {
+    background-color: #2a1413 !important;
+  }
+
+.backgroundtransparent{
+    background-color:transparent;
+}
+
+.colorfontart{
+    color:white;
+}
+
+.colortitleapi{
+    color:#bbb6b6;
+    font-size:22px;
+}
+
+.artistaartapi{
+    font-size:32px;
+}
+
+.verticalcenter{
+    display: flex;
+    align-items: center;
+}
+
+.cardcenter {
+    margin-top:12px;
+    margin-bottom:12px;
+}
+
+@media (max-width:575px){
+
+    .responsiveboxinfo {
+        border: 1px dashed black;
+        text-align:center;
+        }
+}
+
+@media (max-width:575px){
+
+    .rowresponsiveapi {
+        margin-left:30px;
+        margin-right:30px;
+        margin-bottom:15px;
+        }
+}
+
+@media (max-width:440px){
+
+    .rowresponsiveapi {
+        margin-left:15px;
+        margin-right:15px;
+        margin-bottom:10px;
+        }
+}
+
+@media (max-width:380px){
+
+    .rowresponsiveapi {
+        margin-left:5px;
+        margin-right:5px;
+        margin-bottom:5px;
+        }
+}
+
+@media (max-width:992px){
+
+    .artistaartapi {
+        font-size: 26px;
+      
+        }
+    .colortitleapi{
+        font-size:18px;
+    }
+}
+
+@media (max-width:768px){
+
+    .artistaartapi {
+        font-size: 20px;
+      
+        }
+    .colortitleapi{
+        font-size:14px;
+    }
+}
+
+
+@media (max-width:576px){
+
+.cardcenter {
+    text-align: center!important;
+  
+    }
+}
+
+
+/* About section */
+
+.aboutcard{
+    border:1px dashed #000000;
+    margin: 12px 0px;
+   
+}
+
+.aboutfontcolor {
+    color:#442626;
+    text-shadow: 1px 1px 2px black;
+    margin-top:12px;
+    padding-top:12px;
+}
+
+.aboutp {
+    font-size:20px;
+    text-align:left;
+    color:#b6b4b4;
+    padding-bottom:12px;
+    padding-top:12px;
+}
+
+@media (max-width:525px){
+    .aboutp {
+    text-align:center;
+    }
+}
+
+
+/* Footer */
+
+.colorfooter {
+    background-color: #201f1f;
+    border-top:1px dashed black;
+    text-shadow: 1px 1px 2px black;
+}
+
+.copyright {
+    background-color: rgba(0, 0, 0, 0.2); 
+    border:1px dashed black;
+}
+
+
+  @media (min-width: 992px) 
+  {
+      .importantlinks {
+        border-left:1px groove black;
+      }
+  }
+
+  @media (max-width: 991px) 
+  {
+      .importantlinks {
+        border-top:1px groove black;
+        padding-top:12px;
+      }
+  }
+
+
+/* Extra store policies font and color */
+
+.policiesfontcolor {
+    color:#2c0808;
+    text-shadow: 1px 1px 2px black;
+    margin-top:10px;
+}
+
+/* Privacy policy */
+
+.privacypolicycard{
+    background-color:#151212!important;
+    padding:5px;
+    color: white;
+}
+
+.borderprivacy{
+    border:1px solid black !important;
+}
+
+.backgroundprivacy{
+    background-color:#1a1919;
+    color:white;
+}
+
+/* Terms of service */
+
+.termsofservicecard{
+    background-color:#151212!important;
+    padding:8px;
+    color: white;
+}
+.borderservice{
+    border:1px solid black !important;  
+}
+
+.backgroundservice{
+    background-color:#1a1919;
+    color:white;
+}
+
+
+/* 404 Error page */
+
+.errorpage{
+    color:white;
+    margin-top:15px;
+    margin-bottom:15px;
+
+}
+
+.errorimage{ 
+    margin-bottom:15px;
+}
+
+.errorlink{
+    color:#7a0000;
+}
+
+.errorlink:hover{
+    color:#a00404;
+    text-decoration:none;
+}
+
+
+  /* EXTRAS */
+
+  /* Centrado de texto */
+
+.center {
+    text-align:center;
+}
+
+
+/* Color y shadow del texto*/
+
+.fontcolor {
+    color:white;
+    text-shadow: 1px 1px 2px black;
+}
+
+
+/* Icono Hamburguesa */
+
+.navbar-toggler-icon {
+    background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
+
+
+/* Links center */
+
+.hrefcenter {
+    text-align:center;
+    display:block;
+    padding-bottom:12px;
+}
+
+
+/* Policies font family */
+
+.policiesfont {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+
+/* Response for index */
+
+.marginresponsiveindex{
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+@media (max-width:576px){
+    .marginresponsiveindex{
+        margin-bottom:5px;
+        margin-top:5px;
+    }
+}
+
+@media (max-width:576px){
+
+    .responsiveboxinfoindex {
+        text-align:center;
+        }
+}
+
+.colordescripcion{
+    color:#bbb6b6;
+    font-size:18px;
+}
+
+.pinturasindexfont{
+    font-size:26px;
+}
+
+@media (max-width:992px){
+
+    .pinturasindexfont {
+        font-size: 24px;
+      
+        }
+    .colordescripcion{
+        font-size:16px;
+    }
+}
+
+@media (max-width:768px){
+
+    .pinturasindexfont {
+        font-size: 20px;
+      
+        }
+    .colordescripcion{
+        font-size:14px;
+    }
+}
+
+/* Responsive index para ordenar el flujo IMPORTANTE */
+
+@media (max-width:576px){
+    .flex {
+    -webkit-box-direction: reverse!important;
+    -ms-flex-direction: column-reverse!important;
+    flex-direction: column-reverse!important;
+}
+}
+
+
+/* Style url main */
+.url {
+    text-decoration:none;
+}
+
+.url:hover{
+    text-decoration:none;
+    color:#bbb6b6;
+    box-shadow: rgba(54, 54, 56, 0.342);
+}
+
+
+/* SECCION DE CADA PRODUCTO */
+
+.formcentrado {
+   display: flex;
+   align-items: center;
+   margin-top:12px;
+   margin-bottom:12px;
+   border: 1px dashed black;
+   padding:25px;
+}
+
+@media (max-width:568px){
+    .formcentrado {
+        padding:8px;
+     }
+}
+
+.sectorpaintings {
+    margin-top:15px;
+    margin-bottom:12px;
+}
+
+
+.accordiondiv {
+    margin-top: 15px;
+    margin-bottom: 12px;
+    display: flex;
+   align-items: center;
+}
+
+.accordionsection {
+    height:auto !important;
+    max-height:auto !important;
+    padding: 1.25rem;
+}
+.nostyle{
+    text-decoration:none;
+    color:white;
+}
+.nostyle:hover{
+    text-decoration:none;
+    color:white;
+}
+.paintingcardstyle{
+    border:none !important;
+    border-bottom:1px solid black !important;
+}
+.borderstylecard{
+    border:none !important;
+}
+.fontwhite {
+    color:rgb(235, 233, 233);
+}
+
+
+  /* PINTURAS id */
+
+  .titlepaintings{
+    font-size: 26px;
+  }
+
+  .borderpaintings{
+      border-top:1px solid black;
+  }
+
+  .btn-painting{
+    margin-bottom:15px;
+    color: #fff !important;
+    background-color: #1c1919;
+    border-color: #000000;
+}
+
+.btn-painting:hover{
+    border:1px solid black;
+    background-color: #000000;
+}
+
+.btn-painting:active {
+    background-color: #000000;
+  }
+
+.instanext {
+    display:block;
+    margin:auto;
+    max-width:12%;
+    margin-bottom:20px;
+    margin-top:16px;
+}
+
+
+.instanextsection{
+    display:none !important;
+}
+
+
+.showinstagramfeed{
+    display:block !important;
+}
+
+
+/* Image section */
+  
+  .room-description {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1919;
+    color: rgb(41, 41, 41);
+  }
+  .room-description h1 {
+    padding: 10px;
+    font-size: 40px;
+  }
+  .room-description p {
+    font-size: 20px;
+  }
+  
+  .gallery-hightlight {
+  width:100%;
+  }
+  
+  .listimage{
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+ 
+  }
+  .room-preview img {
+    flex-grow: 1;
+    height: 100px;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+    cursor: pointer;
+  }
+  
+  img.room-active {
+    opacity: 1;
+  }
+
+  
+  /* Boton subir imagen */
+
+  .afu-attach-pin{
+      color:white !important;
+      width: 50% !important;
+      max-width: 50%;
+      margin-bottom:12px;
+  }
+
+  .afu-attach-pin:hover{
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,12);
+  }
+
+  .boxshadow:hover {
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,12);
+  }
+
+  /* Boton editar y borrar */
+
+  .btn-admin{
+    margin-bottom:15px;
+    color: #fff !important;
+    background-color: #463f3f;
+    border-color: #262626;
+ }
+
+ .btn-admin:hover{
+    border:1px solid rgb(43, 43, 43);
+    background-color: #000000;
+ }
+
+ .btn-admin:active {
+    background-color: #1d1d1d;
+  }
+
+ @media(max-width:768px){
+ .alignbuttonad {
+    display: block;
+    text-align: center;
+  }
+}
+
+ .alignbuttonadcrear {
+    display: block;
+    text-align: center;
+  }
+
+  .fontlargebt{
+      font-size:28px;
+  }

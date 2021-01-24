@@ -1,0 +1,8 @@
+@media (min-width:576px){
+.left {
+    order:2;
+  }}
+
+  .effect{
+   display: flex;
+ }

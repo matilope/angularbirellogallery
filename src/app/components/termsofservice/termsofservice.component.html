@@ -1,0 +1,26 @@
+<main class="termsofservice">
+    <h1 class="center policiesfontcolor">{{principal}}</h1>
+    <div class="container">
+        <div class="row" *ngFor="let termsofservice of termsofservices">
+            <div class="c-col col-0 col-sm-1 col-md-2 col-lg-2"></div>
+            <div class="c-col col-12 col-sm-10 col-md-8 col-lg-8 policiesfont">
+                <div class="card termsofservicecard">
+                    <h5 class="card-title center">{{termsofservice.titulo}}</h5>
+                    <ul class="list-group list-group-flush borderservice">
+                        <li class="list-group-item backgroundservice" *ngIf="termsofservice.parrafo">
+                            {{termsofservice.parrafo}}</li>
+                        <li class="list-group-item backgroundservice" *ngIf="termsofservice.parrafo2">
+                            {{termsofservice.parrafo2}}</li>
+                        <li class="list-group-item backgroundservice" *ngIf="termsofservice.parrafo3">
+                            {{termsofservice.parrafo3}}</li>
+                        <li class="list-group-item backgroundservice" *ngIf="termsofservice.parrafo4">
+                            {{termsofservice.parrafo4}}</li>
+                        <li class="list-group-item backgroundservice" *ngIf="termsofservice.parrafo5">
+                            {{termsofservice.parrafo5}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="c-col col-0 col-sm-1 col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+</main>
