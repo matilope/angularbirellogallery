@@ -16,7 +16,7 @@ export class AuthService {
                }
 
   registerUser(user) {
-    if(user.secret == "secretbirellogallerypasswordtoken9730"){
+    if(user.secret == "************"){
     return this.http.post<any>(this.url+"register", user);
   }
   }
