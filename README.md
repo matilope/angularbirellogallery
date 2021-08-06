@@ -1,27 +1,5 @@
-# Gallery
+-FrontEnd realizado en Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
+-Se hace uso de Angular Universal para que ciertas partes de la pagina se rendericen en el servidor en lugar de en el cliente. De esta forma, el servidor genera el código HTML que puede ser indexado por los motores de búsqueda o en ocaciones cuando se comparte algun tipo de link en redes sociales.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+-Uso JWT para el login de usuarios al panel de administrador.
