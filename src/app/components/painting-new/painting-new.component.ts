@@ -4,6 +4,7 @@ import { PaintingsService } from '../../services/paintings.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from'sweetalert2';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-painting-new',
@@ -18,12 +19,14 @@ export class PaintingNewComponent implements OnInit {
   public status: string;
   public url: string;
 
+
   afuConfig = {
     multiple: true,
-    formatsAllowed: ".jpg, .png, .gif, .jpeg",
+    formatsAllowed: ".jpg,.png,.gif,.jpeg",
     maxSize: "50",
     uploadAPI:  {
-      url: Global.url+"upload-image/",
+      url: Global.url+"create",
+      method:"POST"
     },
     theme: "attachPin",
     hideProgressBar: true,
@@ -42,25 +45,34 @@ export class PaintingNewComponent implements OnInit {
     }
 };
 
+
   constructor(
     private _paintingsService: PaintingsService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private metaService: Meta
   ) {
-    this.paintings = new Paintings("", null, "", "", null, null, null, null, "", "", "", "", "", "", "", "", "");
+    this.paintings = new Paintings("", "", "", null, "", null, "", null, "", null, "", null, "", null, "", "", "", "", "", "", "", "", "", "", null);
     this.title = "Crear nueva pintura";
     this.subtitle = "Los datos de titulo, subtitulo, descripcion, dimension, caracteristicas y link son obligatorios.";
     this.url = Global.url;
+    this.metaService.addTag(
+      {
+       name: 'robots', 
+       content: 'noindex, nofollow'
+      }
+
+    );
 
   }
-
+  
   ngOnInit(): void {
   }
 
   onSubmit() {
     this._paintingsService.create(this.paintings).subscribe(
       response => {
-        if (response) {
+        if (response.status == "Success") {
           this.status = "Success"
           this.paintings = response.paints;
           swal.fire(
@@ -84,15 +96,34 @@ export class PaintingNewComponent implements OnInit {
         );
         this._router.navigate(["/admin"]);
       }
-    )
+    );
   }
-  imageUpload(data){
-    let image_data = data.body;
-    this.paintings.image = image_data.image;
-    this.paintings.image2= image_data.image2;
-    this.paintings.image3= image_data.image3;
-    this.paintings.image4= image_data.image4;
 
+  imageUpload(data){
+    let image_data0 = data.body.image0;
+    let image_data1 = data.body.image1;
+    let image_data2 = data.body.image2;
+    let image_data3 = data.body.image3;
+    let image_data4 = data.body.image4;
+    let image_data5 = data.body.image5;
+    this.paintings.image0 = image_data0;
+    this.paintings.image1 = image_data1;
+    this.paintings.image2 = image_data2;
+    this.paintings.image3 = image_data3;
+    this.paintings.image4 = image_data4;
+    this.paintings.image5 = image_data5;
+    let image0url = data.body.image0url;
+    this.paintings.image0url = image0url;
+    let image1url = data.body.image1url;
+    this.paintings.image1url = image1url;
+    let image2url = data.body.image2url;
+    this.paintings.image2url = image2url;
+    let image3url = data.body.image3url;
+    this.paintings.image3url = image3url;
+    let image4url = data.body.image4url;
+    this.paintings.image4url = image4url;
+    let image5url = data.body.image5url;
+    this.paintings.image5url = image5url;
   }
 
 }

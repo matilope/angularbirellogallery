@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpInterceptor } from '@angular/common/http'
+import { HttpInterceptor } from '@angular/common/http';
 import { AuthService } from './auth.service';
 @Injectable()
 export class TokenInterceptorService implements HttpInterceptor {
@@ -12,7 +12,7 @@ export class TokenInterceptorService implements HttpInterceptor {
         headers: req.headers.set('Authorization', 'bearer ' + authService.getToken())
       }
     )
-    return next.handle(tokenizedReq)
+    return next.handle(tokenizedReq);
   }
 
 }

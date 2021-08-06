@@ -1,2 +1,20 @@
-<div id="instafeed">
-</div>
+<main class="miscellaneous">
+    <section class="miscellaneoussection" scroll-to-top="insta">
+        <h1 class="center info miscellaneoustitle">{{principal}}</h1>
+        <div class="container">
+            <div class="row">
+                <div class="c-col col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
+                    *ngFor="let pub of insta | paginate: { itemsPerPage: 6, currentPage: page }">
+                    <div class="imagenes">
+                        <a href="{{pub.permalink}}"><img class="imggrid" src="{{pub.media_url}}"
+                                alt="{{pub.username}} instagram images"></a>
+                        <p class="centered">{{pub.caption}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="d-flex justify-content-center" style="margin-top:20px;margin-bottom:12px;padding:0 !important;color:white;font-size:18px;">
+        <pagination-controls responsive="true" previousLabel="Prev" nextLabel="Next" (pageChange)="pageChanged(page = $event)"></pagination-controls>
+    </div>
+</main>

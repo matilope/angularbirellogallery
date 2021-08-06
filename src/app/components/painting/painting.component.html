@@ -1,62 +1,86 @@
 <main class="paintings">
-    <div class="container">
-        <div class="row rowresponsiveapi">
-            <div class="c-col col-12 col-sm-12 col-md-7 col-lg-7 sectorpaintings">
-                <div class="card-group">
-                    <div class="card">
-                        <div class="room-gallery">
-                            <img class=" gallery-hightlight" *ngIf="paintings" src="{{url + 'get-image/' + paintings.image}}" alt="{{paintings.titulo}}" />
+    <section class="paintingsection">
+        <div class="container">
+            <div class="row rowresponsiveapi" *ngIf="paintings">
+                <div class="c-col col-12 col-sm-12 col-md-7 col-lg-7 sectorpaintings">
+                    <div class="card-group">
+                        <div class="card">
+                            <div class="room-gallery">
+                                <img class="gallery-highlight" src="{{paintings.image0url}}"
+                                    alt="{{paintings.titulo}}" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="c-col col-12 col-sm-12 col-md-5 col-lg-5 accordiondiv">
-                <div id="accordion">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item backgroundtransparent fontwhite titlepaintings" *ngIf="paintings">
-                            <strong>{{paintings.titulo}}</strong>
+                <div class="c-col col-12 col-sm-12 col-md-5 col-lg-5 accordiondiv">
+                    <div id="accordion">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item backgroundtransparent fontwhite titlepaintings">
+                                <strong>{{paintings.titulo}}</strong>
+                            </li>
+                            <li class="list-group-item backgroundtransparent fontwhite"><strong>Dimensions:
+                                </strong>{{paintings.dimension}}</li>
+                            <li class="list-group-item backgroundtransparent fontwhite"><strong>Characteristics:
+                                </strong>{{paintings.characteristics}}</li>
+                            <li class="list-group-item backgroundtransparent fontwhite">Similar works: <br><a
+                                    href="{{paintings.link}}">Click here</a><br><a href="{{paintings.link2}}">Click
+                                    here</a>
+                        </ul>
+                        <li class="list-group-item backgroundtransparent" style="border:none;">
+                            <a href="https://wa.me/5491164816622"><button class="btn btn-painting"
+                                    value="Enquire">Enquire</button></a>
                         </li>
-                        <li class="list-group-item backgroundtransparent fontwhite" *ngIf="paintings"><strong>Dimensions:
-                            </strong>{{paintings.dimension}}</li>
-                        <li class="list-group-item backgroundtransparent fontwhite" *ngIf="paintings"><strong>Characteristics:
-                            </strong>{{paintings.characteristics}}</li>
-                        <li class="list-group-item backgroundtransparent fontwhite">Similar works: <br><a *ngIf="paintings"
-                                href="{{paintings.link}}">Click here</a><br><a *ngIf="paintings" href="{{paintings.link2}}">Click here</a>
-                    </ul>
-                    <li class="list-group-item backgroundtransparent" style="border:none;">
-                        <a href="https://wa.me/5491164816622"><button class="btn btn-painting"
-                                value="Enquire">Enquire</button></a>
+                        <li class="list-group-item backgroundtransparent" style="border:none;">
+                            <div class="room-preview">
+                                <a *ngIf="paintings.image0url" href="{{paintings.image0url}}" data-lightbox="roadtrip"
+                                    data-title="{{paintings.titulo}} "><img *ngIf="paintings.image0url"
+                                        src="{{paintings.image0url}}" class="room-active"
+                                        alt="{{paintings.titulo}}" /></a>
+                                <a *ngIf="paintings.image1url" href="{{paintings.image1url}}" data-lightbox="roadtrip"
+                                    data-title="{{paintings.titulo}} "><img *ngIf="paintings.image1url"
+                                        src="{{paintings.image1url}}" class="room-active"
+                                        alt="{{paintings.titulo}}" /></a>
+                                <a *ngIf="paintings.image2url" href="{{paintings.image2url}}" data-lightbox="roadtrip"
+                                    data-title="{{paintings.titulo}} "><img *ngIf="paintings.image2url"
+                                        src="{{paintings.image2url}}" class="room-active"
+                                        alt="{{paintings.titulo}}" /></a>
+                                <a *ngIf="paintings.image3url" href="{{paintings.image3url}}" data-lightbox="roadtrip"
+                                    data-title="{{paintings.titulo}} "><img *ngIf="paintings.image3url"
+                                        src="{{paintings.image3url}}" class="room-active"
+                                        alt="{{paintings.titulo}}" /></a>
+                                <a *ngIf="paintings.image4url" href="{{paintings.image4url}}" data-lightbox="roadtrip"
+                                    data-title="{{paintings.titulo}} "><img *ngIf="paintings.image4url"
+                                        src="{{paintings.image4url}}" class="room-active"
+                                        alt="{{paintings.titulo}}" /></a>
+                                <a *ngIf="paintings.image5url" href="{{paintings.image5url}}" data-lightbox="roadtrip"
+                                    data-title="{{paintings.titulo}} "><img *ngIf="paintings.image5url"
+                                        src="{{paintings.image5url}}" class="room-active"
+                                        alt="{{paintings.titulo}}" /></a>
+                            </div>
+                        </li>
+                    </div>
+                </div>
+                <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 sectorpaintings borderpaintings"></div>
+                <div class="c-col col-12 col-sm-12 col-md-8 col-lg-8 sectorpaintings">
+                    <li class="list-group-item backgroundtransparent fontwhite" style="border:none;">
+                        {{paintings.descripcion}}
                     </li>
-                    <li class="list-group-item backgroundtransparent">
-                        <div class="room-preview">
-                            <img *ngIf="paintings" src="{{url + 'get-image/' + paintings.image}}" class="room-active" alt="{{paintings.titulo}}" />
-                            <img *ngIf="paintings.image2" src="{{url + 'get-image/' + paintings.image2}}" class="room-active" alt="{{paintings.titulo}}" />
-                            <img *ngIf="paintings.image3" src="{{url + 'get-image/' + paintings.image3}}" class="room-active" alt="{{paintings.titulo}}" />
-                            <img *ngIf="paintings.image4" src="{{url + 'get-image/' + paintings.image4}}" class="room-active" alt="{{paintings.titulo}}" />
-                        </div>
+                    <li class="list-group-item backgroundtransparent fontwhite" style="border:none;">
+                        {{paintings.descripcion2}}
+                    </li>
+                    <li class="list-group-item backgroundtransparent fontwhite" style="border:none;">
+                        {{paintings.descripcion3}}
+                    </li>
+                    <li class="list-group-item backgroundtransparent fontwhite" style="border:none;">
+                        {{paintings.descripcion4}}
+                    </li>
+                    <li class="list-group-item backgroundtransparent fontwhite" style="border:none;">
+                        {{paintings.descripcion5}}
                     </li>
                 </div>
+                <div class="c-col col-0 col-sm-0 col-md-4 col-lg-4"></div>
             </div>
-            <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 sectorpaintings borderpaintings"></div>
-            <div class="c-col col-12 col-sm-12 col-md-8 col-lg-8 sectorpaintings">
-                <li class="list-group-item backgroundtransparent fontwhite" style="border:none;" *ngIf="paintings">
-                    {{paintings.descripcion}}
-                </li>
-                <li class="list-group-item backgroundtransparent fontwhite" style="border:none;" *ngIf="paintings">
-                    {{paintings.descripcion2}}
-                </li>
-                <li class="list-group-item backgroundtransparent fontwhite" style="border:none;" *ngIf="paintings">
-                    {{paintings.descripcion3}}
-                </li>
-                <li class="list-group-item backgroundtransparent fontwhite" style="border:none;" *ngIf="paintings">
-                    {{paintings.descripcion4}}
-                </li>
-                <li class="list-group-item backgroundtransparent fontwhite" style="border:none;" *ngIf="paintings">
-                    {{paintings.descripcion5}}
-                </li>
-            </div>
-            <div class="c-col col-0 col-sm-0 col-md-4 col-lg-4"></div>
         </div>
-    </div>
+    </section>
 </main>
-<script src="../../../assets/js/images.js"></script>
+<div [innerHTML]="html"></div>

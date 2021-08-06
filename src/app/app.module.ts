@@ -4,6 +4,8 @@ import { routing, appRoutingProviders } from './app.routing';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -25,6 +27,9 @@ import { AuthService } from './services/auth.service';
 import { TokenInterceptorService } from './services/ti.service';
 import { AuthGuard } from './auth.guard';
 import { RegisterComponent } from './components/register/register.component';
+import { AdminregisterComponent } from './components/adminregister/adminregister.component';
+import { PortadaComponent } from './components/portada/portada.component';
+
 
 @NgModule({
   declarations: [
@@ -44,14 +49,17 @@ import { RegisterComponent } from './components/register/register.component';
     PaintingUpdateComponent,
     AdminComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminregisterComponent,
+    PortadaComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     routing,
     FormsModule,
     HttpClientModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule, 
+    NgxPaginationModule
   ],
   providers: [AuthService, AuthGuard, appRoutingProviders, {
     provide: HTTP_INTERCEPTORS,

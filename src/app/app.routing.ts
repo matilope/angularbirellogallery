@@ -17,8 +17,10 @@ import { PaintingUpdateComponent } from "./components/painting-update/painting-u
 import { AdminComponent } from './components/admin/admin.component';
 import { RegisterComponent } from './components/register/register.component'
 import { LoginComponent } from './components/login/login.component';
-import { AuthGuard } from './auth.guard';
+import { AdminregisterComponent } from './components/adminregister/adminregister.component';
+import { PortadaComponent } from './components/portada/portada.component';
 
+import { AuthGuard } from './auth.guard';
 
 
 // Array de rutas
@@ -35,12 +37,15 @@ const appRoutes : Routes = [
     {path: "refundpolicy", component: RefundpolicyComponent},
     {path: "termsofservice", component: TermsofserviceComponent},
     {path: "admin", canActivate: [AuthGuard], component: AdminComponent},
+    {path: "admin/show/users", canActivate: [AuthGuard], component: AdminregisterComponent},
     {path: "admin/login", component: LoginComponent},
-    {path: "admin/register", component: RegisterComponent},
+    {path: "admin/register", canActivate: [AuthGuard], component: RegisterComponent},
+    {path: "admin/change/portada/:id", canActivate: [AuthGuard], component: PortadaComponent},
     {path: '404', component: ErrorComponent},
     {path: '**', redirectTo: '/404'}
 ];
 
-
 export const appRoutingProviders: any[] = [];
-export const routing: ModuleWithProviders<any> = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders<any> = RouterModule.forRoot(appRoutes, {
+    initialNavigation: 'enabled'
+});

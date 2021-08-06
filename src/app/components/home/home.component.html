@@ -1,31 +1,33 @@
 <main class="main">
-    <h1 class="center fontcolor" style="margin-top:10px;">{{principal}}</h1>
-    <p class="center" style="color:#bfbfbf;">{{subtitulo}}</p>
-    <div class="container">
-        <a [routerLink]="['/painting/view/', painting._id]" class="url effect" data-aos="fade-right"
-            *ngFor="let painting of paintings; let i=index;">
-            <div class="row rowresponsiveapi">
-                <div class="c-col col-12 col-sm-7 col-md-7 col-lg-7 marginresponsiveindex"
-                    [ngClass]="i%2 == 0 ? 'right' : 'left'">
-                    <div class="card-group">
-                        <div class="card">
-                            <img class="card-img-top cardmainimg" src="{{url + 'get-image/' + painting.image}}"
-                                alt="{{painting.titulo}}">
+    <section class="homesection">
+        <h1 class="center fontcolor" style="margin-top:20px;">{{principal}}</h1>
+        <p class="center" style="color:#bfbfbf;">{{subtitulo}}</p>
+        <div class="container homediv">
+            <a [routerLink]="['/painting/view/', painting._id]" class="url effect" data-aos="zoom-in"
+                *ngFor="let painting of paintings; let i=index;">
+                <div class="row rowresponsiveapi">
+                    <div class="c-col col-12 col-sm-7 col-md-7 col-lg-7 marginresponsiveindex"
+                        [ngClass]="i%2 == 0 ? 'right' : 'left'">
+                        <div class="card-group">
+                            <div class="card">
+                                <img class="card-img-top cardmainimg" src="{{painting.image0url}}"
+                                    alt="{{painting.titulo}}">
+                            </div>
                         </div>
                     </div>
+                    <div
+                        class="c-col col-12 col-sm-5 col-md-5 col-lg-5 verticalcenter responsiveboxinfo marginresponsiveindex">
+                        <ul class="list-group list-group-flush colorfontart">
+                            <li class="list-group-item backgroundtransparent pinturasindexfont shadowtext">
+                                <strong>{{painting.titulo}}</strong>
+                            </li>
+                            <li class="list-group-item backgroundtransparent colordescripcion shadowtext">
+                                {{painting.subtitulo}}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div
-                    class="c-col col-12 col-sm-5 col-md-5 col-lg-5 verticalcenter responsiveboxinfo marginresponsiveindex">
-                    <ul class="list-group list-group-flush colorfontart">
-                        <li class="list-group-item backgroundtransparent pinturasindexfont shadowtext">
-                            <strong>{{painting.titulo}}</strong>
-                        </li>
-                        <li class="list-group-item backgroundtransparent colordescripcion shadowtext">
-                            {{painting.descripcion}}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </a>
-    </div>
+            </a>
+        </div>
+    </section>
 </main>

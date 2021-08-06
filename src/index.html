@@ -1,42 +1,111 @@
 <!doctype html>
+<!-- Site by Entornos web - https://instagram.com/entornosweb -->
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
-  <title>Art | Birello Gallery</title>
+  <title>Artworks | Birello Gallery</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Birello Gallery | Artworks">
+  <meta property="og:description"
+    content="Welcome to Birello Gallery! Ignacio Birello, the youngest art dealer specializing in Old Master paintings will be glad to show our current stock, thinking in art not only as regards decoration but as an investiment itself.">
+  <meta content="https://www.birellogallery.com" property="og:url">
+  <meta property="og:image" content="https://www.birellogallery.com/assets/img/header/portada.jpg">
+  <meta name="author" content="Entornos Web" />
+  <meta name="generator" content="Entornos Web - https://instagram.com/entornosweb">
+  <meta name="copyright" content="Birello Gallery" />
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Birello Gallery">
+  <meta name="keywords"
+    content="gallery, birello, art, buying art, art investment, tuscan school, virgilio colombo, carlo maratta, david matthieu, louis tannert, anton raphael mengs, jan weenix" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://www.birellogallery.com/">
+  <meta property="twitter:title" content="Birello Gallery | Art">
+  <meta property="twitter:description"
+    content="Welcome to Birello Gallery! Ignacio Birello, the youngest art dealer specializing in Old Master paintings will be glad to show our current stock, thinking in art not only as regards decoration but as an investiment itself.">
+  <meta property="twitter:image" content="https://www.birellogallery.com/assets/img/header/portada.jpg">
+  <meta name="google-site-verification" content="1SUj6lHfQUtyIHdB82VkQqO34g1lp-JcRnnx5HFLi_4" />
   <link rel="icon" type="image/png" href="assets/img/favicon/favicon.png">
+  <link rel="shortcut icon" href="assets/img/favicon/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/favicon/favicon.png" />
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/plain" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="assets/css/lightbox.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script src="assets/js/parallax.min.js"></script>
+  <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Store",
+        "image": [
+          "https://www.birellogallery.com/assets/img/header/portada.jpg"
+         ],
+        "@id": "https://www.birellogallery.com",
+        "name": "Birello Gallery",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Buenos Aires",
+          "addressCountry": "AR"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -34.599722,
+          "longitude": -58.381944
+        },
+        "url": "https://www.birellogallery.com/painting/view/601b6f319e98750015a3b0cd",
+        "priceRange": "$$$",
+        "telephone": "+5491164816622",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "00:00"
+          }
+        ]
+      }
+    </script>
 </head>
 
 <body>
   <app-root></app-root>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/instafeed.js/1.4.1/instafeed.min.js"></script>
-  <script>
-    var userFeed = new Instafeed({
-      get: 'user',
-      userId: '3559366309',
-      accessToken: 'IGQVJYNDRBMy1QNElzOVJ2a2plZA2hwYjJqZAEQzLWlhYkJQRHJsU1RNbHl6Ni1XekNCREc2MDB6M29zU3hNeFlLUi1BRXpSaFBxX3ExQ0tIOWRKbEhUR1VLLWRFY3dDckxrZAGRuLXM4N0EwSjRaM08wdAZDZD',
-      resolution: 'standard_resolution',
-      template: '<a href="{{link}}" target="_blank" id="{{id}}"><img src="{{image}}" /></a>',
-      sortBy: 'most-recent',
-      limit: 5,
-      links: false
-    });
-    userFeed.run();
-  </script>
-  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script src="assets/js/platform.js" defer></script>
+  <script src="assets/js/aos.js"></script>
   <script>
     AOS.init({
-      duration: 3000,
-      once: true,
+      duration: 800,
+      once: true
     });
   </script>
+  <script src="assets/js/lightbox.min.js"></script>
+  <script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true,
+      'showImageNumberLabel': true,
+      'fitImagesInViewport': true,
+      'disableScrolling': true
+    })
+  </script>
+  <style>
+    ul {
+      padding: 0 !important;
+    }
+
+    .ngx-pagination a:hover {
+      background-color: rgb(73, 73, 73);
+    }
+  </style>
 </body>
 
 </html>

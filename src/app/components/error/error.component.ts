@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, Optional } from '@angular/core';
+import { RESPONSE, REQUEST } from '@nguniversal/express-engine/tokens';
+import { Meta } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { isPlatformServer } from '@angular/common';
+import express, {Request, Response} from 'express';
 
 @Component({
   selector: 'app-error',
@@ -6,23 +11,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./error.component.css']
 })
 export class ErrorComponent implements OnInit {
-  public titulo: string;
-  public parrafo: string;
-  public link: string;
-  public parrafo2: string;
-  public src: string;
-  public alt: string;
 
-  constructor() {
-    this.titulo= "Page not found";
-    this.parrafo= "Go back to the ";
-    this.link= "home page";
-    this.parrafo2= " and try again";
-    this.src= "assets/img/404.png";
-    this.alt= "This page doesn't exist or was deleted";
-   }
+  constructor(private metaService: Meta,
+    private router: Router,
+    @Optional() @Inject(RESPONSE) private response: Response,
+    @Inject(PLATFORM_ID) private platformId: Object) {
+    this.metaService.addTag(
+      {
+        name: 'robots',
+        content: 'noindex, nofollow'
+      }
+
+    );
+  }
 
   ngOnInit(): void {
+    if (isPlatformServer(this.platformId)) {
+      this.response.status(410);
+    }
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 3000);
   }
 
 }

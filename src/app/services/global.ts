@@ -1,3 +1,3 @@
 export var Global = {
-    url: "https://birellogallery.herokuapp.com/secret/apirest/"
+    url: "https://backbirellogallery.herokuapp.com/apirest/"
 };

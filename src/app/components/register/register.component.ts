@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router'
 import swal from 'sweetalert2';
+import { Title, Meta } from '@angular/platform-browser';
 
 
 @Component({
@@ -14,11 +15,20 @@ export class RegisterComponent implements OnInit {
   registerUserData: any;
 
   constructor(private _auth: AuthService,
-    private _router: Router) {
+    private _router: Router,
+    private metaService: Meta) {
     this.registerUserData = {
       email: "",
-      password: ""
+      password: "",
+      secret: ""
     }
+    this.metaService.addTag(
+      {
+       name: 'robots', 
+       content: 'noindex, nofollow'
+      }
+
+    );
 
   }
 
@@ -26,6 +36,7 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser() {
+    if (this._auth.registerUser(this.registerUserData)!=undefined){
     this._auth.registerUser(this.registerUserData)
       .subscribe(
         response => {
@@ -35,10 +46,18 @@ export class RegisterComponent implements OnInit {
             'Cuidado !, el uso del registro de un personal no autorizado puede enfrentar denuncia por irrumpimiento de las condiciones de la pagina',
             'success'
           );
-          this._router.navigate(['/admin/login'])
+          this._router.navigate(['/404'])
         },
-        error => this._router.navigate(['/admin/login'])
+        error => this._router.navigate(['/admin/register'])
       )
+    } else {
+      swal.fire(
+        'Ha ocurrido un error al registrarse',
+        'La clave secreta que ha colocado es incorrecta o no ha colocado ninguna',
+        'warning'
+      );
+      this._router.navigate(['/404'])
+    }
   }
 
 

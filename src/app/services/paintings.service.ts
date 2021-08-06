@@ -15,7 +15,6 @@ export class PaintingsService {
         this.url = Global.url;
     }
 
-
     getPaintings():Observable<any> {
         return this._http.get(this.url+"paintings");
     }
@@ -27,8 +26,7 @@ export class PaintingsService {
     create(pintura):Observable<any> {
         let params = JSON.stringify(pintura);
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.post(this.url+"save", params, {headers: headers});
-        
+        return this._http.post(this.url+"save", params, {headers: headers});  
     }
 
     update(id, pintura):Observable<any> {
@@ -41,6 +39,6 @@ export class PaintingsService {
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         return this._http.delete(this.url+"painting/"+id, {headers: headers});
     }
-    
+
 }
 
