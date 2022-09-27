@@ -1,0 +1,40 @@
+<main class="adminregisters" style="margin-top: 20px">
+  <section class="adminregister">
+    <div class="container">
+      <div class="row rowresponsiveapi justify-content-center" *ngFor="let users of admins"
+        [ngClass]="{ 'router-animation': animation === true }">
+        <div class="c-col col-12 col-sm-10 col-md-8 col-lg-6 marginresponsiveindex">
+          <div class="table-responsive">
+            <table class="table table-dark">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Password</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>{{ users.email }}</td>
+                  <td>**Private**</td>
+                </tr>
+              </tbody>
+              <a (click)="deleteUser(users._id)" class="btn deleteuser">Borrar usuario</a>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <a routerLink="/admin" style="
+              color: white;
+              display: block;
+              margin: 0 auto;
+              margin-bottom: 16px;
+            ">Go back to the admin page</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,54 @@
+picture{
+    display: block;
+    position: relative;
+}
+
+picture div{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    color: white;
+    background: #7c1d1d;
+    padding: 16px;
+}
+
+picture div:hover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    color: white;
+    background: #c32727;
+    padding: 16px;
+}
+
+.room-active{
+    width: 140px;
+}
+
+
+
+.contenedor_imagenes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.subida{
+    width: 130px;
+    height: 130px;
+    border:1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+.subida:hover{
+cursor: pointer;
+}
+
+input[type="file"]{
+    display: none;
+}

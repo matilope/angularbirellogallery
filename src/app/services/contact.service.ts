@@ -2,22 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Global } from './global';
+import { Contact } from '../models/contact';
 
 @Injectable()
 export class ContactService {
-    public url: string;
+  public url: string;
 
-    constructor(
-        private _http: HttpClient
+  constructor(private _http: HttpClient) {
+    this.url = Global.url;
+  }
 
-    ) {
-        this.url = Global.url;
-    }
-
-
-    getContacts(body):Observable<any> {
-        return this._http.post(this.url+"formulario", body);
-    }
-    
+  getContacts(body:Contact): Observable<Contact> {
+    return this._http.post<Contact>(this.url + 'formulario', body);
+  }
 }
-

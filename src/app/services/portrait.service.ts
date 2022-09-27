@@ -1,33 +1,28 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Portrait } from '../models/portrait';
+import { Portrait, PortraitObservable, PortraitSingle } from '../models/portrait';
 import { Global } from './global';
 
 @Injectable()
 export class PortraitService {
-    public url: string;
+  public url: string;
 
-    constructor(
-        private _http: HttpClient
+  constructor(private _http: HttpClient) {
+    this.url = Global.url;
+  }
 
-    ) {
-        this.url = Global.url;
-    }
+  getPortraits(): Observable<PortraitObservable> {
+    return this._http.get<PortraitObservable>(this.url + 'portraits');
+  }
 
-    getPortraits():Observable<any> {
-        return this._http.get(this.url+"portraits");
-    }
+  getPortrait(portraitId: string): Observable<PortraitSingle> {
+    return this._http.get<PortraitSingle>(this.url + 'portrait/' + portraitId);
+  }
 
-    getPortrait(portraitId):Observable<any> {
-        return this._http.get(this.url+"portrait/"+portraitId);
-    }
-
-    updatePortrait(id, portrait):Observable<any> {
-        let params = JSON.stringify(portrait);
-        let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        return this._http.put(this.url+"portrait/"+id, params, {headers: headers}); 
-    }
-
+  updatePortrait(id: string, portrait: Portrait): Observable<PortraitObservable> {
+    let params = JSON.stringify(portrait);
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this._http.put<PortraitObservable>(this.url + 'portrait/' + id, params, { headers: headers, });
+  }
 }
-

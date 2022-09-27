@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { trigger, transition } from '@angular/animations';\nexport const fader = trigger('routeAnimations', [transition('* <=> *', [])]);","map":null,"metadata":{},"sourceType":"module"}

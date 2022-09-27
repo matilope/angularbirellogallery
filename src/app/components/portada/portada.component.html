@@ -1,34 +1,33 @@
-<main class="portadaupdate">
-    <section class="portadaupdatesection">
-        <div class="container">
-            <div class="row">
-                <div class="c-col col-0 col-sm-0 col-md-1 col-lg-2"></div>
-                <div class="c-col col-12 col-sm-12 col-md-10 col-lg-8 enquiryform">
-                    <h2 class="center contactcolor">{{title}}</h2>
-                    <h3 class="center contactcolor infocontact">{{subtitle}}</h3>
-                    <form #portraitUpdateForm="ngForm" (ngSubmit)="onSubmit()">
-                        <div class="form-group">
-                            <label class="formlabel" for="Titulo">Titulo</label>
-                            <input type="text" class="form-control" id="Titulo" placeholder="Titulo" maxlength="160"
-                                name="titulo" #titulo="ngModel" [(ngModel)]="portrait.titulo" required>
-                            <small style="color:rgb(201, 201, 201);" *ngIf="!titulo.valid && titulo.touched">Titulo no es valido</small>
-                        </div>
-                        <div class="form-group">
-                            <div *ngIf="is_update" style="margin-bottom:12px;">
-                                <label class="formlabel" for="Image">Imagen subida:</label>
-                                <div class="room-preview">
-                                    <img *ngIf="portrait.image0url" src="{{portrait.image0url}}" class="room-active"
-                                        alt="{{portrait.titulo}}" />
-                                </div>
-                            </div>
-                            <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
-                            </angular-file-uploader>
-                        </div>
-                        <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit">
-                    </form>
-                </div>
-                <div class="c-col col-0 col-sm-0 col-md-1 col-lg-2"></div>
+<main class="portadaupdate" [ngClass]="{ 'router-animation': animation === true }">
+  <section class="portadaupdatesection">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="c-col col-12 col-sm-12 col-md-10 col-lg-8 enquiryform">
+          <h2 class="center contactcolor">{{ title }}</h2>
+          <h3 class="center contactcolor infocontact">{{ subtitle }}</h3>
+          <form #portraitUpdateForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="formlabel" for="Titulo">Titulo</label>
+              <input type="text" class="form-control" id="Titulo" placeholder="Titulo" maxlength="160" name="titulo"
+                #titulo="ngModel" [(ngModel)]="portrait.titulo" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!titulo.valid && titulo.touched">Titulo no es
+                valido</small>
             </div>
+            <div class="form-group">
+              <div *ngIf="is_update" style="margin-bottom: 12px">
+                <label class="formlabel" for="Image">Imagen subida:</label>
+                <div class="room-preview">
+                  <img *ngIf="portrait.image0url" src="{{ portrait.image0url }}" class="room-active"
+                    alt="{{ portrait.titulo }}" />
+                </div>
+              </div>
+              <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
+              </angular-file-uploader>
+            </div>
+            <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit" />
+          </form>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>

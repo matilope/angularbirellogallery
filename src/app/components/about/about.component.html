@@ -1,34 +1,33 @@
-<main class="about">
+<main class="about" [ngClass]="{ 'router-animation': animation === true }">
   <section class="aboutsection">
     <div class="container">
       <div class="row">
-        <div class="c-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="c-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 align">
           <h1 class="info center aboutfontcolor">
-            {{principal}}
+            {{ principal }}
           </h1>
           <p class="aboutp">
-            {{parrafo}}
+            {{ parrafo }}
           </p>
         </div>
         <div class="c-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-          <img class="gallery-highlight" src="/assets/img/about/about.jpg" alt="{{alt}}">
+          <img class="gallery-highlight" src="/assets/img/about/about.jpg" alt="{{ alt }}" />
         </div>
-        <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-          <h3 class="subabout">Returning identity to unappraised artworks</h3>
+        <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 center" style="margin-top: 16px">
+          <h2 class="subabout">Returning identity to unappraised artworks</h2>
           <p class="aboutp">
-
-            Birello gallery is run by Ignacio Birello, born in Buenos Aires during 1997.
-            
-            He is one of the youngest art dealers in the world, having studied business administration at UBA and art valuation at ESNECA.
-
-            Without any parental background in the field of art and antiques, he focuses primarily on european artworks
-            from the 16th century until the 19th century.
-
-            Despite beginning to collect and deal with french porcelain, his passion for paintings is undisputed.
-            Focusing on South American collections due to immigration waves from the prior centuries, he often reaches
-            artworks to the European market either as an anonymous seller or representing Birello Gallery.
-
-            Let’s enjoy the journey!</p>
+            Birello gallery is run by Ignacio Birello, born in Buenos Aires
+            during 1997. He is one of the youngest art dealers in the world,
+            having studied business administration at UBA and art valuation at
+            ESNECA. Without any parental background in the field of art and
+            antiques, he focuses primarily on european artworks from the 16th
+            century until the 19th century. Despite beginning to collect and
+            deal with french porcelain, his passion for paintings is undisputed.
+            Focusing on South American collections due to immigration waves from
+            the prior centuries, he often reaches artworks to the European
+            market either as an anonymous seller or representing Birello
+            Gallery. Let's enjoy the journey!
+          </p>
         </div>
       </div>
     </div>
@@ -36,20 +35,20 @@
   <section class="secondary">
     <div class="container">
       <div class="row">
-        <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" style="text-align:center; margin-top:16px;">
+        <div class="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 center" style="margin-top: 16px">
           <h2 class="h2shadow">The Gallery</h2>
           <div class="box">
-            <span style="--i:1;"><img src="assets/img/about/photo.jpg" alt="Art 3D gallery"></span>
-            <span style="--i:2;"><img src="assets/img/about/photo2.jpg" alt="Art 3D gallery"></span>
-            <span style="--i:3;"><img src="assets/img/about/photo3.jpg" alt="Art 3D gallery"></span>
-            <span style="--i:4;"><img src="assets/img/about/photo12.jpg" alt="Art 3D gallery"></span>
-            <span style="--i:5;"><img src="assets/img/about/photo7.jpg" alt="Art 3D gallery"></span>
-            <span style="--i:6;"><img src="assets/img/about/birello.jpg" alt="Art 3D gallery"></span>
-            <span style="--i:7;"><img src="assets/img/about/photo13.jpg" alt="Art 3D gallery"></span>
+            <span style="--i: 1"><img src="assets/img/about/photo.jpg" alt="Art 3D gallery" /></span>
+            <span style="--i: 2"><img src="assets/img/about/photo16.jpeg" alt="Art 3D gallery" /></span>
+            <span style="--i: 3"><img src="assets/img/about/photo15.jpeg" alt="Art 3D gallery" /></span>
+            <span style="--i: 4"><img src="assets/img/about/photo19.jpeg" alt="Art 3D gallery" /></span>
+            <span style="--i: 5"><img src="assets/img/about/photo2.jpg" alt="Art 3D gallery" /></span>
+            <span style="--i: 6"><img src="assets/img/about/photo18.jpeg" alt="Art 3D gallery" /></span>
+            <span style="--i: 7"><img src="assets/img/about/photo20.jpeg" alt="Art 3D gallery" /></span>
+            <span style="--i: 7"><img src="assets/img/about/photo17.jpeg" alt="Art 3D gallery" /></span>
           </div>
         </div>
       </div>
     </div>
   </section>
-
 </main>

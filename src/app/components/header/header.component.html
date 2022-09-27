@@ -1,14 +1,14 @@
 <ng-container *ngFor="let portrait of portrait">
-    <header *ngIf="path !== '/404'" style="background-image:url({{portrait.image0url}});">
-        <nav class="navbar navbar-expand-lg">
-            <div class="collapse navbar-collapse container-fluid justify-content-center" id="navbarNavAltMarkup">
-                <div class="navbar-nav backgroundstyle">
-                    <a class="nav-item nav-link active fontnav" routerLink="/">Artworks</a>
-                    <a class="nav-item nav-link fontnav" routerLink="/miscellaneous">Miscellaneous</a>
-                    <a class="nav-item nav-link fontnav" routerLink="/about">About</a>
-                    <a class="nav-item nav-link fontnav" routerLink="/contact">Contact</a>
-                </div>
-            </div>
-        </nav>
-    </header>
+  <header *ngIf="path !== '/404'" style="background-image:url('{{ portrait.image0url }}');">
+    <nav class="navbar navbar-expand-lg">
+      <div class="collapse navbar-collapse container-fluid justify-content-center" id="navbarNavAltMarkup">
+        <div class="navbar-nav backgroundstyle">
+          <a class="nav-item nav-link active fontnav" routerLink="/">Artworks</a>
+          <a class="nav-item nav-link fontnav" routerLink="/miscellaneous">Miscellaneous</a>
+          <a class="nav-item nav-link fontnav" routerLink="/about">About</a>
+          <a class="nav-item nav-link fontnav" routerLink="/contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+  </header>
 </ng-container>

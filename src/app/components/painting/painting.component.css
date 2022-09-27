@@ -1,0 +1,41 @@
+.room-active {
+    display: none;
+}
+
+.activo {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    width: 60%;
+    object-fit: contain;
+    border: none;
+    height: 80%;
+    animation: appears 1s;
+}
+
+.room-active-prevg {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+}
+
+.noneevents {
+    pointer-events: none;
+}
+
+@keyframes appears{
+    0%{opacity:0}
+    100%{opacity:1}
+}
+
+@keyframes disappears{
+    0%{opacity:1}
+    100%{opacity:0}
+}
+
+.desaparece{
+    animation: disappears 1s;
+}

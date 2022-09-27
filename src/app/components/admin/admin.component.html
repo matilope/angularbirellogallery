@@ -1,44 +1,57 @@
 <main class="main">
-    <section class="adminsection">
-        <h1 class="center fontcolor" style="margin-top:20px; margin-bottom:12px;">{{principal}}</h1>
-        <p class="center" style="color:#bfbfbf; margin-bottom:22px;">{{subtitulo}}</p>
-        <div class="container">
-            <div class="row rowresponsiveapi">
-                <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 marginresponsiveindex alignbuttonadcrear">
-                    <a [routerLink]="['/admin/show/users']" class="btn btn-lg btn-painting fontlargebt">Ver usuarios
-                        registrados</a><br>
-                    <a *ngFor="let portrait of portrait" [routerLink]="['/admin/change/portada/', portrait._id]" class="btn btn-lg btn-painting fontlargebt">Cambiar portada</a><br>
-                    <a [routerLink]="['/admin/create']" class="btn btn-lg btn-painting fontlargebt">Crear pintura</a>
-                </div>
-            </div>
+  <section class="adminsection">
+    <h1 class="center fontcolor" style="margin-top: 20px; margin-bottom: 12px">
+      {{ principal }}
+    </h1>
+    <p class="center" style="color: #bfbfbf">{{ subtitulo }}</p>
+    <div class="container" [ngClass]="{ 'router-animation': animation === true }">
+      <div class="row rowresponsiveapi">
+        <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 marginresponsiveindex alignbuttonadcrear">
+          <p class="no-margin">
+            <a [routerLink]="['/admin/show/users']" class="btn btn-lg btn-painting fontlargebt">
+              Ver usuarios registrados
+            </a>
+          </p>
+          <p class="no-margin">
+            <a class="btn btn-lg btn-painting fontlargebt" *ngFor="let token of token"
+              [routerLink]="['/admin/change/token/', token._id]">
+              Actualizar token
+            </a>
+          </p>
+          <p class="no-margin">
+            <a *ngFor="let portrait of portrait" [routerLink]="['/admin/change/portada/', portrait._id]"
+              class="btn btn-lg btn-painting fontlargebt">
+              Cambiar portada
+            </a>
+          </p>
+          <a [routerLink]="['/admin/create']" class="btn btn-lg btn-painting fontlargebt">Crear pintura</a>
         </div>
-        <div class="container">
-            <div class="row rowresponsiveapi" *ngFor="let painting of paintings">
-                <div class="c-col col-12 col-sm-6 col-md-5 col-lg-5 marginresponsiveindex">
-                    <div class="card-group">
-                        <div class="card">
-                            <img class="card-img-top cardmainimg" src="{{painting.image0url}}"
-                                alt="{{painting.titulo}}">
-                        </div>
-                    </div>
-                </div>
-                <div
-                    class="c-col col-12 col-sm-6 col-md-5 col-lg-5 verticalcenter responsiveboxinfo marginresponsiveindex">
-                    <ul class="list-group list-group-flush colorfontart">
-                        <li class="list-group-item backgroundtransparent pinturasindexfont shadowtext">
-                            <strong>{{painting.titulo}}</strong>
-                        </li>
-                        <li class="list-group-item backgroundtransparent colordescripcion shadowtext">
-                            {{painting.subtitulo}}
-                        </li>
-                    </ul>
-                </div>
-                <div class="c-col col-12 col-sm-12 col-md-2 col-lg-2 alignbuttonad">
-                    <a [routerLink]="['/admin/update/', painting._id]" class="btn btn-painting">Editar
-                        pintura</a><br>
-                    <a (click)="delete(painting._id)" class="btn btn-painting">Borrar pintura</a>
-                </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row rowresponsiveapi" *ngFor="let painting of paintings">
+        <div class="c-col col-12 col-sm-6 col-md-5 col-lg-5 marginresponsiveindex">
+          <div class="card-group">
+            <div class="card">
+              <img class="card-img-top cardmainimg" src="{{ painting.image0url }}" alt="{{ painting.titulo }}" />
             </div>
+          </div>
         </div>
-    </section>
+        <div class="c-col col-12 col-sm-6 col-md-5 col-lg-5 verticalcenter responsiveboxinfo marginresponsiveindex">
+          <ul class="list-group list-group-flush colorfontart">
+            <li class="list-group-item backgroundtransparent pinturasindexfont shadowtext">
+              <h2 class="colorfontart">{{ painting.titulo }}</h2>
+            </li>
+            <li class="list-group-item backgroundtransparent colordescripcion shadowtext">
+              {{ painting.subtitulo }}
+            </li>
+          </ul>
+        </div>
+        <div class="c-col col-12 col-sm-12 col-md-2 col-lg-2 alignbuttonad">
+          <a [routerLink]="['/admin/update/', painting._id]" class="btn btn-painting">Editar pintura</a>
+          <a (click)="delete(painting._id)" class="btn btn-painting">Borrar pintura</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>

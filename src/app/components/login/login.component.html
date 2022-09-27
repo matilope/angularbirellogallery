@@ -1,32 +1,35 @@
 <main class="adminlogin">
   <section class="adminlogin">
     <div class="container">
-      <div class="row">
-        <div class="c-col col-0 col-sm-0 col-md-2 col-lg-2"></div>
-
-        <div class="c-col col-12 col-sm-12 col-md-8 col-lg-8 enquiryform">
+      <div class="row justify-content-center">
+        <div class="c-col col-10 col-sm-10 col-md-8 col-lg-6 enquiryform"
+          [ngClass]="{ 'router-animation': animation === true }">
           <div class="card-header">
-            <h3 class="mb-0" style="color:white">Logueo</h3>
+            <h1 class="mb-0" style="color: white; font-size: 21px">Logueo</h1>
           </div>
-          <div class="card-body" style="border:none; height:auto;">
+          <div class="card-body" style="border: none; height: auto">
             <form class="form">
               <div class="form-group">
-                <label for="email" style="color:white">Usuario</label>
+                <label for="email" style="color: white">Usuario</label>
                 <input type="text" id="email" class="form-control" [(ngModel)]="loginUserData.email" name="email"
-                  required>
+                  autocomplete="on" required />
               </div>
               <div class="form-group">
-                <label for="password" style="color:white">Contraseña</label>
+                <label for="password" style="color: white">Contraseña</label>
                 <input type="password" id="password" class="form-control" [(ngModel)]="loginUserData.password"
-                  name="password" required>
+                  name="password" autocomplete="on" required />
               </div>
-              <button type="button" (click)="loginUser()" class="btn btn-success float-right"
-                style="margin-top:10px; margin-bottom:16px;">Entrar</button>
+              <div class="form-group">
+                <label for="secret" style="color: white">Secret</label>
+                <input type="text" id="secret" class="form-control" [(ngModel)]="loginUserData.secret" name="secret"
+                  autocomplete="on" required />
+              </div>
+              <button type="button" (click)="loginUser()" class="btn btn-success float-right">
+                Entrar
+              </button>
             </form>
           </div>
         </div>
-
-        <div class="c-col col-0 col-sm-0 col-md-2 col-lg-2"></div>
       </div>
     </div>
   </section>

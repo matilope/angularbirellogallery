@@ -1,71 +1,47 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { routing, appRoutingProviders } from './app.routing';
+import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AngularFileUploaderModule } from 'angular-file-uploader';
-import { NgxPaginationModule } from 'ngx-pagination';
-
 
 import { AppComponent } from './app.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ErrorComponent } from './components/error/error.component';
-import { AboutComponent } from './components/about/about.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { PaintingComponent } from './components/painting/painting.component';
-import { HomeComponent } from './components/home/home.component';
-import { MiscellaneousComponent } from './components/miscellaneous/miscellaneous.component';
-import { PrivacypolicyComponent } from './components/privacypolicy/privacypolicy.component';
-import { RefundpolicyComponent } from './components/refundpolicy/refundpolicy.component';
-import { TermsofserviceComponent } from './components/termsofservice/termsofservice.component';
-import { PaintingNewComponent } from './components/painting-new/painting-new.component';
-import { PaintingUpdateComponent } from './components/painting-update/painting-update.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { LoginComponent } from './components/login/login.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptorService } from './services/ti.service';
 import { AuthGuard } from './auth.guard';
-import { RegisterComponent } from './components/register/register.component';
-import { AdminregisterComponent } from './components/adminregister/adminregister.component';
-import { PortadaComponent } from './components/portada/portada.component';
-
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FooterComponent,
-    HeaderComponent,
-    ErrorComponent,
-    AboutComponent,
-    MiscellaneousComponent,
-    ContactComponent,
-    PaintingComponent,
-    HomeComponent,
-    PrivacypolicyComponent,
-    RefundpolicyComponent,
-    TermsofserviceComponent,
-    PaintingNewComponent,
-    PaintingUpdateComponent,
-    AdminComponent,
-    LoginComponent,
-    RegisterComponent,
-    AdminregisterComponent,
-    PortadaComponent
-  ],
+  declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    routing,
+    AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    AngularFileUploaderModule, 
-    NgxPaginationModule
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the app is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
-  providers: [AuthService, AuthGuard, appRoutingProviders, {
-    provide: HTTP_INTERCEPTORS,
-    useClass: TokenInterceptorService,
-    multi: true
-  }],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

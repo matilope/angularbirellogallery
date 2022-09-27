@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Portrait {\n  constructor(_id, titulo, image0url, date) {\n    this._id = _id;\n    this.titulo = titulo;\n    this.image0url = image0url;\n    this.date = date;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

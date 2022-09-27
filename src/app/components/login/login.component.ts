@@ -1,59 +1,58 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { Title, Meta } from '@angular/platform-browser';
-
+import { Meta } from '@angular/platform-browser';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  loginUserData: User;
+  public suscripcion: any;
+  public animation: boolean = false;
 
-  loginUserData: any;
-
-  constructor(private _auth: AuthService,
+  constructor(
+    private _auth: AuthService,
     private _router: Router,
-    private metaService: Meta) {
-
+    private metaService: Meta
+  ) {
     this.loginUserData = {
-      email: "",
-      password: ""
-    }
-    this.metaService.addTag(
-      {
-       name: 'robots', 
-       content: 'noindex, nofollow'
-      }
-
-    );
+      email: '',
+      password: '',
+      secret: '',
+      token: ''
+    };
+    this.metaService.addTag({
+      name: 'robots',
+      content: 'noindex, nofollow',
+    });
   }
 
   ngOnInit(): void {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   }
 
-  loginUser() {
-    this._auth.loginUser(this.loginUserData).subscribe(
-      response => {
-        localStorage.setItem('token', response.token);
-        swal.fire(
-          'Los datos son correctos',
-          '',
-          'success'
-        );
-        this._router.navigate(['/admin'])
+  loginUser(): void {
+    this.suscripcion = this._auth.loginUser(this.loginUserData).subscribe({
+      next: response => {
+        this.animation = true;
+        localStorage.setItem('token_birello_gallery_admin', response.token);
+        swal.fire('Los datos son correctos', '', 'success');
+        this._router.navigate(['/admin']);
       },
-      error => {
-      swal.fire(
-        'Los datos no son correctos',
-        'Intente nuevamente',
-        'warning'
-      );
-        this._router.navigate(['/admin/login'])
-      }
-    )
+    });
   }
 
+  ngOnDestroy() {
+    this.suscripcion?.unsubscribe();
+    this.animation = false;
+  }
 }
