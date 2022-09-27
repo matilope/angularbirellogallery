@@ -18,33 +18,33 @@ export class AuthService {
   }
 
   registerUser(user: User) {
-    if (user.secret == 'secretbirellogallerypasswordtoken9730') {
+    if (user.secret == '*****************') {
       return this._http.post<User>(this.url + 'register', user);
     }
   }
 
   loginUser(user: User) {
-    if (user.secret == 'secretbirellogallerypasswordtoken9730') {
+    if (user.secret == '*****************') {
       return this._http.post<User>(this.url + 'login', user);
     }
   }
 
   logoutUser() {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem('token_birello_gallery_admin');
+      localStorage.removeItem('**********');
       this._router.navigate(['/admin/login']);
     }
   }
 
   getToken() {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem('token_birello_gallery_admin');
+      return localStorage.getItem('**********');
     }
   }
 
   loggedIn() {
     if (isPlatformBrowser(this.platformId)) {
-      return !!localStorage.getItem('token_birello_gallery_admin');
+      return !!localStorage.getItem('**********');
     }
   }
 
