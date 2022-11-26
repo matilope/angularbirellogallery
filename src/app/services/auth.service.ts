@@ -19,33 +19,53 @@ export class AuthService {
   }
 
   registerUser(user: User) {
+<<<<<<< HEAD
     if (user.secret == environment.secret) {
+=======
+    if (user.secret == '*****************') {
+>>>>>>> 8ae8305c4f13b5cd43396b3f239a78c2d110c35c
       return this._http.post<User>(this.url + 'register', user);
     }
   }
 
   loginUser(user: User) {
+<<<<<<< HEAD
     if (user.secret == environment.secret) {
+=======
+    if (user.secret == '*****************') {
+>>>>>>> 8ae8305c4f13b5cd43396b3f239a78c2d110c35c
       return this._http.post<User>(this.url + 'login', user);
     }
   }
 
   logoutUser() {
     if (isPlatformBrowser(this.platformId)) {
+<<<<<<< HEAD
       localStorage.removeItem(environment.token);
+=======
+      localStorage.removeItem('**********');
+>>>>>>> 8ae8305c4f13b5cd43396b3f239a78c2d110c35c
       this._router.navigate(['/admin/login']);
     }
   }
 
   getToken() {
     if (isPlatformBrowser(this.platformId)) {
+<<<<<<< HEAD
       return localStorage.getItem(environment.token);
+=======
+      return localStorage.getItem('**********');
+>>>>>>> 8ae8305c4f13b5cd43396b3f239a78c2d110c35c
     }
   }
 
   loggedIn() {
     if (isPlatformBrowser(this.platformId)) {
+<<<<<<< HEAD
       return !!localStorage.getItem(environment.token);
+=======
+      return !!localStorage.getItem('**********');
+>>>>>>> 8ae8305c4f13b5cd43396b3f239a78c2d110c35c
     }
   }
 
