@@ -17,7 +17,7 @@ export class AboutComponent implements OnInit, OnDestroy {
     this.parrafo =
       'Birello Gallery is an emerging familiar business searching for the best products thinking in quality, value and exquisiteness. The products we offer not only delight customers regarding decorative value but also considering art itself as an investment for the future.';
     this.alt = 'About us display image';
-    titleService.setTitle('About | Birello Gallery');
+    this.titleService.setTitle('About | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | About',

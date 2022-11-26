@@ -4,6 +4,14 @@ import { Observable } from 'rxjs';
 import { Admins } from '../models/admin';
 import { Global } from './global';
 
+export interface Users {
+  users: DataUser[]
+}
+
+export interface DataUser {
+  _id: string, email: string, password: string
+}
+
 @Injectable()
 export class AdminService {
   public url: string;
@@ -21,11 +29,4 @@ export class AdminService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.delete<Users>(this.url + 'admin/user/' + id, { headers: headers });
   }
-}
-export interface Users {
-  users: DataUser[]
-}
-
-export interface DataUser {
-  _id: string, email: string, password: string
 }

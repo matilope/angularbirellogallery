@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const environment = {\n  production: true,\n  secret: 'secretbirellogallerypasswordtoken9730',\n  token: 'token_birello_gallery_admin',\n  backUrl: 'https://backbirellogallery-1h9v-bebbwuvqp-mati02171996-gmailcom.vercel.app/'\n};","map":null,"metadata":{},"sourceType":"module"}

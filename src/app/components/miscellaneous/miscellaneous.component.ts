@@ -4,6 +4,7 @@ import { InstagramService } from '../../services/instagram.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { Token } from '../../models/token';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-miscellaneous',
@@ -19,10 +20,10 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   private tokenId: string;
   public next: string;
 
-  public suscripcion: any;
-  public suscripcion2: any;
-  public suscripcion3: any;
-  public suscripcion4: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
+  public suscripcion3: Subscription;
+  public suscripcion4: Subscription;
 
   public url: string;
   public content: string;
@@ -47,7 +48,7 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   ) {
 
     this.principal = 'Instagram of Birello Gallery';
-    titleService.setTitle('Miscellaneous | Birello Gallery');
+    this.titleService.setTitle('Miscellaneous | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Miscellaneous',

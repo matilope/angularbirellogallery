@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { EmailValidator } from '@angular/forms';
 import { ContactService } from '../../services/contact.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
 import { Global } from '../../services/global';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-contact',
@@ -18,8 +18,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   public status: string;
   public user: any;
   public url: string;
-  public suscripcion: any;
-  public suscripcion2: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
   public animation: boolean = false;
   public titulo: any;
 
@@ -40,7 +40,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       textarea: '',
     };
 
-    titleService.setTitle('Contact | Birello Gallery');
+    this.titleService.setTitle('Contact | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Contact',
@@ -74,7 +74,6 @@ export class ContactComponent implements OnInit, OnDestroy {
       left: 0,
       behavior: 'smooth',
     });
-
     this.suscripcion = this.activatedRoute.data.subscribe({
       next: response => {
         this.animation = true;
@@ -88,16 +87,15 @@ export class ContactComponent implements OnInit, OnDestroy {
   tiempo(form: HTMLFormElement) {
     if (form.valid) {
       let timerInterval: number;
-      swal
-        .fire({
-          title: 'Your message is being sent',
-          html: 'This alert will close automatically',
-          timer: 2000,
-          timerProgressBar: true,
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
-        })
+      swal.fire({
+        title: 'Your message is being sent',
+        html: 'This alert will close automatically',
+        timer: 2000,
+        timerProgressBar: true,
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+      })
         .then(result => {
           /* Read more about handling dismissals below */
           if (result.dismiss === swal.DismissReason.timer) {
@@ -105,16 +103,15 @@ export class ContactComponent implements OnInit, OnDestroy {
         });
     } else {
       let timerInterval: number;
-      swal
-        .fire({
-          title: 'Form is invalid',
-          html: 'Please check if everything is correct',
-          timer: 2000,
-          timerProgressBar: true,
-          willClose: () => {
-            clearInterval(timerInterval);
-          },
-        })
+      swal.fire({
+        title: 'Form is invalid',
+        html: 'Please check if everything is correct',
+        timer: 2000,
+        timerProgressBar: true,
+        willClose: () => {
+          clearInterval(timerInterval);
+        },
+      })
         .then(result => {
           /* Read more about handling dismissals below */
           if (result.dismiss === swal.DismissReason.timer) {
@@ -125,23 +122,17 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   contactForm(form: HTMLFormElement) {
     if (form.valid) {
-      this.suscripcion2 = this._contactService
-        .getContacts(this.user)
-        .subscribe({
-          next: () => {
-            if (this.user) {
-              swal.fire('Contact form', 'Your message was sent', 'success');
-              this._router.navigate(['/']);
-            } else {
-              swal.fire(
-                'Contact form',
-                'Your message was not sent, please try again',
-                'warning'
-              );
-              this._router.navigate(['/contact']);
-            }
-          },
-        });
+      this.suscripcion2 = this._contactService.getContacts(this.user).subscribe({
+        next: () => {
+          if (this.user) {
+            swal.fire('Contact form', 'Your message was sent', 'success');
+            this._router.navigate(['/']);
+          } else {
+            swal.fire('Contact form', 'Your message was not sent, please try again', 'warning');
+            this._router.navigate(['/contact']);
+          }
+        },
+      });
     }
   }
 

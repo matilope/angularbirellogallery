@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Paintings } from '../../models/paintings';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '../../services/global';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { json } from '../../services/json.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-painting',
@@ -13,14 +14,14 @@ import { Title, Meta } from '@angular/platform-browser';
   providers: [],
 })
 export class PaintingComponent implements OnInit, OnDestroy {
-  itemLD = json;
-  html: SafeHtml;
+  public itemLD = json;
+  public html: SafeHtml;
   public paintings: Paintings;
   public url: string;
-  public suscripcion: any;
-  public suscripcion2: any;
-  public enlace: any;
-  public enlace2: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
+  public enlace: string | string[];
+  public enlace2: string | string[];
   public animation: boolean = false;
 
   constructor(
@@ -28,10 +29,11 @@ export class PaintingComponent implements OnInit, OnDestroy {
     private _router: Router,
     private sanitizer: DomSanitizer,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    private renderer: Renderer2
   ) {
     this.url = Global.url;
-    titleService.setTitle('Paintings | Birello Gallery');
+    this.titleService.setTitle('Paintings | Birello Gallery');
   }
 
   ngOnInit() {
@@ -132,8 +134,8 @@ export class PaintingComponent implements OnInit, OnDestroy {
       left: 0,
       behavior: 'smooth',
     });
-    let div = document.createElement('div');
-    body.appendChild(div);
+    let div = this.renderer.createElement("div");
+    this.renderer.appendChild(body, div);
     let imagenes: NodeListOf<HTMLImageElement> = document.querySelectorAll('.room-preview img');
     let roomPreview = document.querySelector('.room-preview');
 
@@ -141,81 +143,86 @@ export class PaintingComponent implements OnInit, OnDestroy {
     let volver = document.createElement('img');
     let close = document.createElement('img');
 
-    div.appendChild(next);
-    div.appendChild(volver);
-    div.appendChild(close);
+    this.renderer.appendChild(div, next);
+    this.renderer.appendChild(div, volver);
+    this.renderer.appendChild(div, close);
 
-    next.src = 'assets/img/gallery/next.png';
-    next.style.width = '50px';
-    next.style.height = '45px';
-    next.style.position = 'absolute';
-    next.style.right = '0';
-    next.style.cursor = 'pointer';
+    this.renderer.setAttribute(next, 'src', 'assets/img/gallery/next.png');
+    this.renderer.setStyle(next, 'width', '50px');
+    this.renderer.setStyle(next, 'height', '45px');
+    this.renderer.setStyle(next, 'position', 'absolute');
+    this.renderer.setStyle(next, 'right', '0');
+    this.renderer.setStyle(next, 'cursor', 'pointer');
 
-    volver.src = 'assets/img/gallery/prev.png';
-    volver.style.width = '50px';
-    volver.style.height = '45px';
-    volver.style.position = 'absolute';
-    volver.style.left = '0';
-    volver.style.cursor = 'pointer';
+    this.renderer.setAttribute(volver, 'src', 'assets/img/gallery/prev.png');
+    this.renderer.setStyle(volver, 'width', '50px');
+    this.renderer.setStyle(volver, 'height', '45px');
+    this.renderer.setStyle(volver, 'position', 'absolute');
+    this.renderer.setStyle(volver, 'left', '0');
+    this.renderer.setStyle(volver, 'cursor', 'pointer');
 
-    close.style.position = 'absolute';
-    close.style.right = '20px';
-    close.style.top = '20px';
-    close.style.cursor = 'pointer';
-    close.src = 'assets/img/gallery/close.png';
+    this.renderer.setAttribute(close, 'src', 'assets/img/gallery/close.png');
+    this.renderer.setStyle(close, 'position', 'absolute');
+    this.renderer.setStyle(close, 'top', '20px');
+    this.renderer.setStyle(close, 'right', '20px');
+    this.renderer.setStyle(close, 'cursor', 'pointer');
 
-    div.style.height = '100vh';
-    div.style.width = '100%';
-    div.style.position = 'absolute';
-    div.style.top = '0';
-    div.style.background = 'rgb(0,0,0,0.6)';
-    div.style.display = 'flex';
-    div.style.flexDirection = 'column';
-    div.style.alignItems = 'center';
-    div.style.justifyContent = 'center';
-    div.style.overflow = 'hidden';
+    this.renderer.setStyle(close, 'position', 'absolute');
+    this.renderer.setStyle(close, 'top', '20px');
+    this.renderer.setStyle(close, 'right', '20px');
+    this.renderer.setStyle(close, 'cursor', 'pointer');
+
+    this.renderer.setStyle(div, 'height', '100vh');
+    this.renderer.setStyle(div, 'width', '100%');
+    this.renderer.setStyle(div, 'position', 'absolute');
+    this.renderer.setStyle(div, 'top', '0');
+    this.renderer.setStyle(div, 'background', 'rgb(0,0,0,0.6)');
+    this.renderer.setStyle(div, 'display', 'flex');
+    this.renderer.setStyle(div, 'flex-direction', 'column');
+    this.renderer.setStyle(div, 'align-items', 'center');
+    this.renderer.setStyle(div, 'justify-content', 'center');
+    this.renderer.setStyle(div, 'overflow', 'hidden');
 
     let index = i;
 
     for (let i = 0; i < imagenes.length; i++) {
-      imagenes[i].classList.remove('room-active-prevg');
-      div.appendChild(imagenes[i]);
-      imagenes[i].loading = 'lazy';
-      imagenes[i].classList.add('noneevents');
+      this.renderer.removeClass(imagenes[i], 'room-active-prevg');
+      this.renderer.appendChild(div, imagenes[i]);
+      this.renderer.setAttribute(imagenes[i], 'loading', 'lazy');
+      this.renderer.addClass(imagenes[i], 'noneevents');
     }
     for (index = 0; index < imagenes.length; index++) {
-      imagenes[index].classList.remove('activo');
+      this.renderer.removeClass(imagenes[index], 'activo');
     }
-    imagenes[i].classList.add('activo');
+    this.renderer.addClass(imagenes[i], 'activo');
     index = i;
     next.addEventListener('click', () => {
       if (index >= imagenes.length - 1) {
       } else {
-        imagenes[index].classList.remove('activo');
+        this.renderer.removeClass(imagenes[index], 'activo');
         index++;
-        imagenes[index].classList.add('activo');
+        this.renderer.addClass(imagenes[index], 'activo');
       }
     });
     volver.addEventListener('click', () => {
       if (index <= 0) {
       } else {
-        imagenes[index].classList.remove('activo');
+        this.renderer.removeClass(imagenes[index], 'activo');
         index--;
-        imagenes[index].classList.add('activo');
+        this.renderer.addClass(imagenes[index], 'activo');
       }
     });
 
     close.addEventListener('click', () => {
-      div.style.animation = 'disappears 1s';
+      this.renderer.setStyle(div, 'animation', 'disappears 1s');
       setTimeout(() => {
-        div.style.display = 'none';
+        this.renderer.setStyle(div, 'display', 'none');
       }, 1000);
-      body.style.overflow = 'visible';
+      this.renderer.setStyle(body, 'overflow', 'visible');
       for (let i = 0; i < imagenes.length; i++) {
-        imagenes[i].classList.add('room-active-prevg');
-        imagenes[i].classList.remove('noneevents');
-        roomPreview.appendChild(imagenes[i]);
+        this.renderer.addClass(imagenes[i], 'room-active-prevg');
+        this.renderer.removeClass(imagenes[i], 'noneevents');
+        this.renderer.appendChild(roomPreview, imagenes[i]);
       }
     });
 

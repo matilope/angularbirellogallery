@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
 import { User } from '../../models/user';
+import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-register',
@@ -11,13 +13,14 @@ import { User } from '../../models/user';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit, OnDestroy {
-  registerUserData: User;
-  public suscripcion: any;
+  public registerUserData: User;
+  public suscripcion: Subscription;
   public animation: boolean = false;
 
   constructor(
     private _auth: AuthService,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.registerUserData = {
@@ -26,6 +29,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
       secret: '',
       token:''
     };
+    this.titleService.setTitle("Register | Birello Gallery");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
@@ -47,7 +51,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         .registerUser(this.registerUserData)
         .subscribe({
           next: response => {
-            localStorage.setItem('token_birello_gallery_admin', response.token);
+            localStorage.setItem(environment.token, response.token);
             swal.fire(
               'Te has registrado correctamente',
               'Cuidado !, el uso del registro de un personal no autorizado puede enfrentar denuncia por irrumpimiento de las condiciones de la página',

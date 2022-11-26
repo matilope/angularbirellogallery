@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Paintings } from '../../models/paintings';
 import { PaintingsService } from '../../services/paintings.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-painting-new',
@@ -18,7 +19,7 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
   public paintings: Paintings;
   public status: string;
   public url: string;
-  public suscripcion: any;
+  public suscripcion: Subscription;
   public animation: boolean = false;
   public index: number;
 
@@ -49,12 +50,12 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
 
   constructor(
     private _paintingsService: PaintingsService,
-    private _route: ActivatedRoute,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.paintings = new Paintings('', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
-    this.title = 'Crear nueva pintura';
+    this.titleService.setTitle('Crear nueva pintura');
     this.subtitle =
       'Los datos de titulo, subtitulo, descripcion, dimension, caracteristicas y link son obligatorios.';
     this.url = Global.url;

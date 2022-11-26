@@ -6,9 +6,10 @@ import { PortraitService } from '../../services/portrait.service';
 import { Token } from '../../models/token';
 import { InstagramService } from '../../services/instagram.service';
 import { Global } from '../../services/global';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -23,17 +24,16 @@ export class AdminComponent implements OnInit, OnDestroy {
   public paintings: Paintings[];
   public token: Token[];
   public url: string;
-  public suscripcion: any;
-  public suscripcion2: any;
-  public suscripcion3: any;
-  public suscripcion4:any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
+  public suscripcion3: Subscription;
+  public suscripcion4:Subscription;
   public animation: boolean = false;
 
   constructor(
     private _paintingsService: PaintingsService,
     private _portraitService: PortraitService,
     private _instagramService: InstagramService,
-    private _route: ActivatedRoute,
     private _router: Router,
     private titleService: Title,
     private metaService: Meta,
@@ -42,7 +42,7 @@ export class AdminComponent implements OnInit, OnDestroy {
     this.principal = 'Panel de admin';
     this.subtitulo = 'Vas a poder crear, editar y eliminar tus pinturas';
     this.url = Global.url;
-    titleService.setTitle('Admin | Birello Gallery');
+    this.titleService.setTitle('Admin | Birello Gallery');
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

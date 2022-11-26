@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Portrait } from '../../models/portrait';
 import { PortraitService } from '../../services/portrait.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-portada',
@@ -19,9 +20,9 @@ export class PortadaComponent implements OnInit, OnDestroy {
   public status: string;
   public is_update: boolean;
   public url: string;
-  public suscripcion: any;
-  public suscripcion2: any;
-  public suscripcion3: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
+  public suscripcion3: Subscription;
   public animation: boolean = false;
 
   afuConfig = {
@@ -53,6 +54,7 @@ export class PortadaComponent implements OnInit, OnDestroy {
     private _portraitService: PortraitService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.portrait = new Portrait('', '', '', null);
@@ -60,6 +62,7 @@ export class PortadaComponent implements OnInit, OnDestroy {
     this.subtitle = 'Puede editar los datos';
     this.is_update = true;
     this.url = Global.url;
+    this.titleService.setTitle("Cambiar portada");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

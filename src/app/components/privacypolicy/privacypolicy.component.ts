@@ -79,7 +79,7 @@ export class PrivacypolicyComponent implements OnInit, OnDestroy {
         ''
       ),
     ];
-    titleService.setTitle('Privacy Policy | Birello Gallery');
+    this.titleService.setTitle('Privacy Policy | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Privacy Policy',

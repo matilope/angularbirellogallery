@@ -2,9 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Admins } from '../../models/admin';
 import { AdminService } from '../../services/admin.service';
 import { Global } from '../../services/global';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { Meta } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-adminusers',
@@ -15,17 +16,18 @@ import { Meta } from '@angular/platform-browser';
 export class AdminusersComponent implements OnInit, OnDestroy {
   public admins: Admins[];
   public url: string;
-  public suscripcion: any;
-  public suscripciondelete: any;
+  public suscripcion: Subscription;
+  public suscripciondelete: Subscription;
   public animation: boolean = false;
 
   constructor(
     private _adminService: AdminService,
-    private _route: ActivatedRoute,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.url = Global.url;
+    this.titleService.setTitle('Users | Birello Gallery');
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
@@ -64,7 +66,6 @@ export class AdminusersComponent implements OnInit, OnDestroy {
         if (result.isConfirmed) {
           this.suscripciondelete = this._adminService.deleteUser(id).subscribe({
             next: () => {
-              // localStorage.setItem("token_birello_gallery_admin", null);
               swal.fire(
                 'Eliminado',
                 'El usuario ha sido eliminado correctamente',

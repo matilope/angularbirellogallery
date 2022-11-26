@@ -21,7 +21,7 @@ export class RefundpolicyComponent implements OnInit, OnDestroy {
     this.mail = 'ignaciobirello@hotmail.com';
     this.textextra =
       'You will be responsible for paying for your own shipping costs for returning your item. Shipping costs are non-refundable. If you receive a refund, the cost of return shipping will be deducted from your refund. You will receive a full refund excluding shipping costs.';
-    titleService.setTitle('Refund Policy | Birello Gallery');
+    this.titleService.setTitle('Refund Policy | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Refund Policy',

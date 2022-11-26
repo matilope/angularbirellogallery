@@ -5,11 +5,11 @@ import {
   PLATFORM_ID,
   Optional,
 } from '@angular/core';
-import { RESPONSE, REQUEST } from '@nguniversal/express-engine/tokens';
-import { Meta } from '@angular/platform-browser';
+import { RESPONSE } from '@nguniversal/express-engine/tokens';
+import { Title, Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { isPlatformServer } from '@angular/common';
-import { Request, Response } from 'express';
+import { Response } from 'express';
 
 @Component({
   selector: 'app-error',
@@ -18,11 +18,13 @@ import { Request, Response } from 'express';
 })
 export class ErrorComponent implements OnInit {
   constructor(
+    private titleService: Title,
     private metaService: Meta,
     private router: Router,
     @Optional() @Inject(RESPONSE) private response: Response,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
+    this.titleService.setTitle("Error");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

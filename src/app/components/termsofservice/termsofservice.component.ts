@@ -184,7 +184,7 @@ export class TermsofserviceComponent implements OnInit, OnDestroy {
         ''
       ),
     ];
-    titleService.setTitle('Terms Of Service | Birello Gallery');
+    this.titleService.setTitle('Terms Of Service | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Terms Of Service',

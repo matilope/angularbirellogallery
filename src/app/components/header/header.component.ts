@@ -4,6 +4,7 @@ import { Portrait } from '../../models/portrait';
 import { PortraitService } from '../../services/portrait.service';
 import { Router } from '@angular/router';
 import { Global } from '../../services/global';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -15,15 +16,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
   path = '';
   public portrait: Portrait[];
   public url: string;
-  public suscripcion: any;
-  public suscripcion2: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
 
   constructor(
     private _portraitService: PortraitService,
     private router: Router,
     private location: Location
   ) {
-    this.suscripcion2 = this.router.events.subscribe(val => {
+    this.suscripcion2 = this.router.events.subscribe(() => {
       this.path = this.location.path();
     });
     this.url = Global.url;

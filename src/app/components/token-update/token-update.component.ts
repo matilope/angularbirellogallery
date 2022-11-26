@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-token-update',
@@ -17,18 +18,20 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
   public tokendata: Token;
   public url: string;
   public status: string;
-  public suscripcion: any;
-  public suscripcion2: any;
-  public suscripcion3: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
+  public suscripcion3: Subscription;
   public animation: boolean = false;
 
   constructor(
     private _instagramService: InstagramService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.url = Global.url;
+    this.titleService.setTitle("Actualizar token de instagram");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

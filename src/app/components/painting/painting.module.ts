@@ -8,6 +8,6 @@ import { PaintingsService } from 'src/app/services/paintings.service';
 @NgModule({
   declarations: [PaintingComponent],
   imports: [CommonModule, PaintingRoutingModule],
-  providers:[PaintingsService]
+  providers: [PaintingsService]
 })
-export class PaintingModule {}
+export class PaintingModule { }

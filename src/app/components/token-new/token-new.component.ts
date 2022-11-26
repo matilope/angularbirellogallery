@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Token } from '../../models/token';
 import { InstagramService } from '../../services/instagram.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from 'sweetalert2';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-token-new',
@@ -17,16 +18,17 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   public tokendata: Token;
   public url: string;
   public status: string;
-  public suscripcion: any;
+  public suscripcion: Subscription;
   public animation: boolean = false;
 
   constructor(
     private _instagramService: InstagramService,
-    private _route: ActivatedRoute,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.url = Global.url;
+    this.titleService.setTitle("Crear token de instagram");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

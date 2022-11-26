@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { Meta } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { User } from '../../models/user';
+import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,13 @@ import { User } from '../../models/user';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginUserData: User;
-  public suscripcion: any;
+  public suscripcion: Subscription;
   public animation: boolean = false;
 
   constructor(
     private _auth: AuthService,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.loginUserData = {
@@ -26,6 +29,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       secret: '',
       token: ''
     };
+    this.titleService.setTitle("Login | Birello Gallery");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
@@ -44,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.suscripcion = this._auth.loginUser(this.loginUserData).subscribe({
       next: response => {
         this.animation = true;
-        localStorage.setItem('token_birello_gallery_admin', response.token);
+        localStorage.setItem(environment.token, response.token);
         swal.fire('Los datos son correctos', '', 'success');
         this._router.navigate(['/admin']);
       },

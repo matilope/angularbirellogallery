@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, PipeTransform, QueryList, ViewChildren, } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, } from '@angular/core';
+import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 import { Paintings } from 'src/app/models/paintings';
 import { PaintingsService } from 'src/app/services/paintings.service';
 import { Global } from '../../services/global';
@@ -17,9 +17,9 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public paintings: Paintings[];
   public url: string;
-  public suscripcion: any;
-  public suscripcion2: any;
-  public suscripcion3: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
+  public suscripcion3: Subscription;
 
   public animation: boolean = false;
 
@@ -35,12 +35,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private activatedRoute: ActivatedRoute,
     private paintingService: PaintingsService
   ) {
     this.principal = 'Artworks';
     this.subtitulo = "Buying art is buying time of the artist's life.";
     this.url = Global.url;
+    this.titleService.setTitle("Artworks | Birello Gallery");
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Artworks',
@@ -70,19 +70,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       left: 0,
       behavior: 'smooth',
     });
-
-    //  window.addEventListener('scroll', function () {
-    //    let card = document.querySelectorAll('.card');
-    //    for (let i = 6; i < card.length; i++) {
-    //      let position = card[i].getBoundingClientRect().top;
-    //      let screen = window.innerHeight;
-    //      if (position < screen) {
-    //        card[i].classList.add('animacion');
-    //      } else {
-    //        card[i].classList.remove('animacion');
-    //      }
-    //    }
-    //  });
 
     this.loader = true;
     this.suscripcion = this.paintingService

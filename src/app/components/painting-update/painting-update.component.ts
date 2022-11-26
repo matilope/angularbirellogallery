@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-painting-update',
@@ -19,9 +20,9 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   public status: string;
   public is_update: boolean;
   public url: string;
-  public suscripcion: any;
-  public suscripcion2: any;
-  public suscripcion3: any;
+  public suscripcion: Subscription;
+  public suscripcion2: Subscription;
+  public suscripcion3: Subscription;
   public animation: boolean = false;
   public index: number;
 
@@ -54,6 +55,7 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
     private _paintingsService: PaintingsService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private titleService: Title,
     private metaService: Meta
   ) {
     this.paintings = new Paintings('', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
@@ -61,6 +63,7 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
     this.subtitle = 'Puede editar los datos';
     this.is_update = true;
     this.url = Global.url;
+    this.titleService.setTitle("Actualizar los datos de la pintura");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
