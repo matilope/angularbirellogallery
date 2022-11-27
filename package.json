@@ -11,6 +11,7 @@
     "dev:ssr": "ng run gallery:serve-ssr",
     "serve:ssr": "node dist/gallery/server/main.js",
     "build:ssr": "ng build --configuration production && ng run gallery:server:production",
+    "custom": "ng build --configuration production && node dist/gallery/server/main.js",
     "prerender": "ng run gallery:prerender",
     "lint:fix": "ng lint --fix"
   },
