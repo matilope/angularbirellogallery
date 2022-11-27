@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const environment = {\n  production: true,\n  secret: 'secretbirellogallerypasswordtoken9730',\n  token: 'token_birello_gallery_admin',\n  backUrl: 'https://back-api-rest-bg-gallery.herokuapp.com/apirest/'\n};","map":null,"metadata":{},"sourceType":"module"}

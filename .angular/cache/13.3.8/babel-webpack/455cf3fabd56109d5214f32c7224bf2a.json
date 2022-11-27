@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { trigger, style, transition, query } from '@angular/animations';\nexport const fader = trigger('routeAnimations', [transition('* <=> *', [query(':enter, :leave', [style({\n  opacity: 0\n})])])]);","map":null,"metadata":{},"sourceType":"module"}

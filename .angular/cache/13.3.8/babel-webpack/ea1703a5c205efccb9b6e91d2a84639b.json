@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Token {\n  constructor(_id, token) {\n    this._id = _id;\n    this.token = token;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

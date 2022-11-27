@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class Terms {\n  constructor(titulo, parrafo, parrafo2, parrafo3, parrafo4, parrafo5) {\n    this.titulo = titulo;\n    this.parrafo = parrafo;\n    this.parrafo2 = parrafo2;\n    this.parrafo3 = parrafo3;\n    this.parrafo4 = parrafo4;\n    this.parrafo5 = parrafo5;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

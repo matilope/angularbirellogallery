@@ -26,6 +26,7 @@
     "@angular/platform-server": "^13.2.4",
     "@angular/router": "^13.3.11",
     "@angular/service-worker": "^13.2.4",
+    "@nguniversal/builders": "^15.0.0",
     "@nguniversal/express-engine": "^13.0.2",
     "@schematics/angular": "^14.0.5",
     "angular-file-uploader": "^7.1.1",
