@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Portrait } from '../../models/portrait';
 import { PortraitService } from '../../services/portrait.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -24,6 +24,7 @@ export class PortadaComponent implements OnInit, OnDestroy {
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
   public animation: boolean = false;
+  public subido: boolean = false;
 
   afuConfig = {
     multiple: true,
@@ -55,7 +56,8 @@ export class PortadaComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _router: Router,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    private readonly renderer: Renderer2
   ) {
     this.portrait = new Portrait('', '', '', null);
     this.title = 'Editar portada';
@@ -114,9 +116,27 @@ export class PortadaComponent implements OnInit, OnDestroy {
       });
   }
 
+  loader() {
+    this.subido = false;
+    if (!this.subido) {
+      swal.fire({
+        title: 'La imagen portada se esta subiendo',
+        html: `<p>En caso de no haber seleccionado una imagen portada y haberle dado a cancelar, por favor dale click a "cancelar"</p>
+              <div class="spinner-border text-primary" style="color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;" role="status">
+              </div>`,
+        showCancelButton: true,
+        showConfirmButton: false,
+      });
+    }
+  }
+
   imageUpload(data: any) {
     let image0url = data.body.image0url;
     this.portrait.image0url = image0url;
+    this.subido = true;
+    let swal = this.renderer.selectRootElement(".swal2-container", true);
+    this.renderer.removeChild(document.body, swal);
+    this.renderer.removeClass(document.body, "swal2-shown swal2-height-auto");
   }
 
   getPortrait() {

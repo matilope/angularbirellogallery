@@ -90,7 +90,7 @@
                 </div>
               </div>
             </div>
-              <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
+              <angular-file-uploader [config]="afuConfig" (click)="loader()" (ApiResponse)="imageUpload($event)">
               </angular-file-uploader>
             <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit" />
           </form>

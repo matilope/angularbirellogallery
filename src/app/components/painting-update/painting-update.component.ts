@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Paintings } from '../../models/paintings';
 import { PaintingsService } from '../../services/paintings.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -25,6 +25,7 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   public suscripcion3: Subscription;
   public animation: boolean = false;
   public index: number;
+  public subido: boolean = false;
 
   afuConfig = {
     multiple: true,
@@ -56,7 +57,8 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _router: Router,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    private readonly renderer: Renderer2
   ) {
     this.paintings = new Paintings('', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
     this.title = 'Editar pintura';
@@ -107,110 +109,128 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
       });
   }
 
-  imageUpload(data: {
-    body: {
-      status: string,
-      image0url: string,
-      image1url: string,
-      image2url: string,
-      image3url: string,
-      image4url: string,
-      image5url: string,
-    },
-    status: number
-  }) {
-    let image0url = data.body.image0url;
-    this.paintings.image0url = image0url;
-    let image1url = data.body.image1url;
-    this.paintings.image1url = image1url;
-    let image2url = data.body.image2url;
-    this.paintings.image2url = image2url;
-    let image3url = data.body.image3url;
-    this.paintings.image3url = image3url;
-    let image4url = data.body.image4url;
-    this.paintings.image4url = image4url;
-    let image5url = data.body.image5url;
-    this.paintings.image5url = image5url;
+  loader() {
+    this.subido = false;
+    if (!this.subido) {
+      swal.fire({
+        title: 'Las imagenes se estan subiendo',
+        html: `<p>En caso de no haber seleccionado imagenes y haberle dado a cancelar, por favor dale click a "cancelar"</p>
+              <div class="spinner-border text-primary" style="color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;" role="status">
+              </div>`,
+        showCancelButton: true,
+        showConfirmButton: false,
+      });
+    }
   }
 
-  deleteImg(data: {
-    body: {
-      status: string,
-      image0url: string,
-      image1url: string,
-      image2url: string,
-      image3url: string,
-      image4url: string,
-      image5url: string,
-    },
-    status: number
-  }, index: number) {
-    this.index = index;
-    swal
-      .fire({
-        title: '¿ Estas seguro que quieres eliminar esta imagen ?',
-        text: 'No vas a poder recuperarla',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, quiero eliminarla',
-        cancelButtonText: 'Cancelar',
-      })
-      .then(result => {
-        if (result.isConfirmed) {
-          this._paintingsService
-            .deleteImg(this.paintings, this.index)
-            .subscribe({
-              next: (response) => {
-                if (response.status == "Success") {
+    imageUpload(data: {
+      body: {
+        status: string,
+        image0url: string,
+        image1url: string,
+        image2url: string,
+        image3url: string,
+        image4url: string,
+        image5url: string,
+      },
+      status: number
+    }) {
+      this.subido = true;
+      let swal = this.renderer.selectRootElement(".swal2-container", true);
+      this.renderer.removeChild(document.body, swal);
+      this.renderer.removeClass(document.body, "swal2-shown swal2-height-auto");
+      let image0url = data.body.image0url;
+      this.paintings.image0url = image0url;
+      let image1url = data.body.image1url;
+      this.paintings.image1url = image1url;
+      let image2url = data.body.image2url;
+      this.paintings.image2url = image2url;
+      let image3url = data.body.image3url;
+      this.paintings.image3url = image3url;
+      let image4url = data.body.image4url;
+      this.paintings.image4url = image4url;
+      let image5url = data.body.image5url;
+      this.paintings.image5url = image5url;
+    }
+
+    deleteImg(data: {
+      body: {
+        status: string,
+        image0url: string,
+        image1url: string,
+        image2url: string,
+        image3url: string,
+        image4url: string,
+        image5url: string,
+      },
+      status: number
+    }, index: number) {
+      this.index = index;
+      swal
+        .fire({
+          title: '¿ Estas seguro que quieres eliminar esta imagen ?',
+          text: 'No vas a poder recuperarla',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Si, quiero eliminarla',
+          cancelButtonText: 'Cancelar',
+        })
+        .then(result => {
+          if (result.isConfirmed) {
+            this._paintingsService
+              .deleteImg(this.paintings, this.index)
+              .subscribe({
+                next: (response) => {
                   if (response.status == "Success") {
-                    if (response.paints.image0url) {
-                      this.paintings.image0url = response.paints.image0url;
-                    }
-                    if (response.paints.image1url) {
-                      this.paintings.image1url = response.paints.image1url;
-                    }
-                    if (response.paints.image2url) {
-                      this.paintings.image2url = response.paints.image2url;
-                    }
-                    if (response.paints.image3url) {
-                      this.paintings.image3url = response.paints.image3url;
-                    }
-                    if (response.paints.image4url) {
-                      this.paintings.image4url = response.paints.image4url;
-                    }
-                    if (response.paints.image5url) {
-                      this.paintings.image5url = response.paints.image5url;
+                    if (response.status == "Success") {
+                      if (response.paints.image0url) {
+                        this.paintings.image0url = response.paints.image0url;
+                      }
+                      if (response.paints.image1url) {
+                        this.paintings.image1url = response.paints.image1url;
+                      }
+                      if (response.paints.image2url) {
+                        this.paintings.image2url = response.paints.image2url;
+                      }
+                      if (response.paints.image3url) {
+                        this.paintings.image3url = response.paints.image3url;
+                      }
+                      if (response.paints.image4url) {
+                        this.paintings.image4url = response.paints.image4url;
+                      }
+                      if (response.paints.image5url) {
+                        this.paintings.image5url = response.paints.image5url;
+                      }
                     }
                   }
                 }
-              }
-            })
-          swal.fire('Tu imagen se ha eliminado');
-          setTimeout(() => {
-            window.location.reload();
-          }, 1000)
-        } else {
-          swal.fire('Tu imagen se ha salvado y no se ha eliminado');
-        }
-      })
-  }
+              })
+            swal.fire('Tu imagen se ha eliminado');
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000)
+          } else {
+            swal.fire('Tu imagen se ha salvado y no se ha eliminado');
+          }
+        })
+    }
 
-  getPintura() {
-    this.suscripcion2 = this._route.params.subscribe(params => {
-      this.suscripcion3 = this._route.data.subscribe(response => {
-        if (response.painting.paints) {
-          this.paintings = response.painting.paints;
-        }
+    getPintura() {
+      this.suscripcion2 = this._route.params.subscribe(params => {
+        this.suscripcion3 = this._route.data.subscribe(response => {
+          if (response.painting.paints) {
+            this.paintings = response.painting.paints;
+          }
+        });
       });
-    });
-  }
+    }
 
-  ngOnDestroy(): void {
-    [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
-      e?.unsubscribe()
-    );
-    this.animation = false;
+    ngOnDestroy(): void {
+      [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
+        e?.unsubscribe()
+      );
+      this.animation = false;
+    }
   }
-}

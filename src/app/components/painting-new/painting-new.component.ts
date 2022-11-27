@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Paintings } from '../../models/paintings';
 import { PaintingsService } from '../../services/paintings.service';
 import { Router } from '@angular/router';
@@ -22,6 +22,7 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
   public suscripcion: Subscription;
   public animation: boolean = false;
   public index: number;
+  public subido: boolean = false;
 
   afuConfig = {
     multiple: true,
@@ -52,7 +53,8 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
     private _paintingsService: PaintingsService,
     private _router: Router,
     private titleService: Title,
-    private metaService: Meta
+    private metaService: Meta,
+    private readonly renderer: Renderer2
   ) {
     this.paintings = new Paintings('', '', '', '', '', '', '', '', '', '', '', '', '', '', null);
     this.titleService.setTitle('Crear nueva pintura');
@@ -95,6 +97,20 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
     });
   }
 
+  loader() {
+    this.subido = false;
+    if (!this.subido) {
+      swal.fire({
+        title: 'Las imagenes se estan subiendo',
+        html: `<p>En caso de no haber seleccionado imagenes y haberle dado a cancelar, por favor dale click a "cancelar"</p>
+              <div class="spinner-border text-primary" style="color:rgba(var(--bs-primary-rgb),var(--bs-text-opacity))!important;" role="status">
+              </div>`,
+        showCancelButton: true,
+        showConfirmButton: false,
+      });
+    }
+  }
+
   imageUpload(data: {
     body: {
       image0url: string;
@@ -104,6 +120,11 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
       image4url: string;
       image5url: string;
     }}) {
+    this.subido = true;
+    let swal = this.renderer.selectRootElement(".swal2-container", true);
+    this.renderer.removeChild(document.body, swal);
+    this.renderer.removeClass(document.body, "swal2-shown");
+    this.renderer.removeClass(document.body, "swal2-height-auto");
     let image0url = data.body.image0url;
     this.paintings.image0url = image0url;
     let image1url = data.body.image1url;

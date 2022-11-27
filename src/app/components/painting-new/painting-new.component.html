@@ -53,7 +53,7 @@
               <input type="text" class="form-control" id="Link2" placeholder="Segundo link" name="link2"
                 #link2="ngModel" [(ngModel)]="paintings.link2" />
             </div>
-              <angular-file-uploader [config]="afuConfig" (ApiResponse)="imageUpload($event)">
+              <angular-file-uploader [config]="afuConfig" (click)="loader()" (ApiResponse)="imageUpload($event)">
               </angular-file-uploader>
             <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit"
               [disabled]="paintingNewForm.invalid" />
