@@ -1,3 +1,3 @@
 export var Global = {
-  url: '**************',
+  url: 'https://backbirellogallery.vercel.app/',
 };
