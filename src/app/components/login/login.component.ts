@@ -5,7 +5,7 @@ import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
 import { User } from '../../models/user';
 import { Subscription } from 'rxjs';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
