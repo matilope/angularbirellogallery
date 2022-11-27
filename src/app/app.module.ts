@@ -11,7 +11,7 @@ import { AuthService } from './services/auth.service';
 import { TokenInterceptorService } from './services/ti.service';
 import { AuthGuard } from './auth.guard';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
