@@ -139,9 +139,9 @@ export class PaintingComponent implements OnInit, OnDestroy {
     let imagenes: NodeListOf<HTMLImageElement> = document.querySelectorAll('.room-preview img');
     let roomPreview = document.querySelector('.room-preview');
 
-    let next = document.createElement('img');
-    let volver = document.createElement('img');
-    let close = document.createElement('img');
+    let next = this.renderer.createElement('img');
+    let volver = this.renderer.createElement('img');
+    let close = this.renderer.createElement('img');
 
     this.renderer.appendChild(div, next);
     this.renderer.appendChild(div, volver);
