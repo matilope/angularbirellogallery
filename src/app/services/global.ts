@@ -1,3 +1,4 @@
 export var Global = {
-  url: 'https://backbirellogallery.vercel.app/apirest/',
+  url: 'http://localhost:3000/apirest/',
 };
+// 'https://backbirellogallery.vercel.app/apirest/',

@@ -1,21 +1,21 @@
-<main class="miscellaneous">
-  <section class="miscellaneoussection">
-    <h1 class="center info miscellaneoustitle">{{ principal }}</h1>
-    <div class="container" [ngClass]="{ 'router-animation': animation === true }">
+<main class="p-5" id="miscellaneous">
+  <section>
+    <h1 class="text-center mb-5 title">{{ principal }}</h1>
+    <div class="container">
       <div class="row justify-content-center">
         <ng-container  *ngFor="let pub of insta; let i = index;">
-        <div class="c-col col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4" *ngIf="i + 1 === insta.length"
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4" *ngIf="i + 1 === insta.length"
         #theLastList>
           <div class="imagenes">
-            <a href="{{ pub.permalink }}"><img class="imggrid" src="{{ pub.media_url }}"
-                alt="{{ pub.username }} instagram images" /></a>
+            <a [href]="pub.permalink"><img class="img-grid" [src]="pub.media_url"
+                [alt]="pub.username+'instagram images'" /></a>
             <p class="centered">{{ pub.caption }}</p>
           </div>
         </div>
-        <div class="c-col col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"  *ngIf="i + 1 !== insta.length">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4"  *ngIf="i + 1 !== insta.length">
           <div class="imagenes">
-            <a href="{{ pub.permalink }}"><img class="imggrid" src="{{ pub.media_url }}"
-                alt="{{ pub.username }} instagram images" /></a>
+            <a [href]="pub.permalink"><img class="img-grid" [src]="pub.media_url"
+              [alt]="pub.username+'instagram images'" /></a>
             <p class="centered">{{ pub.caption }}</p>
           </div>
         </div>

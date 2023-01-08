@@ -32,11 +32,6 @@ export class ErrorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     if (isPlatformServer(this.platformId)) {
       this.response.status(410);
     }

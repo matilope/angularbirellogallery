@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Token } from '../../models/token';
 import { InstagramService } from '../../services/instagram.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
@@ -21,7 +21,6 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
-  public animation: boolean = false;
 
   constructor(
     private _instagramService: InstagramService,
@@ -40,13 +39,7 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     this.getToken();
-    this.animation = true;
   }
 
   onSubmit() {
@@ -89,6 +82,5 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
     [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
       e?.unsubscribe()
     );
-    this.animation = false;
   }
 }

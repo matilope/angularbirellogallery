@@ -23,7 +23,6 @@ export class PortadaComponent implements OnInit, OnDestroy {
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
-  public animation: boolean = false;
   public subido: boolean = false;
 
   afuConfig = {
@@ -72,13 +71,7 @@ export class PortadaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     this.getPortrait();
-    this.animation = true;
   }
 
   onSubmit() {
@@ -158,6 +151,5 @@ export class PortadaComponent implements OnInit, OnDestroy {
     [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
       e?.unsubscribe()
     );
-    this.animation = false;
   }
 }

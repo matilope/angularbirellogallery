@@ -1,107 +1,43 @@
-<main class="paintings" [ngClass]="{ 'router-animation': animation === true }">
-  <section class="paintingsection">
+<main id="paintings" class="p-5">
+  <section>
     <div class="container">
-      <div class="row rowresponsiveapi" *ngIf="paintings">
-        <div class="c-col col-12 col-sm-12 col-md-7 col-lg-7 sectorpaintings">
-          <div class="card-group">
-            <div class="card">
-              <div class="room-gallery">
-                <img class="gallery-highlight" src="{{ paintings.image0url }}" alt="{{ paintings.titulo }}" />
-              </div>
-            </div>
+      <div class="row align-items-center" *ngIf="paintings">
+        <div class="col-sm-12 col-md-7 col-lg-7">
+          <img class="img-main" [src]="paintings.image0url" [alt]="paintings.titulo" />
+          <div class="preview">
+            <img (click)="lightbox(0)" *ngIf="paintings.image0url" [src]="paintings.image0url"
+            class="img-small" [alt]="paintings.titulo" />
+            <img (click)="lightbox(1)" *ngIf="paintings.image1url" [src]="paintings.image1url"
+              class="img-small" [alt]="paintings.titulo" />
+            <img (click)="lightbox(2)" *ngIf="paintings.image2url" [src]="paintings.image2url"
+              class="img-small" [alt]="paintings.titulo" />
+            <img (click)="lightbox(3)" *ngIf="paintings.image3url" [src]="paintings.image3url"
+              class="img-small" [alt]="paintings.titulo" />
+            <img (click)="lightbox(4)" *ngIf="paintings.image4url" [src]="paintings.image4url"
+              class="img-small" [alt]="paintings.titulo" />
+            <img (click)="lightbox(5)" *ngIf="paintings.image5url" [src]="paintings.image5url"
+              class="img-small" [alt]="paintings.titulo" />
           </div>
         </div>
-        <div class="c-col col-12 col-sm-12 col-md-5 col-lg-5 accordiondiv">
-          <div id="accordion">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item backgroundtransparent fontwhite titlepaintings">
-                <h1 class="colorfontart">{{ paintings.titulo }}</h1>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite titlepaintings">
-                <h2 class="colorfontart2">{{ paintings.subtitulo }}</h2>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite">
-                <p class="no-margin">
-                  <b>Dimensions:</b> {{ paintings.dimension }}
-                </p>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite">
-                <p class="no-margin">
-                  <b>Characteristics:</b> {{ paintings.characteristics }}
-                </p>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite" *ngIf="paintings.link.length>1 || paintings.link2.length>1">
-                <p class="no-margin">Similar works:</p>
-                <a *ngIf="paintings.link.length>1" target="_blank" href="{{ paintings.link }}" class="linkpainting">
-                  <span style="display: flex" class="no-margin">Visit {{ enlace }}</span>
-                </a>
-                <a *ngIf="paintings.link2.length>1" target="_blank" href="{{ paintings.link2 }}" class="linkpainting">
-                  <span style="display: flex" class="no-margin">Visit {{ enlace2 }}</span>
-                </a>
-              </li>
-            </ul>
-            <ul style="
-                background: linear-gradient(
-                  0.25turn,
-                  #1a1919,
-                  #0c0b0b,
-                  #1a1919
-                );
-              ">
-              <li style="border: none" class="list-group-item backgroundtransparent fontwhite">
-                <a href="mailto:ignaciobirello@hotmail.com" style="
-                    display: flex;
-                    justify-content: center;
-                    color: white;
-                    text-decoration: none;
-                  " class="no-margin">ignaciobirello@hotmail.com</a>
-              </li>
-              <li style="border: none" class="list-group-item backgroundtransparent fontwhite">
-                <a href="tel:+541164816622" style="
-                    display: flex;
-                    justify-content: center;
-                    color: white;
-                    text-decoration: none;
-                  " class="no-margin">+54 11 6481 6622</a>
-              </li>
-            </ul>
-            <ul class="no-margin">
-              <li class="list-group-item backgroundtransparent" style="border: none">
-                <a href="https://wa.me/5491164816622"><button class="btn btn-painting" value="Enquire">
-                    Enquire
-                  </button></a>
-              </li>
-            </ul>
-            <ul class="no-margin">
-              <li class="list-group-item backgroundtransparent" style="border: none">
-                <div class="room-preview">
-                  <img (click)="lightbox(0)" *ngIf="paintings.image0url" src="{{ paintings.image0url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(1)" *ngIf="paintings.image1url" src="{{ paintings.image1url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(2)" *ngIf="paintings.image2url" src="{{ paintings.image2url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(3)" *ngIf="paintings.image3url" src="{{ paintings.image3url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(4)" *ngIf="paintings.image4url" src="{{ paintings.image4url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(5)" *ngIf="paintings.image5url" src="{{ paintings.image5url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="c-col col-12 sectorpaintings borderpaintings"></div>
-        <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 sectorpaintings">
-          <ul class="no-margin">
-            <li class="list-group-item backgroundtransparent fontwhite"
-              style="border: none; white-space: pre-line; text-align: justify;">
-              {{ paintings.descripcion }}
-            </li>
+        <div class="col-sm-12 col-md-5 col-lg-5">
+          <h2>{{paintings.titulo}}</h2>
+          <hr />
+          <h3>{{paintings.subtitulo}}</h3>
+          <hr />
+          <p><span>Dimensions:</span> {{paintings.dimension}}</p>
+          <p><span>Characteristics:</span> {{paintings.characteristics}}</p>
+          <p class="descripcion"><span>Description:</span> {{paintings.descripcion}}</p>
+          <span class="seeMore" (click)="seeMore($event);">See more</span>
+          <ul *ngIf="paintings.link.length>1">
+            <span>Similar works:</span>
+            <li *ngIf="paintings.link.length>1"><a [href]="paintings.link" target="_blank">{{enlace}}</a></li>
+            <li *ngIf="paintings.link2.length>1"><a [href]="paintings.link2" target="_blank">{{enlace2}}</a></li>
           </ul>
+          <a class="btn btn-lg btn-primary" href="https://wa.me/5491164816622">
+            Enquire
+         </a>
         </div>
-      </div>
+     </div>
     </div>
   </section>
 </main>

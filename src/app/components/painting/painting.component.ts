@@ -22,7 +22,6 @@ export class PaintingComponent implements OnInit, OnDestroy {
   public suscripcion2: Subscription;
   public enlace: string | string[];
   public enlace2: string | string[];
-  public animation: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,17 +36,10 @@ export class PaintingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-
     this.html = this.getSafeHTML(this.itemLD);
 
     this.suscripcion2 = this.activatedRoute.data.subscribe({
       next: response => {
-        this.animation = true;
         if (response.painting.paints) {
           this.paintings = response.painting.paints;
 
@@ -129,15 +121,11 @@ export class PaintingComponent implements OnInit, OnDestroy {
   lightbox(i: number) {
     let body = document.querySelector('body');
     body.style.overflow = 'hidden';
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     let div = this.renderer.createElement("div");
     this.renderer.appendChild(body, div);
-    let imagenes: NodeListOf<HTMLImageElement> = document.querySelectorAll('.room-preview img');
-    let roomPreview = document.querySelector('.room-preview');
+    let imagenes: NodeListOf<HTMLImageElement> = document.querySelectorAll('.img-small');
+
+    let preview = document.querySelector('.preview');
 
     let next = this.renderer.createElement('img');
     let volver = this.renderer.createElement('img');
@@ -148,45 +136,22 @@ export class PaintingComponent implements OnInit, OnDestroy {
     this.renderer.appendChild(div, close);
 
     this.renderer.setAttribute(next, 'src', 'assets/img/gallery/next.png');
-    this.renderer.setStyle(next, 'width', '50px');
-    this.renderer.setStyle(next, 'height', '45px');
-    this.renderer.setStyle(next, 'position', 'absolute');
-    this.renderer.setStyle(next, 'right', '0');
-    this.renderer.setStyle(next, 'cursor', 'pointer');
+    this.renderer.addClass(next, 'next');
 
     this.renderer.setAttribute(volver, 'src', 'assets/img/gallery/prev.png');
-    this.renderer.setStyle(volver, 'width', '50px');
-    this.renderer.setStyle(volver, 'height', '45px');
-    this.renderer.setStyle(volver, 'position', 'absolute');
-    this.renderer.setStyle(volver, 'left', '0');
-    this.renderer.setStyle(volver, 'cursor', 'pointer');
+    this.renderer.addClass(volver, 'previous');
 
     this.renderer.setAttribute(close, 'src', 'assets/img/gallery/close.png');
-    this.renderer.setStyle(close, 'position', 'absolute');
-    this.renderer.setStyle(close, 'top', '20px');
-    this.renderer.setStyle(close, 'right', '20px');
-    this.renderer.setStyle(close, 'cursor', 'pointer');
+    this.renderer.addClass(close, 'close');
 
-    this.renderer.setStyle(close, 'position', 'absolute');
-    this.renderer.setStyle(close, 'top', '20px');
-    this.renderer.setStyle(close, 'right', '20px');
-    this.renderer.setStyle(close, 'cursor', 'pointer');
+    this.renderer.addClass(div, 'slider');
 
-    this.renderer.setStyle(div, 'height', '100vh');
-    this.renderer.setStyle(div, 'width', '100%');
-    this.renderer.setStyle(div, 'position', 'absolute');
-    this.renderer.setStyle(div, 'top', '0');
-    this.renderer.setStyle(div, 'background', 'rgb(0,0,0,0.6)');
-    this.renderer.setStyle(div, 'display', 'flex');
-    this.renderer.setStyle(div, 'flex-direction', 'column');
-    this.renderer.setStyle(div, 'align-items', 'center');
-    this.renderer.setStyle(div, 'justify-content', 'center');
-    this.renderer.setStyle(div, 'overflow', 'hidden');
+    this.renderer.setStyle(body.children[0], 'filter', 'blur(4px)');
 
     let index = i;
 
     for (let i = 0; i < imagenes.length; i++) {
-      this.renderer.removeClass(imagenes[i], 'room-active-prevg');
+      this.renderer.removeClass(imagenes[i], 'img-small');
       this.renderer.appendChild(div, imagenes[i]);
       this.renderer.setAttribute(imagenes[i], 'loading', 'lazy');
       this.renderer.addClass(imagenes[i], 'noneevents');
@@ -213,32 +178,54 @@ export class PaintingComponent implements OnInit, OnDestroy {
       }
     });
 
-    close.addEventListener('click', () => {
+    const cerrar = () => {
+      this.renderer.removeStyle(body.children[0], 'filter');
       this.renderer.setStyle(div, 'animation', 'disappears 1s');
       setTimeout(() => {
         this.renderer.setStyle(div, 'display', 'none');
       }, 1000);
       this.renderer.setStyle(body, 'overflow', 'visible');
       for (let i = 0; i < imagenes.length; i++) {
-        this.renderer.addClass(imagenes[i], 'room-active-prevg');
+        this.renderer.addClass(imagenes[i], 'img-small');
         this.renderer.removeClass(imagenes[i], 'noneevents');
-        this.renderer.appendChild(roomPreview, imagenes[i]);
+        this.renderer.removeClass(imagenes[i], 'activo');
+        this.renderer.appendChild(preview, imagenes[i]);
+      }
+    }
+
+    this.renderer.listen(close, 'click', cerrar);
+
+    this.renderer.listen(window, 'keydown', (e) => {
+      if(e.key==="Escape"){
+        cerrar();
       }
     });
 
-    setTimeout(() => {
+    let intervalo = setInterval(() => {
       if (div.getBoundingClientRect().top < -20) {
         window.scroll({
           top: 0,
           left: 0,
           behavior: 'smooth',
         });
+      } else {
+        clearInterval(intervalo);
       }
     }, 1000);
   }
 
+  seeMore(event: any){
+    let hermano = event.target.previousElementSibling;
+    if(!hermano.style.display){
+      this.renderer.setAttribute(hermano, "style", "display:block; height: auto;");
+      this.renderer.setProperty(event.target, 'innerHTML', 'See less');
+    } else {
+      this.renderer.removeAttribute(hermano, "style");
+      this.renderer.setProperty(event.target, 'innerHTML', 'See more');
+   }
+  }
+
   ngOnDestroy() {
     [this.suscripcion, this.suscripcion2].forEach(e => e?.unsubscribe());
-    this.animation = false;
   }
 }

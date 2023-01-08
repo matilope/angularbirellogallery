@@ -1,4 +1,4 @@
-@media (min-width:576px) {
+/* @media (min-width:576px) {
   .left {
     order: 2;
   }
@@ -30,7 +30,6 @@
   background: -moz-linear-gradient(#1a1919, #0c0b0b, #1a1919) !important;
   background: -o-linear-gradient(#1a1919, #0c0b0b, #1a1919) !important;
   white-space: normal;
-  /* Animacion */
   opacity: 0;
   transform: scale(0.4);
   transition: all 1s linear;
@@ -74,4 +73,159 @@ button {
 .animacion {
   opacity: 1;
   transform: scale(1);
+} */
+
+/*
+a{
+  text-decoration: none;
+  color:rgb(44, 44, 44);
+}
+
+a:hover{
+  color: inherit;
+}
+
+h3{
+  height: 102px;
+}
+
+p{
+  height: 48px;
+}
+
+img{
+  height: 360px;
+  object-fit: contain;
+}
+
+a:hover img {
+  transform: scale(1.05);
+  transition: 0.5s;
+}
+*/
+
+a{
+  text-decoration: none;
+  color:rgb(44, 44, 44);
+}
+
+a:hover{
+  color: inherit;
+}
+
+.product-card {
+  width: 380px;
+  position: relative;
+  box-shadow: 0 2px 7px #dfdfdf;
+  margin: 2rem auto;
+  background: #fafafa;
+}
+
+.badge {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  background: red;
+  color: #fff;
+  padding: 3px 10px;
+}
+
+.product-tumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  padding: 50px;
+  background: #f0f0f0;
+}
+
+.product-tumb img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.product-details {
+  padding: 30px;
+}
+
+.product-catagory {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 18px;
+}
+
+.product-details h3 a {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  color: #363636;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size:1.3rem;
+  height: 50px;
+}
+
+.product-details h3 a:hover {
+  color: #947e11;
+}
+
+.product-details p {
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 18px;
+  color: #999;
+  height: 46px;
+}
+
+.product-bottom-details {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.product-bottom-details div {
+  float: left;
+  width: 50%;
+}
+
+.product-price {
+  font-size: 18px;
+  color: #d8ba28;
+  font-weight: 600;
+}
+
+.product-price small {
+  font-size: 80%;
+  font-weight: 400;
+  text-decoration: line-through;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.product-links {
+  text-align: right;
+}
+
+.product-links a {
+  display: inline-block;
+  margin-left: 5px;
+  color: #e1e1e1;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.product-links a:hover {
+  color: #d8ba28;
+}
+
+a:hover img {
+  transform: scale(1.1);
+  transition: 0.5s;
 }

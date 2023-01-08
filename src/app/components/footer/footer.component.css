@@ -1,0 +1,54 @@
+footer{
+    background-color:rgba(0,0,0,.6);
+    color:white;
+    padding:2rem;
+}
+
+footer h4{
+    padding:1rem 0;
+}
+
+ul{
+    list-style:none;
+    padding-left:0;
+}
+
+.bi:not(.bi-geo-alt, .bi-envelope, .bi-telephone){
+    color: white;
+    font-size: 36px;
+}
+
+.bi-geo-alt, .bi-envelope, .bi-telephone{
+    font-size: 20px;
+}
+
+.bi:hover{
+    color:#d8ba28 !important;
+}
+
+.socials{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+a{
+    color:white;
+}
+
+a:hover{
+    color:#d8ba28;
+}
+
+ul li:not(.socials){
+    padding:0.4rem 0;
+}
+
+.col-lg-4 div{
+    height: 216px;
+}
+
+.border-right{
+    border-right: 1px solid gray;
+}

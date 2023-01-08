@@ -28,7 +28,6 @@ export class AdminComponent implements OnInit, OnDestroy {
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
   public suscripcion4:Subscription;
-  public animation: boolean = false;
 
   constructor(
     private _paintingsService: PaintingsService,
@@ -50,16 +49,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-
     this.suscripcion = this.activatedRoute.data.subscribe({
       next: response => {
         if (response.paintings.paints) {
-          this.animation = true;
           this.paintings = response.paintings.paints;
         }
       },
@@ -137,6 +129,5 @@ export class AdminComponent implements OnInit, OnDestroy {
     [this.suscripcion, this.suscripcion2, this.suscripcion3, this.suscripcion4].forEach(e =>
       e?.unsubscribe()
     );
-    this.animation = false;
   }
 }

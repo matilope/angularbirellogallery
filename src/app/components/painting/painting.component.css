@@ -1,5 +1,102 @@
-.room-active {
-    display: none;
+h3{
+    font-size: 1.4rem;
+}
+
+ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+.descripcion{
+    display: -webkit-box;
+    height: 81px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.3;
+}
+
+.seeMore{
+    display: block;
+    font-weight: normal;
+    color:blue;
+    text-decoration: underline;
+    margin-bottom:2rem;
+}
+
+.seeMore:hover{
+    cursor: pointer;
+}
+
+img{
+    display:none;
+}
+
+.img-main{
+    display: inline-block;
+    width: 80%;
+}
+
+.img-small{
+    display: inline-block;
+    width: 10%;
+    margin-top:2rem;
+    object-fit: contain;
+}
+
+.img-small:hover{
+    cursor:pointer;
+}
+
+span{
+    font-weight: bold;
+}
+
+.next{
+    display: inline-block;
+    width:50px;
+    height: 45px;
+    position: absolute;
+    right: 0;
+    cursor:pointer;
+    z-index: 4;
+}
+
+.previous{
+    display: inline-block;
+    width:50px;
+    height: 45px;
+    position: absolute;
+    left: 0;
+    cursor:pointer;
+    z-index: 4;
+}
+
+.close{
+    display: inline-block;
+    position: absolute;
+    top:20px;
+    right: 20px;
+    cursor:pointer;
+    z-index: 4;
+}
+
+.slider{
+    display: flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    top:0;
+    background:rgb(0,0,0,0.6);
+    overflow:hidden;
+}
+
+.noneevents {
+    pointer-events: none;
 }
 
 .activo {
@@ -15,15 +112,8 @@
     animation: appears 1s;
 }
 
-.room-active-prevg {
-    display: inline-block;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-}
-
-.noneevents {
-    pointer-events: none;
+.desaparece{
+    animation: disappears 1s;
 }
 
 @keyframes appears{
@@ -34,8 +124,4 @@
 @keyframes disappears{
     0%{opacity:1}
     100%{opacity:0}
-}
-
-.desaparece{
-    animation: disappears 1s;
 }

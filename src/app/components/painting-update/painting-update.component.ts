@@ -23,7 +23,6 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
-  public animation: boolean = false;
   public index: number;
   public subido: boolean = false;
 
@@ -73,13 +72,7 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     this.getPintura();
-    this.animation = true;
   }
 
   onSubmit() {
@@ -231,6 +224,5 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
       [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
         e?.unsubscribe()
       );
-      this.animation = false;
     }
   }

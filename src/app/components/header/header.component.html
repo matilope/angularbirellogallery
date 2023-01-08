@@ -1,4 +1,4 @@
-<ng-container *ngFor="let portrait of portrait">
+<!-- <ng-container *ngFor="let portrait of portrait">
   <header *ngIf="path !== '/404'" style="background-image:url('{{ portrait.image0url }}');">
     <nav class="navbar navbar-expand-lg">
       <div class="collapse navbar-collapse container-fluid justify-content-center" id="navbarNavAltMarkup">
@@ -10,5 +10,36 @@
         </div>
       </div>
     </nav>
+  </header>
+</ng-container> -->
+<ng-container *ngFor="let portrait of portrait">
+  <header *ngIf="path !== '/404'" style="background-image:url('{{ portrait.image0url }}');">
+    <nav class="navbar navbar-expand-lg py-3" #nav>
+      <div class="container">
+        <a class="navbar-brand" routerLink="/">BG</a>
+        <div #button class="menu-btn" (click)="collapse();">
+          <div class="menu-btn__burger"></div>
+        </div>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup" #menu>
+          <div class="navbar-nav" #navLinks>
+            <a class="nav-link" routerLink="/">Artworks</a>
+            <a class="nav-link" routerLink="/miscellaneous">Miscellaneous</a>
+            <a class="nav-link" routerLink="/about">About</a>
+            <a class="nav-link" routerLink="/contact">Contact</a>
+            <a class="nav-link" routerLink="/cart">Shopping Cart</a>
+          </div>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+          <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
+        </svg>
+      </div>
+    </nav>
+    <div>
+      <div>
+        <h1>Welcome to <span>Birello Gallery</span></h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
+        <a routerLink="/contact" class="btn btn-lg btn-customize">Contact</a>
+      </div>
+    </div>
   </header>
 </ng-container>

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Privacy } from '../../models/privacy';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -7,10 +7,9 @@ import { Title, Meta } from '@angular/platform-browser';
   templateUrl: './privacypolicy.component.html',
   styleUrls: ['./privacypolicy.component.css'],
 })
-export class PrivacypolicyComponent implements OnInit, OnDestroy {
+export class PrivacypolicyComponent {
   public principal: string;
   public privacys: Privacy[];
-  public animation: boolean = false;
 
   constructor(private titleService: Title, private metaService: Meta) {
     this.principal = 'Privacy policy';
@@ -104,18 +103,5 @@ export class PrivacypolicyComponent implements OnInit, OnDestroy {
       property: 'twitter:url',
       content: 'https://www.birellogallery.com/privacypolicy',
     });
-  }
-
-  ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-    this.animation = true;
-  }
-
-  ngOnDestroy(): void {
-    this.animation = false;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -6,11 +6,10 @@ import { Title, Meta } from '@angular/platform-browser';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class AboutComponent {
   public principal: string;
   public parrafo: string;
   public alt: string;
-  public animation: boolean = false;
 
   constructor(private titleService: Title, private metaService: Meta) {
     this.principal = 'About us';
@@ -44,18 +43,5 @@ export class AboutComponent implements OnInit, OnDestroy {
       property: 'twitter:url',
       content: 'https://www.birellogallery.com/about',
     });
-  }
-
-  ngOnInit(): void {
-    this.animation = true;
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.animation = false;
   }
 }
