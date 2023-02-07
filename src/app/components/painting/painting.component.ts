@@ -77,7 +77,7 @@ export class PaintingComponent implements OnInit, OnDestroy {
           });
           this.metaService.updateTag({
             property: 'og:description',
-            content: this.paintings.descripcion,
+            content: this.paintings.descripcion.split(".")[0],
           });
           this.metaService.updateTag({
             property: 'og:image',
@@ -99,7 +99,7 @@ export class PaintingComponent implements OnInit, OnDestroy {
           });
           this.metaService.updateTag({
             property: 'twitter:description',
-            content: this.paintings.descripcion,
+            content: this.paintings.descripcion.split(".")[0],
           });
           this.metaService.updateTag({
             property: 'twitter:image',

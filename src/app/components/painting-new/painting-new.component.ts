@@ -123,8 +123,7 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
     this.subido = true;
     let swal = this.renderer.selectRootElement(".swal2-container", true);
     this.renderer.removeChild(document.body, swal);
-    this.renderer.removeClass(document.body, "swal2-shown");
-    this.renderer.removeClass(document.body, "swal2-height-auto");
+    this.renderer.removeAttribute(document.body, "class");
     let image0url = data.body.image0url;
     this.paintings.image0url = image0url;
     let image1url = data.body.image1url;

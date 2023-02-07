@@ -25,8 +25,8 @@ picture div:hover{
 
 .room-active{
     width: 140px;
+    object-fit: contain;
 }
-
 
 
 .contenedor_imagenes{
