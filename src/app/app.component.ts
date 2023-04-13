@@ -8,23 +8,23 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnDestroy {
-  public scroll!: Subscription;
+  public scrollEvent: Subscription;
   public animation: boolean = false;
 
   @ViewChild('animationRoute') public animationRoute: ElementRef;
   
   constructor(private readonly router: Router, private readonly renderer: Renderer2) {
-    this.scroll = this.router.events.subscribe({
+    this.scrollEvent = this.router.events.subscribe({
       next: () => {
         const element: HTMLElement = this.animationRoute.nativeElement.nextElementSibling.children[0];
         this.renderer.addClass(element, "router-animation");
-        window.scrollBy(0, element.getBoundingClientRect().top-80);
+        window.scrollBy(0, 0);
       }
     });
   }
 
   ngOnDestroy(): void {
-    this.scroll.unsubscribe();
+    this.scrollEvent.unsubscribe();
     this.animation = false;
   }
 

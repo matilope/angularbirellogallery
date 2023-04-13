@@ -5,7 +5,6 @@ import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
 import { Global } from '../../services/global';
 import { Subscription } from 'rxjs';
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-contact',
