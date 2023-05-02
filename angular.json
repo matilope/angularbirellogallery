@@ -35,7 +35,7 @@
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json",
             "optimization": {
-              "scripts": false,
+              "scripts": true,
               "fonts": true,
               "styles": true
             }
