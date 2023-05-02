@@ -15,7 +15,7 @@ body {
 }
 
 .router-animation {
-    animation: show 1s;
+    animation: show 2s;
 }
 
 @keyframes show {

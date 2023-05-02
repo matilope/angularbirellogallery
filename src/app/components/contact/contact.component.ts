@@ -20,7 +20,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   public url: string;
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
-  public animation: boolean = false;
   public titulo: any;
 
   constructor(
@@ -69,14 +68,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     this.suscripcion = this.activatedRoute.data.subscribe({
       next: response => {
-        this.animation = true;
         if (response.paintings.paints) {
           this.titulo = response.paintings.paints.map((e: { titulo: string; }) => { return e.titulo });
         }
@@ -138,6 +131,5 @@ export class ContactComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     [this.suscripcion, this.suscripcion2].forEach(e => e?.unsubscribe());
-    this.animation = false;
   }
 }

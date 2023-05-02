@@ -1,12 +1,12 @@
-<main class="paintings" [ngClass]="{ 'router-animation': animation === true }">
-  <section class="paintingsection">
+<main>
+  <section>
     <div class="container">
       <div class="row rowresponsiveapi" *ngIf="paintings">
         <div class="c-col col-12 col-sm-12 col-md-7 col-lg-7 sectorpaintings">
           <div class="card-group">
             <div class="card">
               <div class="room-gallery">
-                <img class="gallery-highlight" src="{{ paintings.image0url }}" alt="{{ paintings.titulo }}" />
+                <img appImgBroken class="gallery-highlight" [src]="paintings.image0url" [alt]="paintings.titulo" />
               </div>
             </div>
           </div>
@@ -32,10 +32,10 @@
               </li>
               <li class="list-group-item backgroundtransparent fontwhite" *ngIf="paintings.link.length>1 || paintings.link2.length>1">
                 <p class="no-margin">Similar works:</p>
-                <a *ngIf="paintings.link.length>1" target="_blank" href="{{ paintings.link }}" class="linkpainting">
+                <a *ngIf="paintings.link.length>1" target="_blank" [href]="paintings.link" class="linkpainting">
                   <span style="display: flex" class="no-margin">Visit {{ enlace }}</span>
                 </a>
-                <a *ngIf="paintings.link2.length>1" target="_blank" href="{{ paintings.link2 }}" class="linkpainting">
+                <a *ngIf="paintings.link2.length>1" target="_blank" [href]="paintings.link2" class="linkpainting">
                   <span style="display: flex" class="no-margin">Visit {{ enlace2 }}</span>
                 </a>
               </li>
@@ -75,18 +75,18 @@
             <ul class="no-margin">
               <li class="list-group-item backgroundtransparent" style="border: none">
                 <div class="room-preview">
-                  <img (click)="lightbox(0)" *ngIf="paintings.image0url" src="{{ paintings.image0url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(1)" *ngIf="paintings.image1url" src="{{ paintings.image1url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(2)" *ngIf="paintings.image2url" src="{{ paintings.image2url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(3)" *ngIf="paintings.image3url" src="{{ paintings.image3url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(4)" *ngIf="paintings.image4url" src="{{ paintings.image4url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
-                  <img (click)="lightbox(5)" *ngIf="paintings.image5url" src="{{ paintings.image5url }}"
-                    class="room-active activo room-active-prevg" alt="{{ paintings.titulo }}" />
+                  <img (click)="lightbox(0)" *ngIf="paintings.image0url" [src]="paintings.image0url"
+                    class="room-active activo room-active-prevg" [alt]="paintings.titulo" />
+                  <img (click)="lightbox(1)" *ngIf="paintings.image1url" [src]="paintings.image1url"
+                    class="room-active activo room-active-prevg" [alt]="paintings.titulo" />
+                  <img (click)="lightbox(2)" *ngIf="paintings.image2url" [src]="paintings.image2url"
+                    class="room-active activo room-active-prevg" [alt]="paintings.titulo" />
+                  <img (click)="lightbox(3)" *ngIf="paintings.image3url" [src]="paintings.image3url"
+                    class="room-active activo room-active-prevg" [alt]="paintings.titulo" />
+                  <img (click)="lightbox(4)" *ngIf="paintings.image4url" [src]="paintings.image4url"
+                    class="room-active activo room-active-prevg" [alt]="paintings.titulo" />
+                  <img (click)="lightbox(5)" *ngIf="paintings.image5url" [src]="paintings.image5url"
+                    class="room-active activo room-active-prevg" [alt]="paintings.titulo" />
                 </div>
               </li>
             </ul>

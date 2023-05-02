@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
 
-  public animation: boolean = false;
-
   public currentPage: number = 1;
   public totalPages: number;
   @ViewChildren('theLastList', { read: ElementRef })
@@ -65,17 +63,10 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-
     this.loader = true;
     this.suscripcion = this.paintingService
       .getPaintingsPagination(this.currentPage).subscribe({
         next: (response) => {
-          this.animation = true;
           this.loader = false;
           this.paintings = response.paints.sort(() => {
             return 0.5 - Math.random();
@@ -134,7 +125,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e => e?.unsubscribe());
-    this.animation = false;
     this.loader = false;
   }
 }

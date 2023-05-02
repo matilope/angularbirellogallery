@@ -1,15 +1,15 @@
-<main class="main">
-  <section class="homesection">
+<main>
+  <section>
     <h1 class="center fontcolor" style="margin-top: 20px">{{ principal }}</h1>
     <p class="center" style="color: #bfbfbf">{{ subtitulo }}</p>
-    <div class="container" [ngClass]="{ 'router-animation': animation === true }">
+    <div class="container">
       <div class="row justify-content-center">
         <ng-container *ngFor="let painting of paintings; let i = index">
           <div class="c-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4" *ngIf="i + 1 === paintings.length"
             #theLastList>
             <a [routerLink]="['/painting/view/', painting._id]">
               <div class="card animacion">
-                <img class="card-img-top" src="{{ painting.image0url }}" alt="{{ painting.titulo }}" />
+                <img appImgBroken class="card-img-top" [src]="painting.image0url" [alt]="painting.titulo" />
                 <div class="card-body">
                   <h2 class="card-title">{{ painting.titulo }}</h2>
                   <p class="card-text">{{ painting.subtitulo }}</p>
@@ -21,7 +21,7 @@
           <div class="c-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4" *ngIf="i + 1 !== paintings.length">
             <a [routerLink]="['/painting/view/', painting._id]">
               <div class="card animacion">
-                <img class="card-img-top" src="{{ painting.image0url }}" alt="{{ painting.titulo }}" />
+                <img appImgBroken class="card-img-top" [src]="painting.image0url" [alt]="painting.titulo"  />
                 <div class="card-body">
                   <h2 class="card-title">{{ painting.titulo }}</h2>
                   <p class="card-text">{{ painting.subtitulo }}</p>

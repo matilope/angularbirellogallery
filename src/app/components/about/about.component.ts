@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -6,17 +6,15 @@ import { Title, Meta } from '@angular/platform-browser';
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css'],
 })
-export class AboutComponent implements OnInit, OnDestroy {
+export class AboutComponent {
   public principal: string;
   public parrafo: string;
   public alt: string;
-  public animation: boolean = false;
 
   constructor(private titleService: Title, private metaService: Meta) {
     this.principal = 'About us';
     this.parrafo =
       'Birello Gallery is an emerging familiar business searching for the best products thinking in quality, value and exquisiteness. The products we offer not only delight customers regarding decorative value but also considering art itself as an investment for the future.';
-    this.alt = 'About us display image';
     this.titleService.setTitle('About | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
@@ -44,18 +42,5 @@ export class AboutComponent implements OnInit, OnDestroy {
       property: 'twitter:url',
       content: 'https://www.birellogallery.com/about',
     });
-  }
-
-  ngOnInit(): void {
-    this.animation = true;
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-  }
-
-  ngOnDestroy(): void {
-    this.animation = false;
   }
 }

@@ -1,11 +1,11 @@
-<main class="new" [ngClass]="{ 'router-animation': animation === true }">
-  <section class="adminnewsection">
+<main>
+  <section>
     <div class="container">
       <div class="row justify-content-center">
         <div class="c-col col-12 col-sm-12 col-md-10 col-lg-8 enquiryform">
           <h2 class="center contactcolor">{{ title }}</h2>
           <h3 class="center contactcolor infocontact">{{ subtitle }}</h3>
-          <form #paintingNewForm="ngForm" (ngSubmit)="onSubmit()">
+          <form #paintingNewForm="ngForm" (ngSubmit)="onSubmit();">
             <div class="form-group">
               <label class="formlabel" for="Titulo">Titulo</label>
               <input type="text" class="form-control" id="Titulo" placeholder="Titulo" maxlength="2000" name="titulo"
@@ -53,7 +53,7 @@
               <input type="text" class="form-control" id="Link2" placeholder="Segundo link" name="link2"
                 #link2="ngModel" [(ngModel)]="paintings.link2" />
             </div>
-              <angular-file-uploader [config]="afuConfig" (click)="loader()" (ApiResponse)="imageUpload($event)">
+              <angular-file-uploader [config]="afuConfig" (click)="loader();" (ApiResponse)="imageUpload($event);">
               </angular-file-uploader>
             <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit"
               [disabled]="paintingNewForm.invalid" />

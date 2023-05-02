@@ -18,7 +18,6 @@ export class AdminusersComponent implements OnInit, OnDestroy {
   public url: string;
   public suscripcion: Subscription;
   public suscripciondelete: Subscription;
-  public animation: boolean = false;
 
   constructor(
     private _adminService: AdminService,
@@ -35,15 +34,9 @@ export class AdminusersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     this.suscripcion = this._adminService.getUsers().subscribe({
       next: response => {
         if (response.users) {
-          this.animation = true;
           this.admins = response.users;
         }
       },
@@ -103,6 +96,5 @@ export class AdminusersComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     [this.suscripcion, this.suscripciondelete].forEach(e => e?.unsubscribe());
-    this.animation = false;
   }
 }

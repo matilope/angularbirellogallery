@@ -22,7 +22,6 @@ export class PaintingComponent implements OnInit, OnDestroy {
   public suscripcion2: Subscription;
   public enlace: string | string[];
   public enlace2: string | string[];
-  public animation: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,17 +36,10 @@ export class PaintingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-
     this.html = this.getSafeHTML(this.itemLD);
 
     this.suscripcion2 = this.activatedRoute.data.subscribe({
       next: response => {
-        this.animation = true;
         if (response.painting.paints) {
           this.paintings = response.painting.paints;
 
@@ -239,6 +231,5 @@ export class PaintingComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     [this.suscripcion, this.suscripcion2].forEach(e => e?.unsubscribe());
-    this.animation = false;
   }
 }

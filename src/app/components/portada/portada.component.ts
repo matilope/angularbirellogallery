@@ -23,7 +23,6 @@ export class PortadaComponent implements OnInit, OnDestroy {
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
-  public animation: boolean = false;
   public subido: boolean = false;
 
   afuConfig = {
@@ -72,16 +71,10 @@ export class PortadaComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
     this.getPortrait();
-    this.animation = true;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.suscripcion = this._portraitService
       .updatePortrait(this.portrait._id, this.portrait)
       .subscribe({
@@ -116,7 +109,7 @@ export class PortadaComponent implements OnInit, OnDestroy {
       });
   }
 
-  loader() {
+  loader(): void {
     this.subido = false;
     if (!this.subido) {
       swal.fire({
@@ -130,7 +123,7 @@ export class PortadaComponent implements OnInit, OnDestroy {
     }
   }
 
-  imageUpload(data: any) {
+  imageUpload(data: any): void {
     let image0url = data.body.image0url;
     this.portrait.image0url = image0url;
     this.subido = true;
@@ -139,7 +132,7 @@ export class PortadaComponent implements OnInit, OnDestroy {
     this.renderer.removeClass(document.body, "swal2-shown swal2-height-auto");
   }
 
-  getPortrait() {
+  getPortrait(): void {
     this.suscripcion2 = this._route.params.subscribe(params => {
       let portraitId = params['id'];
       this.suscripcion3 = this._portraitService
@@ -154,10 +147,9 @@ export class PortadaComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
       e?.unsubscribe()
     );
-    this.animation = false;
   }
 }

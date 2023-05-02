@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { Token } from '../../models/token';
 import { InstagramService } from '../../services/instagram.service';
 import { Router } from '@angular/router';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./token-new.component.css'],
   providers: [InstagramService],
 })
-export class TokenNewComponent implements OnInit, OnDestroy {
+export class TokenNewComponent implements OnDestroy {
   public subtitle: string;
   public tokendata: Token;
   public url: string;
@@ -36,16 +36,7 @@ export class TokenNewComponent implements OnInit, OnDestroy {
     this.tokendata = new Token('', '');
   }
 
-  ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-    this.animation = true;
-  }
-
-  onSubmit() {
+  onSubmit(): void {
     this.suscripcion = this._instagramService
       .saveToken(this.tokendata)
       .subscribe({
@@ -68,8 +59,7 @@ export class TokenNewComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.suscripcion?.unsubscribe();
-    this.animation = false;
   }
 }

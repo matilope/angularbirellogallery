@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
@@ -12,10 +12,9 @@ import { environment } from 'src/environments/environment.prod';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnDestroy {
   public registerUserData: User;
   public suscripcion: Subscription;
-  public animation: boolean = false;
 
   constructor(
     private _auth: AuthService,
@@ -34,15 +33,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       name: 'robots',
       content: 'noindex, nofollow',
     });
-  }
-
-  ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-    this.animation = true;
   }
 
   registerUser() {
@@ -80,6 +70,5 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.suscripcion?.unsubscribe();
-    this.animation = false;
   }
 }

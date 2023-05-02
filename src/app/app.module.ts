@@ -12,6 +12,7 @@ import { TokenInterceptorService } from './services/ti.service';
 import { AuthGuard } from './auth.guard';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment.prod';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, FooterComponent, HeaderComponent],
@@ -41,6 +42,7 @@ import { environment } from '../environments/environment.prod';
       useClass: TokenInterceptorService,
       multi: true,
     },
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent],
 })

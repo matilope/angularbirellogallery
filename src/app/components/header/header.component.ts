@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   providers: [PortraitService],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  path = '';
+  public path: string = '';
   public portrait: Portrait[];
   public url: string;
   public suscripcion: Subscription;

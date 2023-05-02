@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Paintings } from '../../models/paintings';
 import { PaintingsService } from '../../services/paintings.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '../../services/global';
 import swal from 'sweetalert2';
 import { Title, Meta } from '@angular/platform-browser';
@@ -23,7 +23,6 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
   public suscripcion3: Subscription;
-  public animation: boolean = false;
   public index: number;
   public subido: boolean = false;
 
@@ -79,7 +78,6 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
       behavior: 'smooth',
     });
     this.getPintura();
-    this.animation = true;
   }
 
   onSubmit() {
@@ -231,6 +229,5 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
       [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
         e?.unsubscribe()
       );
-      this.animation = false;
     }
   }

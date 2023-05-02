@@ -28,8 +28,6 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   public url: string;
   public content: string;
 
-  public animation: boolean = false;
-
   @ViewChildren('theLastList', { read: ElementRef })
   theLastList: QueryList<ElementRef>;
 
@@ -87,7 +85,6 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
     this.suscripcion = this.activatedRoute.data.subscribe({
       next: response => {
         if (response.token) {
-          this.animation = true;
           this.token = response.token.token._id;
           this.content = response.token.token.token;
           this.suscripcion2 = this._instagramService
@@ -137,11 +134,11 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
                 if (response.paging) {
                   this.next = response.paging.cursors.after;
                   this.data = response.data;
-                  response.data.forEach((e) => {
+                  response.data.forEach((e: any) => {
                     this.insta.push(e);
                   });
                 } else {
-                  this.data=[];
+                  this.data = [];
                 }
               }
             })
@@ -152,7 +149,6 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnDestroy() {
     [this.suscripcion, this.suscripcion2, this.suscripcion3, this.suscripcion4].forEach(e => e?.unsubscribe());
-    this.animation = false;
     this.loader = false;
   }
 }

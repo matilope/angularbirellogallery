@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Paintings } from '../../models/paintings';
 import { PaintingsService } from '../../services/paintings.service';
 import { Router } from '@angular/router';
@@ -13,14 +13,13 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./painting-new.component.css'],
   providers: [PaintingsService],
 })
-export class PaintingNewComponent implements OnInit, OnDestroy {
+export class PaintingNewComponent implements OnInit {
   public title: string;
   public subtitle: string;
   public paintings: Paintings;
   public status: string;
   public url: string;
   public suscripcion: Subscription;
-  public animation: boolean = false;
   public index: number;
   public subido: boolean = false;
 
@@ -73,11 +72,10 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
       left: 0,
       behavior: 'smooth',
     });
-    this.animation = true;
   }
 
   onSubmit() {
-    this.suscripcion = this._paintingsService.create(this.paintings).subscribe({
+    this._paintingsService.create(this.paintings).subscribe({
       next: response => {
         if (response.status == 'Success') {
           this.status = 'Success';
@@ -136,10 +134,5 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
     this.paintings.image4url = image4url;
     let image5url = data.body.image5url;
     this.paintings.image5url = image5url;
-  }
-
-  ngOnDestroy(): void {
-    this.suscripcion?.unsubscribe();
-    this.animation = false;
   }
 }

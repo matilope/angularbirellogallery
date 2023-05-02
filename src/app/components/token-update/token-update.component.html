@@ -1,10 +1,10 @@
-<main class="new" [ngClass]="{ 'router-animation': animation === true }">
-  <section class="adminnewsection">
+<main>
+  <section>
     <div class="container">
       <div class="row justify-content-center">
         <div class="c-col col-10 col-sm-10 col-md-8 col-lg-6 enquiryform">
           <h2 class="center contactcolor">Actualiza el token de instagram</h2>
-          <form #tokenUpdateForm="ngForm" (ngSubmit)="onSubmit()">
+          <form #tokenUpdateForm="ngForm" (ngSubmit)="onSubmit();">
             <div class="form-group">
               <label class="formlabel" for="token">Token</label>
               <input type="text" class="form-control" id="token" placeholder="Token" name="token" #token="ngModel"

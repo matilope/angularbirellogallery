@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component  } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
@@ -6,13 +6,12 @@ import { Title, Meta } from '@angular/platform-browser';
   templateUrl: './refundpolicy.component.html',
   styleUrls: ['./refundpolicy.component.css'],
 })
-export class RefundpolicyComponent implements OnInit, OnDestroy {
+export class RefundpolicyComponent {
   public principal: string;
   public titulo: string;
   public text: string;
   public mail: string;
   public textextra: string;
-  public animation: boolean = false;
 
   constructor(private titleService: Title, private metaService: Meta) {
     this.principal = 'Refund policy';
@@ -46,18 +45,5 @@ export class RefundpolicyComponent implements OnInit, OnDestroy {
       property: 'twitter:url',
       content: 'https://www.birellogallery.com/refundpolicy',
     });
-  }
-
-  ngOnInit(): void {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: 'smooth',
-    });
-    this.animation = true;
-  }
-
-  ngOnDestroy(): void {
-    this.animation = false;
   }
 }
