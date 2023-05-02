@@ -58,40 +58,34 @@
                 <label class="formlabel" for="Image">Imagen subida:</label>
                 <div class="room-preview">
                   <picture *ngIf="paintings.image0url">
-                  <img appImgBroken src="{{ paintings.image0url }}" class="room-active"
-                    alt="{{ paintings.titulo }}" />
+                    <img appImgBroken [src]="paintings.image0url" class="room-active" [alt]="paintings.titulo" />
                     <div (click)="deleteImg($event, index=0)">X</div>
                   </picture>
                   <picture *ngIf="paintings.image1url">
-                  <img appImgBroken src="{{ paintings.image1url }}" class="room-active"
-                    alt="{{ paintings.titulo }}" />
+                    <img appImgBroken [src]="paintings.image1url" class="room-active" [alt]="paintings.titulo" />
                     <div (click)="deleteImg($event, index=1)">X</div>
                   </picture>
                   <picture *ngIf="paintings.image2url">
-                  <img appImgBroken src="{{ paintings.image2url }}" class="room-active"
-                    alt="{{ paintings.titulo }}" />
+                    <img appImgBroken [src]="paintings.image2url" class="room-active" [alt]="paintings.titulo" />
                     <div (click)="deleteImg($event, index=2)">X</div>
                   </picture>
                   <picture *ngIf="paintings.image3url">
-                  <img appImgBroken src="{{ paintings.image3url }}" class="room-active"
-                    alt="{{ paintings.titulo }}" />
+                    <img appImgBroken [src]="paintings.image3url" class="room-active" [alt]="paintings.titulo" />
                     <div (click)="deleteImg($event, index=3)">X</div>
                   </picture>
                   <picture *ngIf="paintings.image4url">
-                  <img appImgBroken src="{{ paintings.image4url }}" class="room-active"
-                    alt="{{ paintings.titulo }}" />
+                    <img appImgBroken [src]="paintings.image4url" class="room-active" [alt]="paintings.titulo" />
                     <div (click)="deleteImg($event, index=4)">X</div>
                   </picture>
                   <picture *ngIf="paintings.image5url">
-                  <img appImgBroken src="{{ paintings.image5url }}" class="room-active"
-                    alt="{{ paintings.titulo }}" />
+                    <img appImgBroken [src]="paintings.image5url" class="room-active" [alt]="paintings.titulo" />
                     <div (click)="deleteImg($event, index=5)">X</div>
                   </picture>
                 </div>
               </div>
             </div>
-              <angular-file-uploader [config]="afuConfig" (click)="loader();" (ApiResponse)="imageUpload($event);">
-              </angular-file-uploader>
+            <angular-file-uploader [config]="afuConfig" (click)="loader();" (ApiResponse)="imageUpload($event);">
+            </angular-file-uploader>
             <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit" />
           </form>
         </div>

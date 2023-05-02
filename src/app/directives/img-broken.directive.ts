@@ -7,6 +7,6 @@ export class ImgBrokenDirective {
   constructor(private readonly imgHost: ElementRef, private readonly renderer: Renderer2) { }
 
   @HostListener('error') public handleError(): void {
-    this.renderer.setAttribute(this.imgHost.nativeElement, 'src', 'assets/img/default/default.png');
+    this.renderer.setAttribute(this.imgHost.nativeElement, 'src', '/assets/img/default/default.png');
   }
 }

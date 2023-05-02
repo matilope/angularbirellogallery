@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { AuthGuard } from 'src/app/auth.guard';
 import { TokenInterceptorService } from 'src/app/services/ti.service';
 import { PaintingsService } from 'src/app/services/paintings.service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [PaintingUpdateComponent],
@@ -18,6 +19,7 @@ import { PaintingsService } from 'src/app/services/paintings.service';
     PaintingUpdateRoutingModule,
     FormsModule,
     AngularFileUploaderModule,
+    SharedModule
   ],
   providers: [
     AuthService,
