@@ -1,0 +1,58 @@
+<main>
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="c-col col-12 col-sm-12 col-md-10 col-lg-8 enquiryform">
+          <h2 class="center contactcolor">{{ title }}</h2>
+          <h3 class="center contactcolor infocontact">{{ subtitle }}</h3>
+          <form #paintingNewForm="ngForm" (ngSubmit)="onSubmit();">
+            <div class="form-group">
+              <label class="formlabel" for="title">Title</label>
+              <input type="text" class="form-control" id="title" placeholder="Title" maxlength="2000" name="title"
+                #title="ngModel" [(ngModel)]="painting.title" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!title.valid && title.touched">Title is not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="subtitle">Subtitle</label>
+              <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" maxlength="2000"
+                name="subtitle" #subtitle="ngModel" [(ngModel)]="painting.subtitle" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!subtitle.valid && subtitle.touched">Subtitle is not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="description">Description</label>
+              <textarea class="form-control" id="description" rows="10" name="description" #description="ngModel"
+                [(ngModel)]="painting.description" placeholder="Description" required></textarea>
+              <small style="color: rgb(201, 201, 201)" *ngIf="!description.valid && description.touched">Description is empty</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="dimension">Dimension</label>
+              <input type="text" class="form-control" id="dimension" placeholder="Dimension" name="dimension"
+                #dimension="ngModel" [(ngModel)]="painting.dimension" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!dimension.valid && dimension.touched">Dimension is not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="characteristics">Characteristics</label>
+              <input type="text" class="form-control" id="characteristics" placeholder="Characteristics"
+                name="characteristics" #characteristics="ngModel" [(ngModel)]="painting.characteristics" required />
+              <small style="color: rgb(201, 201, 201)"
+                *ngIf="!characteristics.valid && characteristics.touched">Characteristics are not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="link">Link</label>
+              <input type="text" class="form-control" id="link" placeholder="link" name="link" #link="ngModel"
+                [(ngModel)]="painting.link" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!link.valid && link.touched">Link is not valid or is require</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="link2">Secondary link</label>
+              <input type="text" class="form-control" id="link2" placeholder="Secondary link" name="link2"
+                #link2="ngModel" [(ngModel)]="painting.link2" />
+            </div>
+            <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit"
+              [disabled]="paintingNewForm.invalid" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

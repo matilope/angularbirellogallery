@@ -1,0 +1,27 @@
+<section class="container">
+  <p-card class="grid">
+    <h1 class="text-center">Terms of service</h1>
+    <p-accordion [activeIndex]="i" *ngFor="let termsofservice of termsofservices; let i = index;">
+      <p-accordionTab [header]="termsofservice.title">
+        <p *ngIf="termsofservice.paragraph">
+          {{ termsofservice.paragraph }}
+        </p>
+        <p *ngIf="termsofservice.paragraph2">
+          {{ termsofservice.paragraph2 }}
+        </p>
+        <p *ngIf="termsofservice.paragraph3">
+          {{ termsofservice.paragraph3 }}
+        </p>
+        <p *ngIf="termsofservice.paragraph4">
+          {{ termsofservice.paragraph4 }}
+        </p>
+        <p *ngIf="termsofservice.paragraph5">
+          {{ termsofservice.paragraph5 }}
+        </p>
+        <p *ngIf="termsofservice.paragraph6">
+          {{ termsofservice.paragraph6 }}
+        </p>
+      </p-accordionTab>
+    </p-accordion>
+  </p-card>
+</section>

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ImgBrokenDirective } from '../directives/img-broken.directive';
+import { ImgBrokenDirective } from './directives/img-broken.directive';
 
 @NgModule({
   declarations: [ ImgBrokenDirective ],

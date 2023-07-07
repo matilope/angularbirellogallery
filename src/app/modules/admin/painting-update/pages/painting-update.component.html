@@ -1,0 +1,77 @@
+<main>
+  <section>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="c-col col-12 col-sm-12 col-md-10 col-lg-8 enquiryform">
+          <h2 class="center contactcolor">{{ title }}</h2>
+          <h3 class="center contactcolor infocontact">{{ subtitle }}</h3>
+          <form #paintingUpdateForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label class="formlabel" for="title">Title</label>
+              <input type="text" class="form-control" id="title" placeholder="Title" maxlength="160" name="title"
+                #title="ngModel" [(ngModel)]="painting.title" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!title.valid && title.touched">Title is not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="subtitle">Subtitle</label>
+              <input type="text" class="form-control" id="subtitle" placeholder="Subtitle" maxlength="160"
+                name="subtitle" #subtitle="ngModel" [(ngModel)]="painting.subtitle" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!subtitle.valid && subtitle.touched">Subtitle is not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="description">Description</label>
+              <textarea class="form-control" id="description" rows="10" name="description" #description="ngModel"
+                [(ngModel)]="painting.description" placeholder="Description" required></textarea>
+              <small style="color: rgb(201, 201, 201)" *ngIf="!description.valid && description.touched">Description
+                is empty</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="Dimension">Dimension</label>
+              <input type="text" class="form-control" id="Dimension" placeholder="Dimension" name="dimension"
+                #dimension="ngModel" [(ngModel)]="painting.dimension" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!dimension.valid && dimension.touched">Dimension is not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="characteristics">Characteristics</label>
+              <input type="text" class="form-control" id="characteristics" placeholder="Caracteristicas"
+                name="characteristics" #characteristics="ngModel" [(ngModel)]="painting.characteristics" required />
+              <small style="color: rgb(201, 201, 201)"
+                *ngIf="!characteristics.valid && characteristics.touched">Characteristics are not valid</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="link">Link</label>
+              <input type="text" class="form-control" id="link" placeholder="link" name="link" #link="ngModel"
+                [(ngModel)]="painting.link" required />
+              <small style="color: rgb(201, 201, 201)" *ngIf="!link.valid && link.touched">Link is not valid or is require</small>
+            </div>
+            <div class="form-group">
+              <label class="formlabel" for="link2">Segundo link</label>
+              <input type="text" class="form-control" id="link2" placeholder="Segundo link" name="link2"
+                #link2="ngModel" [(ngModel)]="painting.link2" />
+            </div>
+            <div class="form-group">
+              <div *ngIf="is_update" style="margin-bottom: 12px">
+                <label class="formlabel" for="Image">Uploaded image:</label>
+                <div class="room-preview">
+                  <picture *ngIf="painting.image0url">
+                    <img appImgBroken [src]="painting.image0url" class="room-active" [alt]="painting.title" />
+                    <div (click)="deleteImg($event, index=0)">X</div>
+                  </picture>
+                  <picture *ngIf="painting.image1url">
+                    <img appImgBroken [src]="painting.image1url" class="room-active" [alt]="painting.title" />
+                    <div (click)="deleteImg($event, index=1)">X</div>
+                  </picture>
+                  <picture *ngIf="painting.image2url">
+                    <img appImgBroken [src]="painting.image2url" class="room-active" [alt]="painting.title" />
+                    <div (click)="deleteImg($event, index=2)">X</div>
+                  </picture>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

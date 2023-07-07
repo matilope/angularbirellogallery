@@ -15,9 +15,8 @@ export class AppComponent implements OnDestroy {
   constructor(private readonly router: Router, private readonly renderer: Renderer2) {
     this.scrollEvent = this.router.events.subscribe({
       next: () => {
-        const element: HTMLElement = this.animationRoute.nativeElement.nextElementSibling.children[0];
-        this.renderer.addClass(element, "router-animation");
-        window.scrollBy(0, 0);
+        // const element: HTMLElement = this.animationRoute?.nativeElement?.nextElementSibling?.children?.[0];
+        // this.renderer.addClass(element, "router-animation");
       }
     });
   }

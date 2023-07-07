@@ -1,0 +1,27 @@
+<nav class="container">
+  <div>
+    <a href="/">Birello Gallery</a>
+  </div>
+  <ul #navLinks>
+    <li><a routerLink="/">Artworks</a></li>
+    <li><a routerLink="/miscellaneous">Miscellaneous</a></li>
+    <li><a routerLink="/about">About</a></li>
+    <li><a routerLink="/contact">Contact</a></li>
+    <li *ngIf="isLoggedIn"><a routerLink="/admin">Admin</a></li>
+  </ul>
+  <div #button class="menu-btn" role="button" (click)="collapse();">
+    <span></span>
+  </div>
+</nav>
+<div class="container banner" *ngIf="path !== '/404'">
+  <div>
+    <h1>Welcome to <span>Birello Gallery</span></h1>
+    <div>
+      <p>Buying art is buying time of the artist's life.</p>
+      <a routerLink="/contact">Contact</a>
+    </div>
+  </div>
+  <div>
+    <img [src]="portrait.image0url" [alt]="portrait.title" />
+  </div>
+</div>
