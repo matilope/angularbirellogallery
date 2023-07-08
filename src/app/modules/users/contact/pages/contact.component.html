@@ -28,6 +28,6 @@
       <textarea name="textarea" id="textarea" rows="4" formControlName="textarea" pInputTextarea required></textarea>
       <label for="textarea">Message</label>
     </span>
-    <button class="custom-btn" pRipple (onClick)="tiempo(formData);" [disabled]="formData.invalid">Submit</button>
+    <button type="submit" class="custom-btn" pRipple (onClick)="tiempo(formData);" [disabled]="formData.invalid">Submit</button>
   </form>
 </section>

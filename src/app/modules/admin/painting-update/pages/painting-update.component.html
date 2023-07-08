@@ -1,4 +1,48 @@
-<main>
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>Edit painting</h2>
+      </header>
+      <p>You can now make edits</p>
+    </div>
+  </div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="formData" *ngIf="painting">
+    <span class="p-float-label mb-5">
+      <input type="text" id="title" name="title" formControlName="title" pInputText required />
+      <label for="title">Title</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="text" id="subtitle" name="subtitle" formControlName="subtitle" pInputText required />
+      <label for="subtitle">Subtitle</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <textarea name="description" id="description" rows="4" formControlName="description" pInputTextarea
+        required></textarea>
+      <label for="description">Description</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="text" id="dimension" name="dimension" formControlName="dimension" pInputText required />
+      <label for="dimension">Dimension</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="text" id="characteristics" name="characteristics" formControlName="characteristics" pInputText
+        required />
+      <label for="characteristics">Characteristics</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="link" id="link" name="link" formControlName="link" pInputText required />
+      <label for="link">Link</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <input type="link" id="link2" name="link2" formControlName="link2" pInputText required />
+      <label for="link2">Secondary link</label>
+    </span>
+    <button type="submit" class="custom-btn" pRipple [disabled]="formData.invalid">Submit</button>
+  </form>
+</section>
+
+<!-- <main>
   <section>
     <div class="container">
       <div class="row justify-content-center">
@@ -50,7 +94,7 @@
                 #link2="ngModel" [(ngModel)]="painting.link2" />
             </div>
             <div class="form-group">
-              <div *ngIf="is_update" style="margin-bottom: 12px">
+              <div style="margin-bottom: 12px">
                 <label class="formlabel" for="Image">Uploaded image:</label>
                 <div class="room-preview">
                   <picture *ngIf="painting.image0url">
@@ -74,4 +118,4 @@
       </div>
     </div>
   </section>
-</main>
+</main> -->

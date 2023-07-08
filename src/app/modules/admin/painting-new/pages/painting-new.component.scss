@@ -1,15 +1,20 @@
 form {
-  width: 600px;
+  width: 800px;
   margin: auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 
-  @media (max-width: 767px) {
-    width: 100%;
+  @media (max-width:991px) {
+    width: 720px;
   }
 
-  input {
+  @media (max-width:767px) {
+    width: 100%
+  }
+
+  input,
+  textarea {
     width: 100%;
 
     &:hover {

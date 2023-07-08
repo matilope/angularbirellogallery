@@ -2,18 +2,16 @@
   <div class="header-container text-center">
     <div>
       <header>
-        <h2>Create new instagram token</h2>
+        <h2>Create new Instagram token</h2>
       </header>
     </div>
   </div>
-  <div class="flex">
-    <form (ngSubmit)="onSubmit();" [formGroup]="formData">
-      <span class="p-float-label mb-5">
-        <input type="text" id="token" name="token" formControlName="token" [value]="token" pInputText required />
-        <label for="token">Token</label>
-      </span>
-      <button type="submit" class="custom-btn" [disabled]="formData.invalid">Submit</button>
-    </form>
-  </div>
+  <form (ngSubmit)="onSubmit();" [formGroup]="formData">
+    <span class="p-float-label mb-5">
+      <input type="text" id="token" name="token" formControlName="token" [value]="token" pInputText required />
+      <label for="token">Token</label>
+    </span>
+    <button type="submit" class="custom-btn" [disabled]="formData.invalid">Submit</button>
+  </form>
   <a class="go-back" routerLink="/admin">Go back</a>
 </section>

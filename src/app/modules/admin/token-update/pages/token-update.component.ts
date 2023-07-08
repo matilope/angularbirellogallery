@@ -31,7 +31,7 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
     private metaService: Meta
   ) {
     this.url = Global.url;
-    this.titleService.setTitle("Refresh instagram's token");
+    this.titleService.setTitle("Refresh Instagram's token");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

@@ -16,8 +16,9 @@ form {
   input,
   textarea {
     width: 100%;
-    background-color: transparent;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2));
     border: 2px solid #f2f2e2;
+    color: #f2f2e2;
 
     &:hover {
       outline: 4px solid #706c49;
@@ -35,9 +36,13 @@ form {
   }
 
   ::ng-deep .custom-dropdown {
-    background-color: transparent;
     border: 2px solid #f2f2e2;
     width: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2));
+
+    .p-dropdown-label {
+      color: #f2f2e2;
+    }
 
     &:hover {
       outline: 4px solid #706c49;

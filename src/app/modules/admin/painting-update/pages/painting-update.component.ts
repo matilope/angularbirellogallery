@@ -5,26 +5,22 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '@global/global';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-painting-update',
   templateUrl: './painting-update.component.html',
-  styleUrls: ['./painting-update.component.css'],
+  styleUrls: ['./painting-update.component.scss'],
   providers: [PaintingsService],
 })
 export class PaintingUpdateComponent implements OnInit, OnDestroy {
-  public title: string;
-  public subtitle: string;
+  public formData!: FormGroup;
   public painting: Painting;
-  public status: string;
-  public is_update: boolean;
   public url: string;
-  public suscripcion: Subscription;
-  public suscripcion2: Subscription;
-  public suscripcion3: Subscription;
+  public subscription: Subscription;
+  public subscription2: Subscription;
   public index: number;
-  public subido: boolean = false;
 
   constructor(
     private _paintingsService: PaintingsService,
@@ -33,11 +29,8 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private metaService: Meta
   ) {
-    this.title = 'Editar pintura';
-    this.subtitle = 'Puede editar los datos';
-    this.is_update = true;
     this.url = Global.url;
-    this.titleService.setTitle("Actualizar los datos de la pintura");
+    this.titleService.setTitle("Edit painting");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
@@ -46,15 +39,41 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getPintura();
+    this.formData = new FormGroup(
+      {
+        title: new FormControl(this.painting.title, [
+          Validators.required,
+          Validators.maxLength(120)
+        ]),
+        subtitle: new FormControl(this.painting.subtitle, [
+          Validators.required,
+          Validators.maxLength(120)
+        ]),
+        description: new FormControl(this.painting.description, [
+          Validators.required
+        ]),
+        dimension: new FormControl(this.painting.dimension, [
+          Validators.required,
+          Validators.maxLength(120)
+        ]),
+        characteristics: new FormControl(this.painting.characteristics, [
+          Validators.required,
+          Validators.maxLength(120)
+        ]),
+        link: new FormControl(this.painting.link, [
+          Validators.required
+        ]),
+        link2: new FormControl(this.painting.link2)
+      }
+    );
   }
 
   onSubmit(): void {
-    this.suscripcion = this._paintingsService
+    this.subscription = this._paintingsService
       .update(this.painting._id, this.painting)
       .subscribe({
         next: response => {
           if (response.status == 'Success') {
-            this.status = 'Success';
             this.painting = response.paints;
             swal.fire(
               'Se ha editado correctamente',
@@ -63,7 +82,6 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
             );
             this._router.navigate(['/painting/view/' + this.painting._id]);
           } else {
-            this.status = 'Error';
             swal.fire(
               'Ha ocurrido un error al editar la pintura',
               'Sera redireccionado a la misma pagina para volver intentar editarlo, de todas maneras sugiero que se fije si se edito correctamente',
@@ -103,16 +121,14 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
             .subscribe({
               next: (response) => {
                 if (response.status == "Success") {
-                  if (response.status == "Success") {
-                    if (response.paints.image0url) {
-                      this.painting.image0url = response.paints.image0url;
-                    }
-                    if (response.paints.image1url) {
-                      this.painting.image1url = response.paints.image1url;
-                    }
-                    if (response.paints.image2url) {
-                      this.painting.image2url = response.paints.image2url;
-                    }
+                  if (response.paints.image0url) {
+                    this.painting.image0url = response.paints.image0url;
+                  }
+                  if (response.paints.image1url) {
+                    this.painting.image1url = response.paints.image1url;
+                  }
+                  if (response.paints.image2url) {
+                    this.painting.image2url = response.paints.image2url;
                   }
                 }
               }
@@ -128,17 +144,15 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   }
 
   getPintura(): void {
-    this.suscripcion2 = this._route.params.subscribe(params => {
-      this.suscripcion3 = this._route.data.subscribe(response => {
-        if (response.painting.paints) {
-          this.painting = response.painting.paints;
-        }
-      });
+    this.subscription2 = this._route.data.subscribe(response => {
+      if (response.painting.paints) {
+        this.painting = response.painting.paints;
+      }
     });
   }
 
   ngOnDestroy(): void {
-    [this.suscripcion, this.suscripcion2, this.suscripcion3].forEach(e =>
+    [this.subscription, this.subscription2].forEach(e =>
       e?.unsubscribe()
     );
   }

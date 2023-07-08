@@ -3,21 +3,25 @@ import { CommonModule } from '@angular/common';
 
 import { PaintingUpdateRoutingModule } from './painting-update-routing.module';
 import { PaintingUpdateComponent } from './pages/painting-update.component';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from '@shared/services/auth.service';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { TokenInterceptorService } from '@core/interceptors/interceptor.service';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { SharedModule } from '@shared/shared.module';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [PaintingUpdateComponent],
   imports: [
     CommonModule,
     PaintingUpdateRoutingModule,
-    FormsModule,
-    SharedModule
+    ReactiveFormsModule,
+    SharedModule,
+    InputTextModule,
+    InputTextareaModule
   ],
   providers: [
     AuthService,
@@ -30,4 +34,4 @@ import { SharedModule } from '@shared/shared.module';
     PaintingsService
   ],
 })
-export class PaintingUpdateModule {}
+export class PaintingUpdateModule { }

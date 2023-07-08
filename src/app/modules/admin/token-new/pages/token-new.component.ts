@@ -28,7 +28,7 @@ export class TokenNewComponent implements OnInit, OnDestroy {
     private metaService: Meta
   ) {
     this.url = Global.url;
-    this.titleService.setTitle("Create new instagram token");
+    this.titleService.setTitle("Create new Instagram token");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
