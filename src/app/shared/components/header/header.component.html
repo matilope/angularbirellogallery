@@ -17,11 +17,39 @@
   <div>
     <h1>Welcome to <span>Birello Gallery</span></h1>
     <div>
-      <p>Buying art is buying time of the artist's life.</p>
-      <a routerLink="/contact">Contact</a>
+      <ul class="contact-info">
+        <li>
+          <a href="mailto:ignaciobirello@hotmail.com" target="_blank">ignaciobirello@hotmail.com</a>
+        </li>
+        <li>
+          <a href="tel:+541164816622" target="_blank">+54 11 6481 6622</a>
+        </li>
+      </ul>
+      <ul class="social-icons">
+        <li>
+          <a title="facebook" href="https://www.facebook.com/BirelloGallery" target="_blank">
+            <i class="pi pi-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a title="instagram" href="https://www.instagram.com/birellogallery/" target="_blank">
+            <i class="pi pi-instagram"></i>
+          </a>
+        </li>
+        <li>
+          <a title="whatsapp" href="https://wa.me/5491164816622" target="_blank">
+            <i class="pi pi-whatsapp"></i>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
   <div>
     <img [src]="portrait.image0url" [alt]="portrait.title" />
   </div>
 </div>
+
+<!-- <div>
+  <p>Buying art is buying time of the artist's life.</p>
+  <a class="custom-btn" routerLink="/contact">Contact</a>
+</div> -->

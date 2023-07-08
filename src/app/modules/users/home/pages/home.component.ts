@@ -64,7 +64,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.loader = true;
-    /*
     this.suscripcion = this.paintingService
       .getPaintingsPagination(this.currentPage).subscribe({
         next: (response) => {
@@ -76,7 +75,6 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         },
       });
     this.intersectionObserver();
-    */
   }
 
   ngAfterViewInit(): void {

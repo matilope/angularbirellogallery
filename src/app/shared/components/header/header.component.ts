@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { Portrait } from '@core/models/portrait';
 import { PortraitService } from '@shared/services/portrait.service';
@@ -13,7 +13,7 @@ import { AuthService } from '@shared/services/auth.service';
   providers: [PortraitService]
 })
 
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   public path!: string;
   public portrait: Portrait;
   public routerEvent: Subscription;
@@ -45,6 +45,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.isLoggedIn = this._authService.loggedIn();
   }
 
+  ngAfterViewInit(): void {
+    this.closeNavOnLinkTouch();
+  }
+
   ngOnDestroy(): void {
     this.routerEvent.unsubscribe();
   }
@@ -59,6 +63,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.renderer.removeClass(this.navLinks.nativeElement, "show");
     } else {
       this.renderer.addClass(this.navLinks.nativeElement, "show");
+    }
+  }
+
+  public closeNavOnLinkTouch(): void {
+    for (const child of this.navLinks.nativeElement.children) {
+      this.renderer.listen(child, 'click', () => {
+        this.renderer.removeClass(this.button.nativeElement, "active");
+        this.renderer.removeClass(this.navLinks.nativeElement, "show");
+      });
     }
   }
 }

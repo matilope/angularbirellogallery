@@ -16,8 +16,6 @@ import swal from 'sweetalert2';
 
 export class ContactComponent implements OnInit, OnDestroy {
   public formData!: FormGroup;
-  public status: string;
-  public user: any;
   public url: string;
   private suscripcion: Subscription;
   private suscripcion2: Subscription;
@@ -84,14 +82,13 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.suscripcion = this.activatedRoute.data.subscribe({
       next: response => {
         if (response.paintings.paints) {
-          console.log(response.paintings.paints);
-          this.titles = response.paintings.paints.map((e: { titulo: string; }) => { return e.titulo });
+          this.titles = response.paintings.paints.map((e: { title: string; }) => { return e.title });
         }
       },
     });
   }
 
-  tiempo(form: any) {
+  tiempo(form: any): void {
     if (form.valid) {
       let timerInterval: number;
       swal.fire({
@@ -140,7 +137,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     [this.suscripcion, this.suscripcion2].forEach(e => e?.unsubscribe());
   }
 }

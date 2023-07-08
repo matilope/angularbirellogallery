@@ -14,6 +14,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { FooterComponent } from '@shared/components/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FooterComponent } from '@shared/components/footer/footer.component';
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
-    })
+    }),
+    BrowserAnimationsModule 
   ],
   providers: [
     AuthService,

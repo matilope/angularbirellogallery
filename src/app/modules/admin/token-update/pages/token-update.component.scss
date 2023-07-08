@@ -1,0 +1,21 @@
+.container {
+  .flex {
+    justify-content: center;
+
+    form {
+      width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+  }
+}

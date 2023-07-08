@@ -4,7 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-refundpolicy',
   templateUrl: './refundpolicy.component.html',
-  styleUrls: ['./refundpolicy.component.css'],
+  styleUrls: ['./refundpolicy.component.scss'],
 })
 export class RefundpolicyComponent {
   public title: string;

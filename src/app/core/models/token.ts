@@ -1,3 +1,14 @@
-export class Token {
-  constructor(public _id: string, public token: string) {}
+export interface TokensObservable {
+  status: string,
+  tokens: Token[]
+}
+
+export interface TokenObservable {
+  status: string,
+  tokens: Token
+}
+
+export interface Token {
+  _id: string,
+  token: Token
 }

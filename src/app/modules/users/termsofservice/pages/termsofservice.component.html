@@ -1,7 +1,14 @@
 <section class="container">
-  <p-card class="grid">
-    <h1 class="text-center">Terms of service</h1>
-    <p-accordion [activeIndex]="i" *ngFor="let termsofservice of termsofservices; let i = index;">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>Terms of service</h2>
+      </header>
+    </div>
+  </div>
+  <div class="flex">
+    <p-accordion styleClass="custom-accordion" [activeIndex]="i"
+      *ngFor="let termsofservice of termsofservices; let i = index;">
       <p-accordionTab [header]="termsofservice.title">
         <p *ngIf="termsofservice.paragraph">
           {{ termsofservice.paragraph }}
@@ -23,5 +30,5 @@
         </p>
       </p-accordionTab>
     </p-accordion>
-  </p-card>
+  </div>
 </section>

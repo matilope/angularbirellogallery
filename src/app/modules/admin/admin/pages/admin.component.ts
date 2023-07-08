@@ -14,18 +14,18 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css'],
+  styleUrls: ['./admin.component.scss'],
   providers: [PaintingsService, PortraitService, InstagramService],
 })
 export class AdminComponent implements OnInit, OnDestroy {
   public portrait: Portrait;
   public paintings: Painting[];
-  public token: Token[];
+  public token: Token;
   public url: string;
-  public suscripcion: Subscription;
-  public suscripcion2: Subscription;
-  public suscripcion3: Subscription;
-  public suscripcion4:Subscription;
+  public subscription: Subscription;
+  public subscription2: Subscription;
+  public subscription3: Subscription;
+  public subscription4:Subscription;
 
   constructor(
     private _paintingsService: PaintingsService,
@@ -45,7 +45,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.suscripcion = this.activatedRoute.data.subscribe({
+    this.subscription = this.activatedRoute.data.subscribe({
       next: response => {
         if (response.paintings.paints) {
           this.paintings = response.paintings.paints;
@@ -53,7 +53,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.suscripcion2 = this._portraitService.getPortrait('64a4cb571625dd0281b55429').subscribe({
+    this.subscription2 = this._portraitService.getPortrait('64a4cb571625dd0281b55429').subscribe({
       next: response => {
         if (response.portraits) {
           this.portrait = response.portraits;
@@ -61,7 +61,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.suscripcion3 = this._instagramService.getTokens().subscribe({
+    this.subscription3 = this._instagramService.getToken('625b1c29ac7355062c33afe1').subscribe({
       next: response => {
         if (response.token) {
           this.token = response.token;
@@ -84,7 +84,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       })
       .then(result => {
         if (result.isConfirmed) {
-          this.suscripcion4 = this._paintingsService.delete(id).subscribe({
+          this.subscription4 = this._paintingsService.delete(id).subscribe({
             next: () => {
               swal.fire(
                 'Eliminada',
@@ -122,7 +122,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    [this.suscripcion, this.suscripcion2, this.suscripcion3, this.suscripcion4].forEach(e =>
+    [this.subscription, this.subscription2, this.subscription3, this.subscription4].forEach(e =>
       e?.unsubscribe()
     );
   }

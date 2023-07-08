@@ -28,6 +28,7 @@
     "@angular/service-worker": "^14.3.0",
     "@nguniversal/express-engine": "^14.2.3",
     "@schematics/angular": "^14.0.5",
+    "milligram": "^1.4.1",
     "primeng": "^14.2.3",
     "rxjs": "~7.5.4",
     "sweetalert2": "^11.7.12",

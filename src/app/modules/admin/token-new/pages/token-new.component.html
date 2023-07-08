@@ -1,22 +1,19 @@
-<main>
-  <section>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="c-col col-10 col-sm-10 col-md-8 col-lg-6 enquiryform">
-          <h2 class="center contactcolor">Coloca el token de instagram</h2>
-          <form #tokenNewForm="ngForm" (ngSubmit)="onSubmit();">
-            <div class="form-group">
-              <label class="formlabel" for="token">Token</label>
-              <input type="text" class="form-control" id="token" placeholder="Token" name="token" #token="ngModel"
-                [(ngModel)]="tokendata.token" required />
-              <small style="color: rgb(201, 201, 201)" *ngIf="!token.valid && token.touched">El token no es
-                valido</small>
-            </div>
-            <input type="submit" class="btn btn-light btncustomcontact boxshadow" value="Submit"
-              [disabled]="tokenNewForm.invalid" />
-          </form>
-        </div>
-      </div>
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>Create new instagram token</h2>
+      </header>
     </div>
-  </section>
-</main>
+  </div>
+  <div class="flex">
+    <form (ngSubmit)="onSubmit();" [formGroup]="formData">
+      <span class="p-float-label mb-5">
+        <input type="text" id="token" name="token" formControlName="token" [value]="token" pInputText required />
+        <label for="token">Token</label>
+      </span>
+      <button type="submit" class="custom-btn" [disabled]="formData.invalid">Submit</button>
+    </form>
+  </div>
+  <a class="go-back" routerLink="/admin">Go back</a>
+</section>

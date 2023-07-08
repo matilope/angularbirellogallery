@@ -10,11 +10,11 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
+  styleUrls: ['./users.component.scss'],
   providers: [AdminService],
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  public admins: User[];
+  public users: User[];
   public url: string;
   public suscripcion: Subscription;
   public suscripciondelete: Subscription;
@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.suscripcion = this._adminService.getUsers().subscribe({
       next: response => {
         if (response) {
-          this.admins = response;
+          this.users = response.users;
         }
       },
     });

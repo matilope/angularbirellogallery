@@ -1,11 +1,6 @@
-.container {
-  .card-custom {
+.flex {
+  .card {
     position: relative;
-
-    @media (max-width:575px) {
-      margin-bottom: 1rem;
-      width: 100%;
-    }
 
     &:hover {
       .centered {
@@ -38,13 +33,6 @@
       word-spacing: 0.22rem;
       font-size: 13px;
       padding: 10px;
-    }
-
-    img {
-      max-width: 100%;
-      width: 100%;
-      height: 320px;
-      object-fit: contain;
     }
   }
 }

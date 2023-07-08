@@ -1,7 +1,72 @@
 form {
+  width: 800px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  @media (max-width:991px) {
+    width: 720px;
+  }
+
+  @media (max-width:767px) {
+    width: 100%
+  }
 
   input,
   textarea {
     width: 100%;
+    background-color: transparent;
+    border: 2px solid #f2f2e2;
+
+    &:hover {
+      outline: 4px solid #706c49;
+      border-color: #655c28;
+    }
+
+    &:focus {
+      border-color: #655c28;
+      box-shadow: 0 0 0 0.2rem #fef5bf;
+    }
+  }
+
+  label {
+    color: #f2f2e2c4;
+  }
+
+  ::ng-deep .custom-dropdown {
+    background-color: transparent;
+    border: 2px solid #f2f2e2;
+    width: 100%;
+
+    &:hover {
+      outline: 4px solid #706c49;
+      border-color: #655c28;
+    }
+
+    &.p-focus {
+      border-color: #655c28;
+      box-shadow: 0 0 0 0.2rem #fef5bf;
+    }
+
+    ul {
+      background-color: #201e14;
+
+      li {
+        &.p-dropdown-item.p-highlight {
+          background-color: #757575;
+        }
+
+        &:hover,
+        &:focus {
+          background-color: #655c28 !important;
+          border-color: #655c28;
+        }
+      }
+    }
+
+    span {
+      color: #f2f2e2c4;
+    }
   }
 }

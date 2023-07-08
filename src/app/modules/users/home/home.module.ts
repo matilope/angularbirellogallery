@@ -5,13 +5,11 @@ import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './pages/home.component';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { SharedModule } from '@shared/shared.module';
-import { CardModule } from 'primeng/card';
-import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [HomeComponent],
-  imports: [CommonModule, HomeRoutingModule, SharedModule, CardModule, ButtonModule, ProgressSpinnerModule],
+  imports: [CommonModule, HomeRoutingModule, SharedModule, ProgressSpinnerModule],
   providers: [PaintingsService]
 })
 export class HomeModule { }

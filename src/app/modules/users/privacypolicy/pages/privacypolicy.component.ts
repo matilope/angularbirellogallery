@@ -5,7 +5,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-privacypolicy',
   templateUrl: './privacypolicy.component.html',
-  styleUrls: ['./privacypolicy.component.css'],
+  styleUrls: ['./privacypolicy.component.scss'],
 })
 export class PrivacypolicyComponent {
   public privacys: Legal[];

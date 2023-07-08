@@ -29,6 +29,7 @@ export class InstagramService {
 
   updateToken(id: string, token: Token): Observable<any> {
     let params = JSON.stringify(token);
+    console.log("Token ->", token);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.put(this.url + 'token/' + id, params, { headers: headers, });
   }

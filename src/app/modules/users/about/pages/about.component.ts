@@ -4,17 +4,10 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css'],
+  styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent {
-  public principal: string;
-  public parrafo: string;
-  public alt: string;
-
   constructor(private titleService: Title, private metaService: Meta) {
-    this.principal = 'About us';
-    this.parrafo =
-      'Birello Gallery is an emerging familiar business searching for the best products thinking in quality, value and exquisiteness. The products we offer not only delight customers regarding decorative value but also considering art itself as an investment for the future.';
     this.titleService.setTitle('About | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',

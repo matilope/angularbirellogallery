@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-painting',
   templateUrl: './painting.component.html',
-  styleUrls: ['./painting.component.css'],
+  styleUrls: ['./painting.component.scss'],
   providers: [],
 })
 export class PaintingComponent implements OnInit, OnDestroy {
@@ -20,8 +20,8 @@ export class PaintingComponent implements OnInit, OnDestroy {
   public url: string;
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
-  public enlace: string | string[];
-  public enlace2: string | string[];
+  public link: string | string[];
+  public link2: string | string[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -35,7 +35,7 @@ export class PaintingComponent implements OnInit, OnDestroy {
     this.titleService.setTitle('Paintings | Birello Gallery');
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.html = this.getSafeHTML(this.itemLD);
 
     this.suscripcion2 = this.activatedRoute.data.subscribe({
@@ -45,22 +45,22 @@ export class PaintingComponent implements OnInit, OnDestroy {
 
           if (response.painting.paints.link.length > 2) {
             if (response.painting.paints.link.includes('http://')) {
-              this.enlace = response.painting.paints.link.split('http://');
+              this.link = response.painting.paints.link.split('http://');
             } else {
-              this.enlace = response.painting.paints.link.split('https://');
+              this.link = response.painting.paints.link.split('https://');
             }
-            this.enlace = this.enlace[1].split('/');
-            this.enlace = this.enlace[0];
+            this.link = this.link[1].split('/');
+            this.link = this.link[0];
           }
 
           if (response.painting.paints.link2.length > 2) {
             if (response.painting.paints.link.includes('http://')) {
-              this.enlace2 = response.painting.paints.link2.split('http://');
+              this.link2 = response.painting.paints.link2.split('http://');
             } else {
-              this.enlace2 = response.painting.paints.link2.split('https://');
+              this.link2 = response.painting.paints.link2.split('https://');
             }
-            this.enlace2 = this.enlace2[1].split('/');
-            this.enlace2 = this.enlace2[0];
+            this.link2 = this.link2[1].split('/');
+            this.link2 = this.link2[0];
           }
 
           this.metaService.updateTag({
@@ -112,13 +112,11 @@ export class PaintingComponent implements OnInit, OnDestroy {
 
   getSafeHTML(jsonLD: { [key: string]: any }): SafeHtml {
     const json = jsonLD ? JSON.stringify(jsonLD, null, 2).replace(/<\/script>/g, '<\\/script>') : '';
-    // escape / to prevent script tag in JSON
     const html = `<script type="application/ld+json">${json}</script>`;
-
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  lightbox(i: number) {
+  lightbox(i: number): void {
     let body = document.querySelector('body');
     body.style.overflow = 'hidden';
     let div = this.renderer.createElement("div");
@@ -224,7 +222,7 @@ export class PaintingComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     [this.suscripcion, this.suscripcion2].forEach(e => e?.unsubscribe());
   }
 }
