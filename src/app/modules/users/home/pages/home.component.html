@@ -9,7 +9,7 @@
   </div>
   <div class="flex">
     <div class="card" *ngFor="let painting of paintings; let last = last">
-      <img [src]="painting.image0url" [alt]="painting.title" />
+      <img appImgBroken [src]="painting.image0url" [alt]="painting.title" />
       <div class="card-body">
         <h3>{{painting.title}}</h3>
         <p>{{painting.subtitle}}</p>

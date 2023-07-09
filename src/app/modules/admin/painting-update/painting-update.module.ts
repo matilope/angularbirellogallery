@@ -12,6 +12,9 @@ import { PaintingsService } from '@shared/services/paintings.service';
 import { SharedModule } from '@shared/shared.module';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [PaintingUpdateComponent],
@@ -21,7 +24,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ReactiveFormsModule,
     SharedModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ToastModule,
+    ProgressSpinnerModule,
+    ConfirmDialogModule
   ],
   providers: [
     AuthService,

@@ -28,20 +28,17 @@ export class PaintingsService {
     return this._http.post<PaintingObservable>(this.url + 'save', body);
   }
 
-  update(id: string, pintura: Painting): Observable<PaintingObservable> {
-    let body = JSON.stringify(pintura);
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.put<PaintingObservable>(this.url + 'painting/' + id, body, { headers: headers });
+  update(id: string, body: FormData): Observable<PaintingObservable> {
+    return this._http.put<PaintingObservable>(this.url + 'painting/' + id, body);
   }
 
   delete(id: string): Observable<PaintingObservable> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.delete<PaintingObservable>(this.url + 'painting/' + id, { headers: headers, });
+    return this._http.delete<PaintingObservable>(this.url + 'painting/' + id, { headers: headers });
   }
 
-  deleteImg(pintura: Painting, index: number): Observable<PaintingObservable> {
-    let body = JSON.stringify(pintura);
+  deleteImg(id: string, index: number): Observable<PaintingObservable> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.post<PaintingObservable>(this.url + 'delete_image', { body, index }, { headers: headers, });
+    return this._http.post<PaintingObservable>(this.url + 'delete_image', { index, id }, { headers: headers });
   }
 }

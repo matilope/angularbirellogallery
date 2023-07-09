@@ -44,18 +44,18 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
       {
         title: new FormControl('', [
           Validators.required,
-          Validators.maxLength(120)
+          Validators.maxLength(140)
         ]),
         subtitle: new FormControl('', [
           Validators.required,
-          Validators.maxLength(120)
+          Validators.maxLength(140)
         ]),
         description: new FormControl('', [
           Validators.required
         ]),
         dimension: new FormControl('', [
           Validators.required,
-          Validators.maxLength(120)
+          Validators.maxLength(140)
         ]),
         characteristics: new FormControl('', [
           Validators.required,
@@ -119,6 +119,6 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 }

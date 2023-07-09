@@ -80,7 +80,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       accept: () => {
         this.subscription4 = this._paintingsService.delete(id).subscribe({
           next: () => {
-            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'The painting was deleted' });
+            this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'The painting was deleted' });
             setTimeout(() => {
               this._router.navigate(['/admin']).then(() => {
                 window.location.reload();

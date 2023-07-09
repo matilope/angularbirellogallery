@@ -13,7 +13,6 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-
 @NgModule({
   declarations: [PaintingNewComponent],
   imports: [
