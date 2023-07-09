@@ -44,12 +44,7 @@
       </ul>
     </div>
   </div>
-  <div>
+  <div *ngIf="portrait">
     <img [src]="portrait.image0url" [alt]="portrait.title" />
   </div>
 </div>
-
-<!-- <div>
-  <p>Buying art is buying time of the artist's life.</p>
-  <a class="custom-btn" routerLink="/contact">Contact</a>
-</div> -->

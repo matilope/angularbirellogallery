@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Instagram } from '@core/models/instagram';
 import { InstagramService } from '@shared/services/instagram.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { Token } from '@core/models/token';
 import { Subscription } from 'rxjs';
@@ -15,21 +15,20 @@ import { Subscription } from 'rxjs';
 export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy {
   public insta: Instagram[];
   public token: Token;
-  private tokenId: string;
   public next: string;
 
-  private suscripcion: Subscription;
-  private suscripcion2: Subscription;
-  private suscripcion3: Subscription;
-  private suscripcion4: Subscription;
+  private subscription: Subscription;
+  private subscription2: Subscription;
+  private subscription3: Subscription;
+  private subscription4: Subscription;
 
   public url: string;
   public content: string;
 
   @ViewChildren('theLastList', { read: ElementRef })
-  theLastList: QueryList<ElementRef>;
+  public theLastList: QueryList<ElementRef>;
 
-  observer: any;
+  private observer: any;
 
   public loader: boolean = false;
 
@@ -37,7 +36,6 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
 
   constructor(
     private _instagramService: InstagramService,
-    private _router: Router,
     private titleService: Title,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
@@ -72,13 +70,12 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
 
   ngOnInit(): void {
     this.loader = true;
-    // this.tokenId = '625b1c29ac7355062c33afe1';
-    this.suscripcion = this.activatedRoute.data.subscribe({
+    this.subscription = this.activatedRoute.data.subscribe({
       next: response => {
-        if (response.token) {
-          this.token = response.token.token._id;
-          this.content = response.token.token.token;
-          this.suscripcion2 = this._instagramService
+        if (response.tokens.status === "Success") {
+          this.token = response.tokens.tokens.token._id;
+          this.content = response.tokens.tokens.token;
+          this.subscription2 = this._instagramService
             .getInstagram(this.content)
             .subscribe({
               next: response => {
@@ -97,7 +94,7 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit() {
-    this.suscripcion3 = this.theLastList.changes.subscribe({
+    this.subscription3 = this.theLastList.changes.subscribe({
       next: (response) => {
         if (response.last) {
           this.observer.observe(response.last.nativeElement);
@@ -117,7 +114,7 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
       if (entries[0].isIntersecting) {
         if (this.data.length > 1) {
           this.loader = true;
-          this.suscripcion4 = this._instagramService
+          this.subscription4 = this._instagramService
             .getInstagramNext(this.content, this.next)
             .subscribe({
               next: (response) => {
@@ -139,7 +136,7 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngOnDestroy() {
-    [this.suscripcion, this.suscripcion2, this.suscripcion3, this.suscripcion4].forEach(e => e?.unsubscribe());
+    [this.subscription, this.subscription2, this.subscription3, this.subscription4].forEach(e => e?.unsubscribe());
     this.loader = false;
   }
 }

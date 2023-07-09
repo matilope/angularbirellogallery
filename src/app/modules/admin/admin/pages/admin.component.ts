@@ -9,13 +9,13 @@ import { Global } from '@global/global';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import swal from 'sweetalert2';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  providers: [PaintingsService, PortraitService, InstagramService],
+  providers: [PaintingsService, PortraitService, InstagramService, ConfirmationService, MessageService],
 })
 export class AdminComponent implements OnInit, OnDestroy {
   public portrait: Portrait;
@@ -25,12 +25,14 @@ export class AdminComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public subscription2: Subscription;
   public subscription3: Subscription;
-  public subscription4:Subscription;
+  public subscription4: Subscription;
 
   constructor(
     private _paintingsService: PaintingsService,
     private _portraitService: PortraitService,
     private _instagramService: InstagramService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
     private _router: Router,
     private titleService: Title,
     private metaService: Meta,
@@ -63,65 +65,40 @@ export class AdminComponent implements OnInit, OnDestroy {
 
     this.subscription3 = this._instagramService.getToken('625b1c29ac7355062c33afe1').subscribe({
       next: response => {
-        if (response.token) {
-          this.token = response.token;
+        if (response.tokens) {
+          this.token = response.tokens;
         }
       },
     });
   }
 
-  delete(id: string) {
-    swal
-      .fire({
-        title: '¿ Estas seguro que quieres eliminar esta pintura ?',
-        text: 'No vas a poder recuperarla',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, quiero eliminarla',
-        cancelButtonText: 'Cancelar',
-      })
-      .then(result => {
-        if (result.isConfirmed) {
-          this.subscription4 = this._paintingsService.delete(id).subscribe({
-            next: () => {
-              swal.fire(
-                'Eliminada',
-                'La pintura se ha eliminado correctamente',
-                'success'
-              );
-              setTimeout(() => {
-                this._router.navigate(['/admin']).then(() => {
-                  window.location.reload();
-                });
-              }, 2000);
-            },
-            error: () => {
-              swal.fire(
-                'Error',
-                'La pintura no se ha eliminado correctamente',
-                'error'
-              );
-              setTimeout(() => {
-                this._router.navigate(['/admin']).then(() => {
-                  window.location.reload();
-                });
-              }, 2000);
-            },
-          });
-        } else {
-          swal.fire('Tu pintura se ha salvado y no se ha eliminado');
-          setTimeout(() => {
-            this._router.navigate(['/admin']).then(() => {
-              window.location.reload();
-            });
-          }, 2000);
-        }
-      });
+  delete(id: string): void {
+    this.confirmationService.confirm({
+      message: 'Are you certain you want to delete the painting?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.subscription4 = this._paintingsService.delete(id).subscribe({
+          next: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'The painting was deleted' });
+            setTimeout(() => {
+              this._router.navigate(['/admin']).then(() => {
+                window.location.reload();
+              });
+            }, 1500);
+          },
+          error: () => {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'The painting could not be deleted' });
+          },
+        });
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'warn', summary: 'Rejected', detail: 'The painting was not deleted' });
+      }
+    });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     [this.subscription, this.subscription2, this.subscription3, this.subscription4].forEach(e =>
       e?.unsubscribe()
     );

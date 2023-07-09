@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: MiscellaneousComponent,
-    resolve: { token: TokenResolveService },
+    resolve: { tokens: TokenResolveService },
   },
 ];
 

@@ -6,12 +6,13 @@
       </header>
     </div>
   </div>
-  <form (ngSubmit)="onSubmit();" [formGroup]="formData">
+  <form (ngSubmit)="onSubmit();" [formGroup]="formData" *ngIf="token">
     <span class="p-float-label mb-5">
-      <input type="text" id="token" name="token" formControlName="token" [value]="token" pInputText required />
+      <input type="text" id="token" name="token" formControlName="token" pInputText required />
       <label for="token">Token</label>
     </span>
     <button type="submit" class="custom-btn" [disabled]="formData.invalid">Submit</button>
   </form>
   <a class="go-back" routerLink="/admin">Go back</a>
 </section>
+<p-toast></p-toast>

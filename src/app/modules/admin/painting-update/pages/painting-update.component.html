@@ -35,9 +35,41 @@
       <label for="link">Link</label>
     </span>
     <span class="p-float-label mb-5">
-      <input type="link" id="link2" name="link2" formControlName="link2" pInputText required />
+      <input type="link" id="link2" name="link2" formControlName="link2" pInputText />
       <label for="link2">Secondary link</label>
     </span>
+    <div class="upload-container">
+      <div>
+        <ng-container *ngIf="painting.image0url else uploadoption_main">
+          <img appImgBroken [src]="painting.image0url" [alt]="painting.title" />
+          <div class="delete-img" (click)="deleteImg($event, index=0)"><i class="pi pi-trash"></i></div>
+        </ng-container>
+        <ng-template #uploadoption_main>
+          <input type="file" id="image0url" name="image0url" formControlName="image0url" required />
+          <label for="image0url"><i class="pi pi-image"></i></label>
+        </ng-template>
+      </div>
+      <div>
+        <ng-container *ngIf="painting.image1url else uploadoption_secondary">
+          <img appImgBroken [src]="painting.image1url" [alt]="painting.title" />
+          <div class="delete-img" (click)="deleteImg($event, index=1)"><i class="pi pi-trash"></i></div>
+        </ng-container>
+        <ng-template #uploadoption_secondary>
+          <input type="file" id="image1url" name="image1url" formControlName="image1url" />
+          <label for="image1url"><i class="pi pi-image"></i></label>
+        </ng-template>
+      </div>
+      <div>
+        <ng-container *ngIf="painting.image2url else uploadoption_third">
+          <img appImgBroken [src]="painting.image2url" [alt]="painting.title" />
+          <div class="delete-img" (click)="deleteImg($event, index=2)"><i class="pi pi-trash"></i></div>
+        </ng-container>
+        <ng-template #uploadoption_third>
+          <input type="file" id="image2url" name="image2url" formControlName="image2url" />
+          <label for="image2url"><i class="pi pi-image"></i></label>
+        </ng-template>
+      </div>
+    </div>
     <button type="submit" class="custom-btn" pRipple [disabled]="formData.invalid">Submit</button>
   </form>
 </section>

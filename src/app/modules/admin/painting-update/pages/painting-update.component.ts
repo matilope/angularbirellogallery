@@ -58,7 +58,7 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
         ]),
         characteristics: new FormControl(this.painting.characteristics, [
           Validators.required,
-          Validators.maxLength(120)
+          Validators.maxLength(200)
         ]),
         link: new FormControl(this.painting.link, [
           Validators.required

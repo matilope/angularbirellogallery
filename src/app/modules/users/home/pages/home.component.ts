@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   public currentPage: number = 1;
   public totalPages: number;
   @ViewChildren('theLastList', { read: ElementRef })
-  theLastList: QueryList<ElementRef>;
+  public theLastList: QueryList<ElementRef>;
 
   public observer: IntersectionObserver;
 

@@ -10,6 +10,9 @@ import { AuthGuard } from '@core/guards/auth.guard';
 import { TokenInterceptorService } from '@core/interceptors/interceptor.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 
 @NgModule({
   declarations: [PaintingNewComponent],
@@ -18,7 +21,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     PaintingNewRoutingModule,
     ReactiveFormsModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    ToastModule,
+    ProgressSpinnerModule
   ],
   providers: [
     AuthService,

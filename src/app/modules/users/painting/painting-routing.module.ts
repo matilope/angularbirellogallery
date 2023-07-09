@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: PaintingComponent,
-    resolve: { painting: PaintingResolveService },
+    resolve: { painting: PaintingResolveService }
   },
 ];
 

@@ -9,10 +9,11 @@ import { AuthService } from '@shared/services/auth.service';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { TokenInterceptorService } from '@core/interceptors/interceptor.service';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [TokenUpdateComponent],
-  imports: [CommonModule, TokenUpdateRoutingModule, ReactiveFormsModule, InputTextModule],
+  imports: [CommonModule, TokenUpdateRoutingModule, ReactiveFormsModule, InputTextModule, ToastModule],
   providers: [
     AuthService,
     AuthGuard,

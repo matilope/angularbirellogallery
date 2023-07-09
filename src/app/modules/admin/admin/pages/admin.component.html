@@ -7,7 +7,7 @@
       <p>You will be able to create, edit and delete your paintings</p>
     </div>
   </div>
-  <div class="flex flex-center">
+  <div class="flex flex-center" *ngIf="portrait && token">
     <a [routerLink]="['/admin/create']" class="custom-btn">Create painting</a>
     <a [routerLink]="['/admin/change/portrait/', portrait._id]" class="custom-btn">
       Change portrait
@@ -29,9 +29,12 @@
         <p>{{painting.subtitle}}</p>
       </div>
       <div class="btn-container">
-        <a [routerLink]="['/admin/update/', painting._id]" class="custom-btn btn-update">Edit</a>
-        <a (click)="delete(painting._id);" class="custom-btn btn-delete">Delete</a>
+        <button [routerLink]="['/admin/update/', painting._id]" class="custom-btn btn-update">Edit</button>
+        <button (click)="delete(painting._id);" class="custom-btn btn-delete">Delete</button>
       </div>
     </div>
   </div>
 </section>
+<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-confirmDialog [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}">
+</p-confirmDialog>

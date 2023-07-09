@@ -138,7 +138,10 @@ h4 {
 /* CUSTOM BUTTON */
 
 .custom-btn {
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   background: transparent;
   color: #f2f2e2;
   padding: 1rem 1.5rem;
@@ -146,11 +149,21 @@ h4 {
   border-radius: .25rem;
   border: none;
   font-size: 1.25rem;
-  text-align: center;
 
   &:hover {
     cursor: pointer;
     outline: 4px solid #706c49;
+  }
+}
+
+.custom-spinner {
+  display: flex;
+  align-items: center;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+
+  circle {
+    stroke: white !important;
   }
 }
 
@@ -263,6 +276,111 @@ h4 {
           outline: 2px solid #842b2b;
           background: #a01c1c;
         }
+      }
+    }
+  }
+}
+
+/* FORM */
+
+.upload-container {
+  display: flex;
+  gap: 2rem;
+
+  div {
+    position: relative;
+
+    img {
+      width: 140px;
+
+      @media (max-width:767px) {
+        width: 120px;
+      }
+
+      @media (max-width:575px) {
+        width: 100px;
+      }
+
+      @media (max-width:420px) {
+        width: 80px;
+      }
+
+      @media (max-width:360px) {
+        width: 60px;
+      }
+    }
+
+    .delete-img {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      i {
+        font-size: 1.25rem;
+        color: #c01616;
+        padding: 0.5rem;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 50%;
+
+        @media (max-width:420px) {
+          font-size: 1rem;
+        }
+
+        @media (max-width:360px) {
+          padding: 0.25rem;
+        }
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    input {
+      display: none;
+    }
+
+    label {
+      padding: 2rem;
+      border: 2px dashed #f2f2f2;
+      width: 140px;
+      height: 140px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      @media (max-width:767px) {
+        width: 120px;
+        height: 120px;
+      }
+
+      @media (max-width:575px) {
+        width: 100px;
+        height: 100px;
+      }
+
+      @media (max-width:420px) {
+        width: 80px;
+        height: 80px;
+      }
+
+      @media (max-width:360px) {
+        width: 60px;
+        height: 60px;
+      }
+
+      i {
+        font-size: 2rem;
+        color: #f2f2f2;
+
+        @media (max-width:420px) {
+          font-size: 1.25rem;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 255, 255, 0.15);
       }
     }
   }

@@ -7,7 +7,7 @@
       <p>Title, subtitle, description, image, dimension, characteristics and link are required</p>
     </div>
   </div>
-  <form (ngSubmit)="onSubmit()" [formGroup]="formData">
+  <form (ngSubmit)="onSubmit();" [formGroup]="formGroup" enctype="multipart/form-data">
     <span class="p-float-label mb-5">
       <input type="text" id="title" name="title" formControlName="title" pInputText required />
       <label for="title">Title</label>
@@ -35,9 +35,29 @@
       <label for="link">Link</label>
     </span>
     <span class="p-float-label mb-5">
-      <input type="link" id="link2" name="link2" formControlName="link2" pInputText required />
+      <input type="link" id="link2" name="link2" formControlName="link2" pInputText />
       <label for="link2">Secondary link</label>
     </span>
-    <button type="submit" class="custom-btn" pRipple [disabled]="formData.invalid">Submit</button>
+    <div class="upload-container">
+      <div>
+        <input type="file" (change)="onFileSelected($event, 0)" accept="image/*" id="image0url" name="image0url"
+          formControlName="image0url" required />
+        <label for="image0url"><i class="pi pi-image"></i></label>
+      </div>
+      <div>
+        <input type="file" (change)="onFileSelected($event, 1)" accept="image/*" id="image1url" name="image1url" />
+        <label for="image1url"><i class="pi pi-image"></i></label>
+      </div>
+      <div>
+        <input type="file" (change)="onFileSelected($event, 2)" accept="image/*" id="image2url" name="image2url" />
+        <label for="image2url"><i class="pi pi-image"></i></label>
+      </div>
+    </div>
+    <button type="submit" class="custom-btn" pRipple [disabled]="formGroup.invalid">
+      Submit
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </button>
   </form>
 </section>
+<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

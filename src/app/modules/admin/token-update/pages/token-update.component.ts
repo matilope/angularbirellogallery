@@ -6,13 +6,13 @@ import { Global } from '@global/global';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import swal from 'sweetalert2';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-token-update',
   templateUrl: './token-update.component.html',
   styleUrls: ['./token-update.component.scss'],
-  providers: [InstagramService],
+  providers: [InstagramService, MessageService],
 })
 export class TokenUpdateComponent implements OnInit, OnDestroy {
   public formData!: FormGroup;
@@ -27,6 +27,7 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
     private _instagramService: InstagramService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private messageService: MessageService,
     private titleService: Title,
     private metaService: Meta
   ) {
@@ -39,48 +40,45 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.formData = new FormGroup(
-      {
-        token: new FormControl('', [
-          Validators.required
-        ])
-      }
-    );
-    this.getToken();
-  }
-
-  onSubmit(): void {
-    this.subscription = this._instagramService
-      .updateToken(this.tokenId, this.token)
-      .subscribe({
-        next: response => {
-          if (response.status == 'Success') {
-            this.token = response.token;
-            swal.fire('El token se ha guardado', '', 'success');
-            this._router.navigate(['/miscellaneous']);
-          } else {
-            swal.fire(
-              'Ha ocurrido un error y no se ha guardado el token',
-              'Vuelva a intentarlo luego',
-              'warning'
-            );
-            this._router.navigate(['/admin']);
-          }
-        },
-      });
-  }
-
-  getToken(): void {
     this.subscription2 = this._route.params.subscribe(params => {
       this.tokenId = params['id'];
       this.subscription3 = this._instagramService
         .getToken(this.tokenId)
         .subscribe(response => {
-          if (response.token) {
-            this.token = response.token.token;
+          if (response.tokens) {
+            this.token = response.tokens.token;
+            this.formData = new FormGroup(
+              {
+                token: new FormControl(this.token, [
+                  Validators.required
+                ])
+              }
+            );
           }
         });
     });
+  }
+
+  onSubmit(): void {
+    const { token } = this.formData.value;
+    this.subscription = this._instagramService
+      .updateToken(this.tokenId, token)
+      .subscribe({
+        next: response => {
+          if (response.status == 'Success') {
+            this.token = response.token;
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Token was successfully updated' });
+            setTimeout(() => {
+              this._router.navigate(['/miscellaneous']);
+            }, 1500);
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Token update failed' });
+            setTimeout(() => {
+              this._router.navigate(['/admin']);
+            }, 1500);
+          }
+        }
+      });
   }
 
   ngOnDestroy(): void {

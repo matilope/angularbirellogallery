@@ -15,9 +15,10 @@ import { AuthService } from '@shared/services/auth.service';
 
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   public path!: string;
-  public portrait: Portrait;
+  public portrait!: Portrait;
   public routerEvent: Subscription;
   public isLoggedIn: boolean = false;
+  public subscription: Subscription;
 
   @ViewChild('navLinks') public navLinks: ElementRef;
   @ViewChild('button') public button: ElementRef;
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._portraitService.getPortrait('64a4cb571625dd0281b55429').subscribe({
+    this.subscription = this._portraitService.getPortrait('64a4cb571625dd0281b55429').subscribe({
       next: response => {
         if (response.portraits) {
           this.portrait = response.portraits;
@@ -51,6 +52,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.routerEvent.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   public collapse(): void {

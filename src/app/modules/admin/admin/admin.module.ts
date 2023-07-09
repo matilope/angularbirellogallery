@@ -9,10 +9,12 @@ import { AuthGuard } from '@core/guards/auth.guard';
 import { TokenInterceptorService } from '@core/interceptors/interceptor.service';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { SharedModule } from '@shared/shared.module';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [AdminComponent],
-  imports: [CommonModule, AdminRoutingModule, SharedModule],
+  imports: [CommonModule, AdminRoutingModule, SharedModule, ToastModule, ConfirmDialogModule],
   providers: [
     AuthService,
     AuthGuard,

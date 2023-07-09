@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Portrait, PortraitObservable, PortraitsObservable } from '@core/models/portrait';
+import { PortraitObservable, PortraitsObservable } from '@core/models/portrait';
 import { Global } from '@global/global';
 
 @Injectable()
@@ -20,9 +20,7 @@ export class PortraitService {
     return this._http.get<PortraitObservable>(this.url + 'portrait/' + portraitId);
   }
 
-  updatePortrait(id: string, portrait: Portrait): Observable<PortraitObservable> {
-    let params = JSON.stringify(portrait);
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.put<PortraitObservable>(this.url + 'portrait/' + id, params, { headers: headers, });
+  updatePortrait(id: string, portrait: FormData): Observable<PortraitObservable> {
+    return this._http.put<PortraitObservable>(this.url + 'portrait/' + id, portrait);
   }
 }
