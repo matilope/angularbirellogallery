@@ -28,7 +28,11 @@
       <textarea name="textarea" id="textarea" rows="4" formControlName="textarea" pInputTextarea required></textarea>
       <label for="textarea">Message</label>
     </span>
-    <button type="submit" class="custom-btn" pRipple [disabled]="formGroup.invalid">Submit</button>
+    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid" pRipple>
+      Submit
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </button>
   </form>
 </section>
 <p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

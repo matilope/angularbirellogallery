@@ -55,6 +55,10 @@ textarea {
 
 /* HEADINGS */
 
+h1 {
+  font-size: 2.5rem;
+}
+
 h2 {
   font-size: 2rem;
 }
@@ -142,17 +146,36 @@ h4 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background: transparent;
+  outline: 2px solid rgba(102, 80, 43, 0.6);
+  background-color: rgba(118, 95, 54, 0.6);
   color: #f2f2e2;
   padding: 1rem 1.5rem;
-  outline: 2px solid #55523a;
   border-radius: .25rem;
   border: none;
   font-size: 1.25rem;
+  position: relative;
 
   &:hover {
     cursor: pointer;
     outline: 4px solid #706c49;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: #868047;
+    transition: width 0.5s ease;
+    z-index: -1;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+    }
   }
 }
 

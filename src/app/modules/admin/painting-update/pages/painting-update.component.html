@@ -2,7 +2,7 @@
   <div class="header-container text-center">
     <div>
       <header>
-        <h2>Edit painting</h2>
+        <h1>Edit painting</h1>
       </header>
       <p>You can now make edits</p>
     </div>
@@ -71,8 +71,8 @@
         </ng-template>
       </div>
     </div>
-    <button type="submit" class="custom-btn" pRipple [disabled]="formGroup.invalid">
-      Submit
+    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid">
+      Update
       <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
         styleClass="custom-spinner"></p-progressSpinner>
     </button>

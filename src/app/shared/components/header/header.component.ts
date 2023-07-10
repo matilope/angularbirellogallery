@@ -19,6 +19,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   public routerEvent: Subscription;
   public isLoggedIn: boolean = false;
   public subscription: Subscription;
+  public excludedPaths: string[] = ['404', 'admin'];
 
   @ViewChild('navLinks') public navLinks: ElementRef;
   @ViewChild('button') public button: ElementRef;
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     private readonly renderer: Renderer2
   ) {
     this.routerEvent = this.router.events.subscribe(() => {
-      this.path = this.location.path();
+      this.path = this.location.path().split("/")[1];
     });
   }
 

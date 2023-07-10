@@ -5,7 +5,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-termsofservice',
   templateUrl: './termsofservice.component.html',
-  styleUrls: ['./termsofservice.component.css'],
+  styleUrls: ['./termsofservice.component.scss'],
 })
 export class TermsofserviceComponent {
   public termsofservices: Legal[];

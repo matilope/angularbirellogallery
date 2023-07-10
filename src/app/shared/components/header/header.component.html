@@ -13,7 +13,7 @@
     <span></span>
   </div>
 </nav>
-<div class="container banner" *ngIf="path !== '/404'">
+<div class="container banner" *ngIf="!excludedPaths.includes(path)">
   <div>
     <h1>Welcome to <span>Birello Gallery</span></h1>
     <div>

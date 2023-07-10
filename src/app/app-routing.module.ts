@@ -17,9 +17,9 @@ const routes: Routes = [
   { path: 'admin', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/admin/admin.module').then(m => m.AdminModule) },
   { path: 'admin/show/users', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/users/users.module').then(m => m.AdminUsersModule) },
   { path: 'admin/login', loadChildren: () => import('@modules/users/login/login.module').then(m => m.LoginModule) },
-  // { path: "admin/register", loadChildren:()=>import('@modules/users/register/register.module').then(m=>m.RegisterModule) },
+  // { path: 'admin/register', loadChildren:()=>import('@modules/users/register/register.module').then(m=>m.RegisterModule) },
   { path: 'admin/change/portrait/:id', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/portrait/portrait.module').then(m => m.PortraitModule) },
-  // { path: "admin/save/token", canActivate: [AuthGuard], loadChildren:()=>import('@modules/admin/token-new/token-new.module').then(m=>m.TokenNewModule) },
+  // { path: 'admin/save/token', canActivate: [AuthGuard], loadChildren:()=>import('@modules/admin/token-new/token-new.module').then(m=>m.TokenNewModule) },
   { path: 'admin/change/token/:id', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/token-update/token-update.module').then(m => m.TokenUpdateModule) },
   { path: '404', loadChildren: () => import('@modules/users/error/error.module').then(m => m.ErrorModule) },
   { path: '**', redirectTo: '/404' }

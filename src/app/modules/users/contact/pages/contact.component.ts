@@ -20,6 +20,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private subscription2: Subscription;
   public titles: string[];
+  public loader: boolean = false;
 
   constructor(
     private _contactService: ContactService,
@@ -90,19 +91,23 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   contactForm(): void {
+    this.loader = true;
     this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your message is being sent' });
+    /*
     const data = this.formGroup.value;
     this.subscription2 = this._contactService.getContacts(data).subscribe({
       next: () => {
         if (data.name && data.email && data.subject && data.paint && data.textarea) {
+          this.loader = false;
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Your message was sent' });
           this._router.navigate(['/']);
         } else {
+          this.loader = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Your message was not sent' });
-          this._router.navigate(['/contact']);
         }
       },
     });
+    */
   }
 
   ngOnDestroy(): void {

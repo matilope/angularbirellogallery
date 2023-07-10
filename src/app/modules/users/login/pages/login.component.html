@@ -2,7 +2,7 @@
   <div class="header-container text-center">
     <div>
       <header>
-        <h2>Login</h2>
+        <h1>Login</h1>
       </header>
     </div>
   </div>
@@ -16,8 +16,8 @@
         [toggleMask]="true" required></p-password>
       <label for="password">Password</label>
     </span>
-    <button type="submit" class="custom-btn" pRipple [disabled]="form.invalid">
-      Submit
+    <button type="submit" class="custom-btn" [disabled]="form.invalid">
+      Login
       <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
         styleClass="custom-spinner"></p-progressSpinner>
     </button>

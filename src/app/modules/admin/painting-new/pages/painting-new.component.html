@@ -2,7 +2,7 @@
   <div class="header-container text-center">
     <div>
       <header>
-        <h2>Create new painting</h2>
+        <h1>Create new painting</h1>
       </header>
       <p>Title, subtitle, description, image, dimension, characteristics and link are required</p>
     </div>
@@ -53,8 +53,8 @@
         <label for="image2url"><i class="pi pi-image"></i></label>
       </div>
     </div>
-    <button type="submit" class="custom-btn" pRipple [disabled]="formGroup.invalid">
-      Submit
+    <button type="submit" class="custom-btn" [disabled]="formGroup.invalid">
+      Create
       <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
         styleClass="custom-spinner"></p-progressSpinner>
     </button>

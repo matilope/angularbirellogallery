@@ -13,7 +13,7 @@
       <div class="card-body">
         <h3>{{painting.title}}</h3>
         <p>{{painting.subtitle}}</p>
-        <a [routerLink]="['/painting/view/', painting._id]">See more</a>
+        <a class="custom-btn" [routerLink]="['/painting/view/', painting._id]">See more</a>
       </div>
       <div *ngIf="last" #theLastList></div>
     </div>

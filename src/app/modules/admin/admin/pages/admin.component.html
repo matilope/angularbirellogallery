@@ -2,7 +2,7 @@
   <div class="header-container text-center">
     <div>
       <header>
-        <h2>Administration panel</h2>
+        <h1>Administration panel</h1>
       </header>
       <p>You will be able to create, edit and delete your paintings</p>
     </div>
@@ -29,7 +29,7 @@
         <p>{{painting.subtitle}}</p>
       </div>
       <div class="btn-container">
-        <button [routerLink]="['/admin/update/', painting._id]" class="custom-btn btn-update">Edit</button>
+        <a [routerLink]="['/admin/update/', painting._id]" class="custom-btn btn-update">Edit</a>
         <button (click)="delete(painting._id, i);" class="custom-btn btn-delete">
           Delete
           <p-progressSpinner *ngIf="loaders[i]" class="custom-spinner" strokeWidth="6"

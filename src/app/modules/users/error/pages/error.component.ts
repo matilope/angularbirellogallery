@@ -14,7 +14,7 @@ import { Response } from 'express';
 @Component({
   selector: 'app-error',
   templateUrl: './error.component.html',
-  styleUrls: ['./error.component.css'],
+  styleUrls: ['./error.component.scss'],
 })
 export class ErrorComponent implements OnInit {
   constructor(
@@ -24,7 +24,7 @@ export class ErrorComponent implements OnInit {
     @Optional() @Inject(RESPONSE) private response: Response,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.titleService.setTitle("Error");
+    this.titleService.setTitle("Page not found");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
