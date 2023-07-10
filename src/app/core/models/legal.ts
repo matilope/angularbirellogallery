@@ -7,5 +7,5 @@ export class Legal {
     public paragraph4?: string,
     public paragraph5?: string,
     public paragraph6?: string
-  ) {}
+  ) { }
 }

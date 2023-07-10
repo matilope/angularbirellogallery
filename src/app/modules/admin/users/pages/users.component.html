@@ -7,14 +7,21 @@
     </div>
   </div>
   <div class="flex flex-admin">
-    <div class="card-admin" *ngFor="let user of users">
+    <div class="card-admin" *ngFor="let user of users; let i = index">
       <div class="card-admin-info">
         <p>{{user.email}}</p>
       </div>
       <div class="btn-container">
-        <a (click)="deleteUser(users._id)" class="custom-btn btn-delete">Borrar usuario</a>
+        <button (click)="deleteUser(user._id, i)" class="custom-btn btn-delete">
+          Borrar usuario
+          <p-progressSpinner *ngIf="loaders[i]" class="custom-spinner" strokeWidth="6"
+            styleClass="custom-spinner"></p-progressSpinner>
+        </button>
       </div>
     </div>
   </div>
   <a class="go-back" routerLink="/admin">Go back</a>
 </section>
+<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-confirmDialog [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}">
+</p-confirmDialog>

@@ -7,7 +7,7 @@
       <p>+54-911-6481-6622 | ignaciobirello@hotmail.com</p>
     </div>
   </div>
-  <form (ngSubmit)="contactForm()" [formGroup]="formData">
+  <form (ngSubmit)="contactForm()" [formGroup]="formGroup">
     <span class="p-float-label mb-5">
       <input type="text" id="name" name="name" formControlName="name" pInputText required />
       <label for="name">Name</label>
@@ -28,6 +28,7 @@
       <textarea name="textarea" id="textarea" rows="4" formControlName="textarea" pInputTextarea required></textarea>
       <label for="textarea">Message</label>
     </span>
-    <button type="submit" class="custom-btn" pRipple (onClick)="tiempo(formData);" [disabled]="formData.invalid">Submit</button>
+    <button type="submit" class="custom-btn" pRipple [disabled]="formGroup.invalid">Submit</button>
   </form>
 </section>
+<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

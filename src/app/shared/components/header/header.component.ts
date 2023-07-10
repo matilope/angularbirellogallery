@@ -38,8 +38,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this._portraitService.getPortrait('64a4cb571625dd0281b55429').subscribe({
       next: response => {
-        if (response.portraits) {
-          this.portrait = response.portraits;
+        if (response.portrait) {
+          this.portrait = response.portrait;
         }
       }
     });
@@ -51,8 +51,8 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.routerEvent.unsubscribe();
-    this.subscription.unsubscribe();
+    this.routerEvent?.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   public collapse(): void {

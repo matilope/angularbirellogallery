@@ -5,12 +5,12 @@ export interface UsersObservable {
 
 export interface UserObservable {
   status: string,
-  users: User
+  user: User,
+  token?: string
 }
 
 export interface User {
   _id?: string,
   email: string,
-  password: string,
-  token?: string
+  password: string
 }

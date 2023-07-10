@@ -8,10 +8,11 @@ import { PaintingsService } from '@shared/services/paintings.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [ContactComponent],
-  imports: [CommonModule, ContactRoutingModule, ReactiveFormsModule, InputTextModule, InputTextareaModule, DropdownModule],
+  imports: [CommonModule, ContactRoutingModule, ReactiveFormsModule, InputTextModule, InputTextareaModule, DropdownModule, ToastModule],
   providers: [PaintingsService]
 })
 export class ContactModule { }

@@ -15,13 +15,14 @@ import { MessageService } from 'primeng/api';
   providers: [InstagramService, MessageService],
 })
 export class TokenUpdateComponent implements OnInit, OnDestroy {
-  public formData!: FormGroup;
+  public formGroup!: FormGroup;
   public token: Token;
   private tokenId!: string;
   public url: string;
   public subscription: Subscription;
   public subscription2: Subscription;
   public subscription3: Subscription;
+  public loader: boolean = false;
 
   constructor(
     private _instagramService: InstagramService,
@@ -45,9 +46,9 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
       this.subscription3 = this._instagramService
         .getToken(this.tokenId)
         .subscribe(response => {
-          if (response.tokens) {
-            this.token = response.tokens.token;
-            this.formData = new FormGroup(
+          if (response.token) {
+            this.token = response.token.token;
+            this.formGroup = new FormGroup(
               {
                 token: new FormControl(this.token, [
                   Validators.required
@@ -60,23 +61,28 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const { token } = this.formData.value;
+    this.loader = true;
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Token is being updated' });
+    const { token } = this.formGroup.value;
     this.subscription = this._instagramService
       .updateToken(this.tokenId, token)
       .subscribe({
         next: response => {
           if (response.status == 'Success') {
             this.token = response.token;
+            this.loader = false;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Token was successfully updated' });
             setTimeout(() => {
               this._router.navigate(['/miscellaneous']);
             }, 1500);
           } else {
+            this.loader = false;
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Token update failed' });
-            setTimeout(() => {
-              this._router.navigate(['/admin']);
-            }, 1500);
           }
+        },
+        error: () => {
+          this.loader = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Token update failed, error code 500' });
         }
       });
   }

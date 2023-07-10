@@ -394,3 +394,13 @@ h4 {
   font-size: 1.25rem;
   margin: 2rem 0;
 }
+
+
+/* Form general */
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  background-color: transparent !important;
+}

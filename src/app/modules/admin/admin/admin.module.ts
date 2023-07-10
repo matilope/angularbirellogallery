@@ -11,10 +11,11 @@ import { PaintingsService } from '@shared/services/paintings.service';
 import { SharedModule } from '@shared/shared.module';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [AdminComponent],
-  imports: [CommonModule, AdminRoutingModule, SharedModule, ToastModule, ConfirmDialogModule],
+  imports: [CommonModule, AdminRoutingModule, SharedModule, ToastModule, ConfirmDialogModule, ProgressSpinnerModule],
   providers: [
     AuthService,
     AuthGuard,
@@ -26,4 +27,4 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
     PaintingsService
   ],
 })
-export class AdminModule {}
+export class AdminModule { }

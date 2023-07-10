@@ -5,17 +5,17 @@ import { Title, Meta } from '@angular/platform-browser';
 import { Global } from '@global/global';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import swal from 'sweetalert2';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-  providers: [ContactService],
+  providers: [ContactService, MessageService]
 })
 
 export class ContactComponent implements OnInit, OnDestroy {
-  public formData!: FormGroup;
+  public formGroup!: FormGroup;
   public url: string;
   private subscription: Subscription;
   private subscription2: Subscription;
@@ -24,6 +24,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   constructor(
     private _contactService: ContactService,
     private _router: Router,
+    private messageService: MessageService,
     private titleService: Title,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
@@ -57,7 +58,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.formData = new FormGroup(
+    this.formGroup = new FormGroup(
       {
         name: new FormControl('', [
           Validators.required,
@@ -88,49 +89,16 @@ export class ContactComponent implements OnInit, OnDestroy {
     });
   }
 
-  tiempo(form: any): void {
-    if (form.valid) {
-      let timerInterval: number;
-      swal.fire({
-        title: 'Your message is being sent',
-        html: 'This alert will close automatically',
-        timer: 2000,
-        timerProgressBar: true,
-        willClose: () => {
-          clearInterval(timerInterval);
-        },
-      })
-        .then(result => {
-          if (result.dismiss === swal.DismissReason.timer) {
-          }
-        });
-    } else {
-      let timerInterval: number;
-      swal.fire({
-        title: 'Form is invalid',
-        html: 'Every field is require',
-        timer: 2000,
-        timerProgressBar: true,
-        willClose: () => {
-          clearInterval(timerInterval);
-        },
-      })
-        .then(result => {
-          if (result.dismiss === swal.DismissReason.timer) {
-          }
-        });
-    }
-  }
-
   contactForm(): void {
-    const data = this.formData.value;
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your message is being sent' });
+    const data = this.formGroup.value;
     this.subscription2 = this._contactService.getContacts(data).subscribe({
       next: () => {
         if (data.name && data.email && data.subject && data.paint && data.textarea) {
-          swal.fire('Contact form', 'Your message was sent', 'success');
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Your message was sent' });
           this._router.navigate(['/']);
         } else {
-          swal.fire('Contact form', 'Your message was not sent, please try again', 'warning');
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Your message was not sent' });
           this._router.navigate(['/contact']);
         }
       },

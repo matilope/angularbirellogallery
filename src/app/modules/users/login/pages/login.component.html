@@ -1,30 +1,26 @@
-<main>
-  <section>
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="c-col col-10 col-sm-10 col-md-8 col-lg-6 enquiryform">
-          <div class="card-header">
-            <h1 class="mb-0" style="color: white; font-size: 21px">Logueo</h1>
-          </div>
-          <div class="card-body" style="border: none; height: auto">
-            <form class="form">
-              <div class="form-group">
-                <label for="email" style="color: white">Usuario</label>
-                <input type="text" id="email" class="form-control" [(ngModel)]="loginUserData.email" name="email"
-                  autocomplete="on" required />
-              </div>
-              <div class="form-group">
-                <label for="password" style="color: white">Contraseña</label>
-                <input type="password" id="password" class="form-control" [(ngModel)]="loginUserData.password"
-                  name="password" autocomplete="on" required />
-              </div>
-              <button type="button" (click)="loginUser()" class="btn btn-success float-right">
-                Entrar
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+<section class="container">
+  <div class="header-container text-center">
+    <div>
+      <header>
+        <h2>Login</h2>
+      </header>
     </div>
-  </section>
-</main>
+  </div>
+  <form #form="ngForm" (ngSubmit)="loginUser(form);">
+    <span class="p-float-label mb-5">
+      <input type="email" id="email" name="email" [(ngModel)]="loginUserData.email" pInputText required />
+      <label for="email">Email</label>
+    </span>
+    <span class="p-float-label mb-5">
+      <p-password class="custom-pw" id="password" name="password" [(ngModel)]="loginUserData.password"
+        [toggleMask]="true" required></p-password>
+      <label for="password">Password</label>
+    </span>
+    <button type="submit" class="custom-btn" pRipple [disabled]="form.invalid">
+      Submit
+      <p-progressSpinner *ngIf="loader" class="custom-spinner" strokeWidth="6"
+        styleClass="custom-spinner"></p-progressSpinner>
+    </button>
+  </form>
+</section>
+<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

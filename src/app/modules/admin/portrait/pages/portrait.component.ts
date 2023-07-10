@@ -48,8 +48,8 @@ export class PortraitComponent implements OnInit, OnDestroy {
         .getPortrait(portraitId)
         .subscribe({
           next: response => {
-            if (response.portraits) {
-              this.portrait = response.portraits;
+            if (response.portrait) {
+              this.portrait = response.portrait;
               this.formGroup = new FormGroup(
                 {
                   title: new FormControl(this.portrait.title, [
@@ -84,7 +84,7 @@ export class PortraitComponent implements OnInit, OnDestroy {
       .subscribe({
         next: response => {
           if (response.status == 'Success') {
-            this.portrait = response.portraits;
+            this.portrait = response.portrait;
             this.loader = false;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Portrait was successfully updated' });
             setTimeout(() => {
@@ -95,13 +95,12 @@ export class PortraitComponent implements OnInit, OnDestroy {
           } else {
             this.loader = false;
             this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Portrait update failed' });
-            setTimeout(() => {
-              this._router.navigate([
-                '/admin/change/portada/' + this.portrait._id,
-              ]);
-            }, 1500);
           }
         },
+        error: () => {
+          this.loader = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Portrait update failed, error code 500' });
+        }
       });
   }
 

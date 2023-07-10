@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Global } from '@global/global';
-import { User } from '@core/models/user';
+import { User, UserObservable } from '@core/models/user';
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
 
@@ -19,12 +19,12 @@ export class AuthService {
     this.url = Global.url;
   }
 
-  registerUser(user: User): Observable<User> {
-    return this._http.post<User>(this.url + 'register', user);
+  registerUser(user: User): Observable<UserObservable> {
+    return this._http.post<UserObservable>(this.url + 'register', user);
   }
 
-  loginUser(user: User): Observable<User> {
-    return this._http.post<User>(this.url + 'login', user);
+  loginUser(user: User): Observable<UserObservable> {
+    return this._http.post<UserObservable>(this.url + 'login', user);
   }
 
   logoutUser(): void {

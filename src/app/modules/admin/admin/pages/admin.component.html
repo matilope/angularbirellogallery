@@ -20,7 +20,7 @@
     </a>
   </div>
   <div class="flex flex-admin">
-    <div class="card-admin" *ngFor="let painting of paintings">
+    <div class="card-admin" *ngFor="let painting of paintings; let i = index;">
       <div>
         <img appImgBroken class="card-img-top cardmainimg" [src]="painting.image0url" [alt]="painting.title" />
       </div>
@@ -30,7 +30,11 @@
       </div>
       <div class="btn-container">
         <button [routerLink]="['/admin/update/', painting._id]" class="custom-btn btn-update">Edit</button>
-        <button (click)="delete(painting._id);" class="custom-btn btn-delete">Delete</button>
+        <button (click)="delete(painting._id, i);" class="custom-btn btn-delete">
+          Delete
+          <p-progressSpinner *ngIf="loaders[i]" class="custom-spinner" strokeWidth="6"
+            styleClass="custom-spinner"></p-progressSpinner>
+        </button>
       </div>
     </div>
   </div>

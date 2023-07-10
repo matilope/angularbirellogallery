@@ -10,10 +10,11 @@ import { AuthGuard } from '@core/guards/auth.guard';
 import { TokenInterceptorService } from '@core/interceptors/interceptor.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [TokenUpdateComponent],
-  imports: [CommonModule, TokenUpdateRoutingModule, ReactiveFormsModule, InputTextModule, ToastModule],
+  imports: [CommonModule, TokenUpdateRoutingModule, ReactiveFormsModule, InputTextModule, ToastModule, ProgressSpinnerModule],
   providers: [
     AuthService,
     AuthGuard,

@@ -5,7 +5,7 @@ export interface TokensObservable {
 
 export interface TokenObservable {
   status: string,
-  tokens: Token
+  token: Token
 }
 
 export interface Token {

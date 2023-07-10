@@ -22,7 +22,7 @@ const routes: Routes = [
   // { path: "admin/save/token", canActivate: [AuthGuard], loadChildren:()=>import('@modules/admin/token-new/token-new.module').then(m=>m.TokenNewModule) },
   { path: 'admin/change/token/:id', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/token-update/token-update.module').then(m => m.TokenUpdateModule) },
   { path: '404', loadChildren: () => import('@modules/users/error/error.module').then(m => m.ErrorModule) },
-  { path: '**', redirectTo: '/404' },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({

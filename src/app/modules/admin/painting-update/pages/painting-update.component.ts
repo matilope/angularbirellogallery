@@ -75,9 +75,6 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
         ])
       }
     );
-    console.log("image0->" + this.painting.image0url)
-    console.log("image1->" + this.painting.image1url)
-    console.log("image2->" + this.painting.image2url)
   }
 
   onFileSelected(event: any, index: number): void {
@@ -90,9 +87,6 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
     if (index === 2) {
       this.selectedFileThird = event.target.files[0];
     }
-    console.log("change0->" + this.selectedFileMain)
-    console.log("change1->" + this.selectedFileSecond)
-    console.log("change2->" + this.selectedFileThird)
   }
 
   onSubmit(): void {
@@ -128,20 +122,21 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
       .subscribe({
         next: response => {
           if (response.status == 'Success') {
-            this.painting = response.paints;
+            this.painting = response.paint;
             this.loader = false;
-            this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'The painting was updated' });
+            this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Painting was updated' });
             setTimeout(() => {
               this._router.navigate(['/painting/view/' + this.painting._id]);
             }, 1500);
           } else {
             this.loader = false;
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'The painting could not be updated' });
-            setTimeout(() => {
-              this._router.navigate(['/admin/update/' + this.painting._id]);
-            }, 1500);
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Painting could not be updated' });
           }
         },
+        error: () => {
+          this.loader = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Painting update failed, error code 500' });
+        }
       });
   }
 
@@ -183,8 +178,8 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
 
   getPintura(): void {
     this.subscription2 = this._route.data.subscribe(response => {
-      if (response.painting.paints) {
-        this.painting = response.painting.paints;
+      if (response.painting.paint) {
+        this.painting = response.painting.paint;
       }
     });
   }

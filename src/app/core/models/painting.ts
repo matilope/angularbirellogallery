@@ -6,7 +6,7 @@ export interface PaintingsObservable {
 
 export interface PaintingObservable {
   status: string,
-  paints: Painting
+  paint: Painting
 }
 
 export interface Painting {

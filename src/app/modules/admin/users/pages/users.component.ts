@@ -5,23 +5,26 @@ import { Global } from '@global/global';
 import { Router } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
-import swal from 'sweetalert2';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
-  providers: [AdminService],
+  providers: [AdminService, MessageService, ConfirmationService]
 })
 export class UsersComponent implements OnInit, OnDestroy {
   public users: User[];
   public url: string;
-  public suscripcion: Subscription;
-  public suscripciondelete: Subscription;
+  public subscription: Subscription;
+  public subscription2: Subscription;
+  public loaders: boolean[] = [];
 
   constructor(
     private _adminService: AdminService,
     private _router: Router,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
     private titleService: Title,
     private metaService: Meta
   ) {
@@ -34,7 +37,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.suscripcion = this._adminService.getUsers().subscribe({
+    this.subscription = this._adminService.getUsers().subscribe({
       next: response => {
         if (response) {
           this.users = response.users;
@@ -43,58 +46,43 @@ export class UsersComponent implements OnInit, OnDestroy {
     });
   }
 
-  deleteUser(id: any): void {
-    swal
-      .fire({
-        title: '¿ Estas seguro que quieres eliminar este usuario ?',
-        text: 'No vas a poder recuperarlo',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si, quiero eliminarlo',
-        cancelButtonText: 'Cancelar',
-      })
-      .then(result => {
-        if (result.isConfirmed) {
-          this.suscripciondelete = this._adminService.deleteUser(id).subscribe({
-            next: () => {
-              swal.fire(
-                'Eliminado',
-                'El usuario ha sido eliminado correctamente',
-                'success'
-              );
-              setTimeout(() => {
-                this._router.navigate(['/admin/show/users']).then(() => {
-                  window.location.reload();
-                });
-              }, 2000);
-            },
-            error: () => {
-              swal.fire(
-                'Error',
-                'El usuario no se ha eliminado correctamente',
-                'error'
-              );
+  deleteUser(id: string, i: number): void {
+    this.loaders[i] = true;
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'User is being deleted' });
+    this.confirmationService.confirm({
+      message: 'Are you certain you want to delete this user?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.subscription2 = this._adminService.deleteUser(id).subscribe({
+          next: (response) => {
+            if (response.status == 'Success') {
+              this.loaders[i] = false;
+              this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'User was deleted' });
               setTimeout(() => {
                 this._router.navigate(['/admin']).then(() => {
                   window.location.reload();
                 });
-              }, 2000);
-            },
-          });
-        } else {
-          swal.fire('El usuario se ha salvado y no se ha eliminado');
-          setTimeout(() => {
-            this._router.navigate(['/admin']).then(() => {
-              window.location.reload();
-            });
-          }, 2000);
-        }
-      });
+              }, 1500);
+            } else {
+              this.loaders[i] = false;
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'User deletion failed' });
+            }
+          },
+          error: () => {
+            this.loaders[i] = false;
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'User could not be deleted' });
+          },
+        });
+      },
+      reject: () => {
+        this.loaders[i] = false;
+        this.messageService.add({ severity: 'warn', summary: 'Rejected', detail: 'User was not deleted' });
+      }
+    });
   }
 
   ngOnDestroy(): void {
-    [this.suscripcion, this.suscripciondelete].forEach(e => e?.unsubscribe());
+    [this.subscription, this.subscription2].forEach(e => e?.unsubscribe());
   }
 }

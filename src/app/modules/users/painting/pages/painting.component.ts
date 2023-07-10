@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
 export class PaintingComponent implements OnInit, OnDestroy {
   public itemLD = json;
   public html: SafeHtml;
-  public paintings: Painting;
+  public painting: Painting;
   public url: string;
   public suscripcion: Subscription;
   public suscripcion2: Subscription;
@@ -40,24 +40,24 @@ export class PaintingComponent implements OnInit, OnDestroy {
 
     this.suscripcion2 = this.activatedRoute.data.subscribe({
       next: response => {
-        if (response.painting.paints) {
-          this.paintings = response.painting.paints;
+        if (response.painting.paint) {
+          this.painting = response.painting.paint;
 
-          if (response.painting.paints.link.length > 2) {
-            if (response.painting.paints.link.includes('http://')) {
-              this.link = response.painting.paints.link.split('http://');
+          if (response.painting.paint.link.length > 2) {
+            if (response.painting.paint.link.includes('http://')) {
+              this.link = response.painting.paint.link.split('http://');
             } else {
-              this.link = response.painting.paints.link.split('https://');
+              this.link = response.painting.paint.link.split('https://');
             }
             this.link = this.link[1].split('/');
             this.link = this.link[0];
           }
 
-          if (response.painting.paints.link2.length > 2) {
-            if (response.painting.paints.link.includes('http://')) {
-              this.link2 = response.painting.paints.link2.split('http://');
+          if (response.painting.paint.link2.length > 2) {
+            if (response.painting.paint.link.includes('http://')) {
+              this.link2 = response.painting.paint.link2.split('http://');
             } else {
-              this.link2 = response.painting.paints.link2.split('https://');
+              this.link2 = response.painting.paint.link2.split('https://');
             }
             this.link2 = this.link2[1].split('/');
             this.link2 = this.link2[0];
@@ -65,43 +65,43 @@ export class PaintingComponent implements OnInit, OnDestroy {
 
           this.metaService.updateTag({
             property: 'og:title',
-            content: 'Birello Gallery | ' + this.paintings.title,
+            content: 'Birello Gallery | ' + this.painting.title,
           });
           this.metaService.updateTag({
             property: 'og:description',
-            content: this.paintings.description.split(".")[0],
+            content: this.painting.description.split(".")[0],
           });
           this.metaService.updateTag({
             property: 'og:image',
-            content: this.paintings.image0url,
+            content: this.painting.image0url,
           });
           this.metaService.updateTag({
             property: 'og:url',
             content:
               'https://www.birellogallery.com/painting/view/' +
-              this.paintings._id,
+              this.painting._id,
           });
           this.metaService.updateTag({
             name: 'keywords',
-            content: this.paintings.title + ', ' + this.paintings.subtitle,
+            content: this.painting.title + ', ' + this.painting.subtitle,
           });
           this.metaService.updateTag({
             property: 'twitter:title',
-            content: 'Birello Gallery | ' + this.paintings.title,
+            content: 'Birello Gallery | ' + this.painting.title,
           });
           this.metaService.updateTag({
             property: 'twitter:description',
-            content: this.paintings.description.split(".")[0],
+            content: this.painting.description.split(".")[0],
           });
           this.metaService.updateTag({
             property: 'twitter:image',
-            content: this.paintings.image0url,
+            content: this.painting.image0url,
           });
           this.metaService.updateTag({
             property: 'twitter:url',
             content:
               'https://www.birellogallery.com/painting/view/' +
-              this.paintings._id,
+              this.painting._id,
           });
         } else {
           this._router.navigate(['/']);

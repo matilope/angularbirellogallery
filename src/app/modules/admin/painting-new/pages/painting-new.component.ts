@@ -101,19 +101,20 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
     this.subscription = this._paintingsService.save(formData).subscribe({
       next: response => {
         if (response.status == 'Success') {
-          this.painting = response.paints;
+          this.painting = response.paint;
           this.loader = false;
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Painting was successfully updated' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Painting was successfully created' });
           setTimeout(() => {
             this._router.navigate(['/admin']);
           }, 1500);
         } else {
           this.loader = false;
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Painting update failed' });
-          setTimeout(() => {
-            this._router.navigate(['/admin']);
-          }, 1500);
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Painting creation failed' });
         }
+      },
+      error: () => {
+        this.loader = false;
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Painting creation failed, error code 500' });
       }
     });
   }

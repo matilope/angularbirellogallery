@@ -13,11 +13,11 @@ export class AdminService {
   }
 
   getUsers(): Observable<UsersObservable> {
-    return this._http.get<UsersObservable>(this.url + '/users');
+    return this._http.get<UsersObservable>(this.url + 'users');
   }
 
   deleteUser(id: string): Observable<UserObservable> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this._http.delete<UserObservable>(this.url + '/user/' + id, { headers: headers });
+    return this._http.delete<UserObservable>(this.url + 'user/' + id, { headers: headers });
   }
 }

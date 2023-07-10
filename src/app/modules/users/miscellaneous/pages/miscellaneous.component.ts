@@ -72,9 +72,9 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
     this.loader = true;
     this.subscription = this.activatedRoute.data.subscribe({
       next: response => {
-        if (response.tokens.status === "Success") {
-          this.token = response.tokens.tokens.token._id;
-          this.content = response.tokens.tokens.token;
+        if (response.token.status === "Success") {
+          this.token = response.token.token.token._id;
+          this.content = response.token.token.token;
           this.subscription2 = this._instagramService
             .getInstagram(this.content)
             .subscribe({

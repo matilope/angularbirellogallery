@@ -5,27 +5,29 @@ import { Title, Meta } from '@angular/platform-browser';
 import { User } from '@core/models/user';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import swal from 'sweetalert2';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  styleUrls: ['./register.component.scss'],
+  providers: [MessageService]
 })
 export class RegisterComponent implements OnDestroy {
   public registerUserData: User;
-  public suscripcion: Subscription;
+  public subscription: Subscription;
+  public loader: boolean = false;
 
   constructor(
     private _auth: AuthService,
     private _router: Router,
+    private messageService: MessageService,
     private titleService: Title,
     private metaService: Meta
   ) {
     this.registerUserData = {
       email: '',
-      password: '',
-      token:''
+      password: ''
     };
     this.titleService.setTitle("Register | Birello Gallery");
     this.metaService.addTag({
@@ -34,40 +36,36 @@ export class RegisterComponent implements OnDestroy {
     });
   }
 
-  registerUser() {
-    if (this._auth.registerUser(this.registerUserData) !== undefined) {
-      this.suscripcion = this._auth
+  registerUser(form: HTMLFormElement): void {
+    if (form.valid) {
+      this.loader = true;
+      this.subscription = this._auth
         .registerUser(this.registerUserData)
         .subscribe({
           next: response => {
-            localStorage.setItem(environment.token, response.token);
-            swal.fire(
-              'Te has registrado correctamente',
-              'Cuidado !, el uso del registro de un personal no autorizado puede enfrentar denuncia por irrumpimiento de las condiciones de la página',
-              'success'
-            );
-            this._router.navigate(['/admin']);
+            if (response.status == 'Success') {
+              localStorage.setItem(environment.token, response.token);
+              this.loader = false;
+              this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User was successfully created' });
+              setTimeout(() => {
+                this._router.navigate(['/admin']);
+              }, 1500);
+            } else {
+              this.loader = false;
+              this.messageService.add({ severity: 'warn', summary: 'Warn', detail: 'User creation failed' });
+            }
           },
           error: () => {
-            swal.fire(
-              'Ha ocurrido un error al registrarse',
-              'La clave secreta que ha colocado es incorrecta o no ha colocado ninguna',
-              'warning'
-            );
-            this._router.navigate(['/404']);
-          },
+            this.loader = false;
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'User creation failed, error code 500' });
+          }
         });
     } else {
-      swal.fire(
-        'Ha ocurrido un error al registrarse',
-        'La clave secreta que ha colocado es incorrecta o no ha colocado ninguna',
-        'warning'
-      );
-      this._router.navigate(['/404']);
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'All fields are required' });
     }
   }
 
-  ngOnDestroy() {
-    this.suscripcion?.unsubscribe();
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

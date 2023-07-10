@@ -5,7 +5,7 @@ export interface PortraitsObservable {
 
 export interface PortraitObservable {
   status: string,
-  portraits: Portrait
+  portrait: Portrait
 }
 
 export interface Portrait {

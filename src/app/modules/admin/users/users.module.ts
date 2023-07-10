@@ -7,10 +7,13 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthService } from '@shared/services/auth.service';
 import { AuthGuard } from '@core/guards/auth.guard';
 import { TokenInterceptorService } from '@core/interceptors/interceptor.service';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [UsersComponent],
-  imports: [CommonModule, AdminusersRoutingModule],
+  imports: [CommonModule, AdminusersRoutingModule, ToastModule, ConfirmDialogModule, ProgressSpinnerModule],
   providers: [
     AuthService,
     AuthGuard,
@@ -21,4 +24,4 @@ import { TokenInterceptorService } from '@core/interceptors/interceptor.service'
     },
   ],
 })
-export class AdminUsersModule {}
+export class AdminUsersModule { }

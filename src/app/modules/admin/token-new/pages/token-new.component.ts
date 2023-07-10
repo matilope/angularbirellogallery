@@ -6,24 +6,25 @@ import { Global } from '@global/global';
 import { Meta, Title } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import swal from 'sweetalert2';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-token-new',
   templateUrl: './token-new.component.html',
   styleUrls: ['./token-new.component.scss'],
-  providers: [InstagramService],
+  providers: [InstagramService, MessageService]
 })
 export class TokenNewComponent implements OnInit, OnDestroy {
-  public formData!: FormGroup;
+  public formGroup!: FormGroup;
   public token: Token;
   public url: string;
   public suscripcion: Subscription;
-  public animation: boolean = false;
+  public loader: boolean = false;
 
   constructor(
     private _instagramService: InstagramService,
     private _router: Router,
+    private messageService: MessageService,
     private titleService: Title,
     private metaService: Meta
   ) {
@@ -36,7 +37,7 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.formData = new FormGroup(
+    this.formGroup = new FormGroup(
       {
         token: new FormControl('', [
           Validators.required
@@ -46,23 +47,26 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    this.loader = true;
+    this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Token is being created' });
     this.suscripcion = this._instagramService
       .saveToken(this.token)
       .subscribe({
         next: response => {
           if (response.status == 'Success') {
             this.token = response.token;
-            swal.fire('El token se ha guardado', '', 'success');
+            this.loader = false;
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Token was successfully created' });
             this._router.navigate(['/miscellaneous']);
           } else {
-            swal.fire(
-              'Ha ocurrido un error y no se ha guardado el token',
-              'Vuelva a intentarlo luego',
-              'warning'
-            );
-            this._router.navigate(['/admin']);
+            this.loader = false;
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Token creation failed' });
           }
         },
+        error: () => {
+          this.loader = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Token creation failed, error code 500' });
+        }
       });
   }
 
