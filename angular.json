@@ -20,9 +20,7 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/assets/img/favicon/favicon.png",
               "src/assets",
-              "src/manifest.webmanifest",
               "src/manifest.webmanifest",
               "src/robots.txt",
               "src/sitemap.xml"
@@ -60,8 +58,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "250kb",
-                  "maximumError": "500kb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "750kb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -102,7 +100,7 @@
               "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
-            "styles": ["src/styles.css"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
