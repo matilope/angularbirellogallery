@@ -21,8 +21,12 @@ form {
     }
 
     &:hover {
-      outline: 4px solid #706c49;
+      outline: none;
       border-color: #655c28;
+
+      @media (min-width: 575px) {
+        outline: 4px solid #706c49 !important;
+      }
     }
 
     &.p-focus {

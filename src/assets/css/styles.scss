@@ -147,7 +147,6 @@ h4 {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  outline: 2px solid rgba(102, 80, 43, 0.6);
   background-color: rgba(118, 95, 54, 0.6);
   color: #f2f2e2;
   padding: 1rem 1.5rem;
@@ -155,10 +154,11 @@ h4 {
   border: none;
   font-size: 1.25rem;
   position: relative;
+  outline: 2px solid #706c49 !important;
 
   &:hover {
     cursor: pointer;
-    outline: 4px solid #706c49;
+    outline: 4px solid #706c49 !important;
   }
 
   &::before {
@@ -186,8 +186,10 @@ h4 {
   width: 1.5rem !important;
   height: 1.5rem !important;
 
-  circle {
-    stroke: white !important;
+  svg {
+    * {
+      stroke: white !important;
+    }
   }
 }
 
@@ -210,8 +212,12 @@ h4 {
     background: transparent !important;
 
     &:hover {
-      outline: 4px solid #706c49 !important;
+      outline: none;
       border-color: #655c28 !important;
+
+      @media (min-width:575px) {
+        outline: 4px solid #706c49 !important;
+      }
     }
 
     &:focus {
@@ -289,13 +295,21 @@ h4 {
         }
 
         .btn-update {
-          outline: 2px solid #84672b;
+          outline: none;
           background: #a0751c;
+
+          @media (min-width:575px) {
+            outline: 2px solid #84672b;
+          }
         }
 
         .btn-delete {
-          outline: 2px solid #842b2b;
+          outline: none;
           background: #a01c1c;
+
+          @media (min-width:575px) {
+            outline: 2px solid #842b2b;
+          }
         }
       }
     }
@@ -321,22 +335,30 @@ form {
   gap: 2rem;
 
   @media (max-width:991px) {
-    width: 720px;
+    width: 720px !important;
   }
 
   @media (max-width:767px) {
-    width: 100%
+    width: 100% !important;
   }
 
   button:disabled {
     background-color: #3b1b1b;
     opacity: .5;
     border-color: #4a1f1f;
-    outline: 2px solid #4a1f1f;
+    outline: none;
+
+    @media (min-width:575px) {
+      outline: 2px solid #4a1f1f;
+    }
 
     &:hover {
-      outline: 2px solid #4a1f1f;
+      outline: none;
       cursor: not-allowed;
+
+      @media (min-width:575px) {
+        outline: 2px solid #4a1f1f;
+      }
 
       &::before {
         width: 0%;
@@ -351,7 +373,10 @@ form {
     &.ng-touched {
       &.ng-invalid {
         border: 3px solid #861c1c;
-        animation: shake 1s ease-in-out;
+
+        &:not(.i-search) {
+          animation: shake 1s ease-in-out;
+        }
       }
     }
 
@@ -388,8 +413,12 @@ form {
     }
 
     &:hover {
-      outline: 4px solid #706c49 !important;
+      outline: none;
       border-color: #655c28 !important;
+
+      @media (min-width: 575px) {
+        outline: 4px solid #706c49 !important;
+      }
     }
 
     &:focus {

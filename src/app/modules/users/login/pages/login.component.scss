@@ -12,8 +12,12 @@ form {
         color: black;
 
         &:hover {
-          outline: 4px solid #706c49;
+          outline: none;
           border-color: #655c28;
+
+          @media (min-width: 575px) {
+            outline: 4px solid #706c49;
+          }
         }
 
         &:focus {
@@ -37,6 +41,6 @@ form {
   }
 
   label {
-    color: #f2f2e2c4;
+    color: black;
   }
 }

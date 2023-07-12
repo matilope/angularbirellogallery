@@ -1,4 +1,8 @@
 .custom-btn {
   background: transparent;
-  outline: 2px solid #55523a;
+  outline: none;
+
+  @media (min-width:575px) {
+    outline: 2px solid #55523a;
+  }
 }

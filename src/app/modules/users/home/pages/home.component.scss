@@ -46,7 +46,12 @@
       padding: 1rem;
 
       &:hover {
-        outline: 2px solid rgba(255, 255, 255, 0.25);
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, 0.25);
+
+        @media (min-width: 575px) {
+          outline: 2px solid rgba(255, 255, 255, 0.25);
+        }
 
         img {
           transform: scale(1.05);
