@@ -98,9 +98,12 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       this.subscription4 = this._paintingService.search(this.search).subscribe({
         next: response => {
           this.loader = false;
-          if (response.status == 'Success') {
+          if (response.status == 'Success' && response.paints.length > 0) {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'The search query has results' });
             this.paintings = response.paints;
+          } else {
+            this.messageService.add({ severity: 'warn', summary: 'Warning', detail: `The search query doesn't have results` });
+            this.resetSearch();
           }
         },
         error: () => {

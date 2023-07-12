@@ -5,6 +5,9 @@
     margin: 4rem 0;
 
     form {
+      margin: 0;
+      align-items: flex-end;
+
       @media (max-width: 575px) {
         width: 100%;
       }

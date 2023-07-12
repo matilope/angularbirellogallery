@@ -19,7 +19,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   public url: string;
   private subscription: Subscription;
   private subscription2: Subscription;
-  public titles: string[];
+  public titles!: string[];
   public loader: boolean = false;
 
   constructor(
@@ -83,6 +83,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       next: response => {
         if (response.paintings.paints) {
           this.titles = response.paintings.paints.map((e: { title: string; }) => { return e.title });
+          this.titles.unshift("Select a painting");
         }
       },
     });

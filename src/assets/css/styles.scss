@@ -328,9 +328,64 @@ form {
     width: 100%
   }
 
+  button:disabled {
+    background-color: #3b1b1b;
+    opacity: .5;
+    border-color: #4a1f1f;
+    outline: 2px solid #4a1f1f;
+
+    &:hover {
+      outline: 2px solid #4a1f1f;
+      cursor: not-allowed;
+
+      &::before {
+        width: 0%;
+      }
+    }
+  }
+
   input,
   textarea {
     width: 100%;
+
+    &.ng-touched {
+      &.ng-invalid {
+        border: 3px solid #861c1c;
+        animation: shake 1s ease-in-out;
+      }
+    }
+
+    &[type='file'] {
+      &.ng-invalid {
+        &+label {
+          animation: shake 1s ease-in-out;
+          border-color: #b91b1b;
+
+          i {
+            color: #b91b1b;
+          }
+        }
+      }
+
+      @keyframes shake {
+        0% {
+          transform: rotate(-2deg) translateY(0);
+        }
+
+        25% {
+          transform: rotate(2deg) translateY(-2px);
+        }
+
+        75% {
+          transform: rotate(-2deg) translateY(2px);
+        }
+
+        100% {
+          transform: rotate(0deg) translateY(0);
+        }
+      }
+
+    }
 
     &:hover {
       outline: 4px solid #706c49 !important;

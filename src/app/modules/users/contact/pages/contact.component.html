@@ -10,15 +10,15 @@
   <form (ngSubmit)="contactForm()" [formGroup]="formGroup">
     <span class="p-float-label mb-5">
       <input type="text" id="name" name="name" formControlName="name" pInputText required />
-      <label for="name">Name</label>
+      <label for="name">Name *</label>
     </span>
     <span class="p-float-label mb-5">
       <input type="email" id="email" name="email" formControlName="email" pInputText required />
-      <label for="email">Email address</label>
+      <label for="email">Email address *</label>
     </span>
     <span class="p-float-label mb-5">
       <input type="text" id="subject" name="subject" formControlName="subject" pInputText required />
-      <label for="subject">Subject</label>
+      <label for="subject">Subject *</label>
     </span>
     <div class="mb-5">
       <p-dropdown styleClass="custom-dropdown" name="paint" id="paint" [options]="titles" formControlName="paint"
@@ -26,7 +26,7 @@
     </div>
     <span class="p-float-label mb-5">
       <textarea name="textarea" id="textarea" rows="4" formControlName="textarea" pInputTextarea required></textarea>
-      <label for="textarea">Message</label>
+      <label for="textarea">Message *</label>
     </span>
     <button type="submit" class="custom-btn" [disabled]="formGroup.invalid" pRipple>
       Submit
