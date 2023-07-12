@@ -41,4 +41,8 @@ export class PaintingsService {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.post<PaintingObservable>(this.url + 'delete_image', { index, id }, { headers: headers });
   }
+
+  search(search: string): Observable<PaintingsObservable> {
+    return this._http.get<PaintingsObservable>(this.url + `search/?search=${search}`);
+  }
 }

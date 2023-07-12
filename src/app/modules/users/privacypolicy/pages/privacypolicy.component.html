@@ -7,7 +7,7 @@
     </div>
   </div>
   <div class="flex">
-    <p-accordion styleClass="custom-accordion" [activeIndex]="i" *ngFor="let privacy of privacys; let i = index;">
+    <p-accordion class="custom-accordion" [activeIndex]="i" *ngFor="let privacy of privacys; let i = index;">
       <p-accordionTab [header]="privacy.title">
         <p *ngIf="privacy.paragraph">
           {{ privacy.paragraph }}

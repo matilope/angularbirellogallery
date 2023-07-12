@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { ContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './pages/contact.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { PaintingsService } from '@shared/services/paintings.service';
+import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { DropdownModule } from 'primeng/dropdown';

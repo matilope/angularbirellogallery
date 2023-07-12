@@ -15,7 +15,7 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginComponent implements OnDestroy {
   public loginUserData: User;
-  public suscripcion: Subscription;
+  public subscription: Subscription;
   public loader: boolean = false;
 
   constructor(
@@ -40,7 +40,7 @@ export class LoginComponent implements OnDestroy {
     if (form.valid) {
       this.messageService.add({ severity: 'info', summary: 'Info', detail: 'You are logging in' });
       this.loader = true;
-      this.suscripcion = this._auth.loginUser(this.loginUserData).subscribe({
+      this.subscription = this._auth.loginUser(this.loginUserData).subscribe({
         next: response => {
           if (response.status == 'Success') {
             localStorage.setItem(environment.token, response.token);
@@ -65,6 +65,6 @@ export class LoginComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.suscripcion?.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 }

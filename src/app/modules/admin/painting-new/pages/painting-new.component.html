@@ -4,7 +4,7 @@
       <header>
         <h1>Create new painting</h1>
       </header>
-      <p>Title, subtitle, description, image, dimension, characteristics and link are required</p>
+      <p>Title, subtitle, description, main image, dimension and characteristics are required</p>
     </div>
   </div>
   <form (ngSubmit)="onSubmit();" [formGroup]="formGroup" enctype="multipart/form-data">
@@ -31,7 +31,7 @@
       <label for="characteristics">Characteristics</label>
     </span>
     <span class="p-float-label mb-5">
-      <input type="link" id="link" name="link" formControlName="link" pInputText required />
+      <input type="link" id="link" name="link" formControlName="link" pInputText />
       <label for="link">Link</label>
     </span>
     <span class="p-float-label mb-5">

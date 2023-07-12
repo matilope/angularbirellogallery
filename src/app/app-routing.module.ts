@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'miscellaneous', loadChildren: () => import('@modules/users/miscellaneous/miscellaneous.module').then(m => m.MiscellaneousModule), data: { preload: true } },
   { path: 'about', loadChildren: () => import('@modules/users/about/about.module').then(m => m.AboutModule), data: { preload: true } },
   { path: 'contact', loadChildren: () => import('@modules/users/contact/contact.module').then(m => m.ContactModule), data: { preload: true } },
-  { path: 'painting/view/:id', loadChildren: () => import('@modules/users/painting/painting.module').then(m => m.PaintingModule) },
+  { path: 'painting/view/:id', loadChildren: () => import('@modules/users/painting/painting.module').then(m => m.PaintingModule), data: { preload: true } },
   { path: 'admin/create', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/painting-new/painting-new.module').then(m => m.PaintingNewModule) },
   { path: 'admin/update/:id', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/painting-update/painting-update.module').then(m => m.PaintingUpdateModule) },
   { path: 'privacypolicy', loadChildren: () => import('@modules/users/privacypolicy/privacypolicy.module').then(m => m.PrivacypolicyModule) },

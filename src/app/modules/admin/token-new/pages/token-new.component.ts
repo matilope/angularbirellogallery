@@ -18,7 +18,7 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   public formGroup!: FormGroup;
   public token: Token;
   public url: string;
-  public suscripcion: Subscription;
+  public subscription: Subscription;
   public loader: boolean = false;
 
   constructor(
@@ -49,7 +49,7 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     this.loader = true;
     this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Token is being created' });
-    this.suscripcion = this._instagramService
+    this.subscription = this._instagramService
       .saveToken(this.token)
       .subscribe({
         next: response => {
@@ -71,6 +71,6 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.suscripcion?.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 }

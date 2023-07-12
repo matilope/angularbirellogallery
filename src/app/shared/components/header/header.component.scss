@@ -121,10 +121,10 @@ nav {
 }
 
 .banner {
-  height: calc(50vh - 87px);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 2rem 0;
 
   @media (max-width:991px) {
     justify-content: center;

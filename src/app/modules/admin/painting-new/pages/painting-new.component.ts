@@ -61,9 +61,7 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.maxLength(200)
         ]),
-        link: new FormControl('', [
-          Validators.required
-        ]),
+        link: new FormControl(''),
         link2: new FormControl(''),
         image0url: new FormControl(null)
       }

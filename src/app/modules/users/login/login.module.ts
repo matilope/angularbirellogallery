@@ -11,6 +11,6 @@ import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [CommonModule, LoginRoutingModule, FormsModule, ProgressSpinnerModule, ToastModule, InputTextModule, PasswordModule],
+  imports: [CommonModule, LoginRoutingModule, FormsModule, ProgressSpinnerModule, ToastModule, InputTextModule, PasswordModule]
 })
 export class LoginModule { }

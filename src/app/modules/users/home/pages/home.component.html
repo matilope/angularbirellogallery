@@ -7,19 +7,33 @@
       <p>Buying art is buying time of the artist's life.</p>
     </div>
   </div>
+  <div class="filters">
+    <form #form="ngForm" (ngSubmit)="searchHttp(form);">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText [(ngModel)]="search" placeholder="Search" required />
+        <i *ngIf="search.length>0" class="pi pi-times" (click)="resetSearch();"></i>
+      </span>
+    </form>
+  </div>
   <div class="flex">
-    <div class="card" *ngFor="let painting of paintings; let last = last">
+    <a class="card" *ngFor="let painting of paintings; let last = last"
+      [routerLink]="['/painting/view/', painting._id]">
       <img appImgBroken [src]="painting.image0url" [alt]="painting.title" />
       <div class="card-body">
-        <h3>{{painting.title}}</h3>
-        <p>{{painting.subtitle}}</p>
-        <a class="custom-btn" [routerLink]="['/painting/view/', painting._id]">See more</a>
+        <div>
+          <h3>{{painting.title}}</h3>
+          <p>{{painting.subtitle}}</p>
+        </div>
       </div>
-      <div *ngIf="last" #theLastList></div>
-    </div>
+      <div *ngIf="last && !search" #theLastList></div>
+    </a>
   </div>
 </section>
 
-<div class="spinner">
-  <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)" animationDuration=".5s"></p-progressSpinner>
+<div class="spinner" *ngIf="loader">
+  <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+    animationDuration=".5s"></p-progressSpinner>
 </div>
+
+<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>

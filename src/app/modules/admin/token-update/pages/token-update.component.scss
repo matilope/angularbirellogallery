@@ -1,25 +1,3 @@
 form {
   width: 600px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-
-  @media (max-width: 767px) {
-    width: 100%;
-  }
-
-  input {
-    width: 100%;
-
-    &:hover {
-      outline: 4px solid #706c49;
-      border-color: #655c28;
-    }
-
-    &:focus {
-      border-color: #655c28;
-      box-shadow: 0 0 0 0.2rem #fef5bf;
-    }
-  }
 }

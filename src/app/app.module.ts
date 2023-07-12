@@ -15,7 +15,7 @@ import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {ScrollTopModule} from 'primeng/scrolltop';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -29,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       enabled: environment.production,
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ScrollTopModule
   ],
   providers: [
     AuthService,

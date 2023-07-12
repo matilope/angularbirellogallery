@@ -1,77 +1,52 @@
-<main>
-  <section>
-    <div class="container">
-      <div class="row rowresponsiveapi" *ngIf="painting">
-        <div class="c-col col-12 col-sm-12 col-md-7 col-lg-7 sectorpaintings">
-          <div class="card-group">
-            <div class="card">
-              <div class="room-gallery">
-                <img appImgBroken class="gallery-highlight" [src]="painting.image0url" [alt]="painting.title" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="c-col col-12 col-sm-12 col-md-5 col-lg-5 accordiondiv">
-          <div id="accordion">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item backgroundtransparent fontwhite titlepaintings">
-                <h2 class="colorfontart">{{ painting.title }}</h2>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite titlepaintings">
-                <h3 class="colorfontart2">{{ painting.subtitle }}</h3>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite">
-                <p class="no-margin">
-                  <b>Dimensions:</b> {{ painting.dimension }}
-                </p>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite">
-                <p class="no-margin">
-                  <b>Characteristics:</b> {{ painting.characteristics }}
-                </p>
-              </li>
-              <li class="list-group-item backgroundtransparent fontwhite" *ngIf="painting.link.length>1 || painting.link2.length>1">
-                <p class="no-margin">Similar works:</p>
-                <a *ngIf="painting.link.length>1" target="_blank" [href]="painting.link" class="linkpainting">
-                  <span style="display: flex" class="no-margin">Visit {{ enlace }}</span>
-                </a>
-                <a *ngIf="painting.link2.length>1" target="_blank" [href]="painting.link2" class="linkpainting">
-                  <span style="display: flex" class="no-margin">Visit {{ enlace2 }}</span>
-                </a>
-              </li>
-            </ul>
-            <ul class="no-margin">
-              <li class="list-group-item backgroundtransparent" style="border: none">
-                <a href="https://wa.me/5491164816622"><button class="btn btn-painting" value="Enquire">
-                    Enquire
-                  </button></a>
-              </li>
-            </ul>
-            <ul class="no-margin">
-              <li class="list-group-item backgroundtransparent" style="border: none">
-                <div class="room-preview">
-                  <img (click)="lightbox(0)" *ngIf="painting.image0url" [src]="painting.image0url"
-                    class="room-active activo room-active-prevg" [alt]="painting.title" />
-                  <img (click)="lightbox(1)" *ngIf="painting.image1url" [src]="painting.image1url"
-                    class="room-active activo room-active-prevg" [alt]="painting.title" />
-                  <img (click)="lightbox(2)" *ngIf="painting.image2url" [src]="painting.image2url"
-                    class="room-active activo room-active-prevg" [alt]="painting.title" />
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="c-col col-12 sectorpaintings borderpaintings"></div>
-        <div class="c-col col-12 col-sm-12 col-md-12 col-lg-12 sectorpaintings">
-          <ul class="no-margin">
-            <li class="list-group-item backgroundtransparent fontwhite"
-              style="border: none; white-space: pre-line; text-align: justify;">
-              {{ painting.description }}
-            </li>
-          </ul>
-        </div>
+<section class="container" *ngIf="painting">
+  <div class="painting-container">
+    <div class="img-section">
+      <img appImgBroken [src]="imageSelected" [alt]="painting.title" />
+      <div class="img-container">
+        <img (click)="changeImage(0);" [class]="imageSelected === painting.image0url ? 'active' : ''" appImgBroken
+          *ngIf="painting.image1url || painting.image2url" [src]="painting.image0url" [alt]="painting.title" />
+        <img (click)="changeImage(1);" [class]="imageSelected === painting.image0url ? 'active' : ''"
+          *ngIf="painting.image1url" [src]="painting.image1url" [alt]="painting.title" />
+        <img (click)="changeImage(2);" [class]="imageSelected === painting.image0url ? 'active' : ''"
+          *ngIf="painting.image2url" [src]="painting.image2url" [alt]="painting.title" />
       </div>
     </div>
-  </section>
-</main>
+    <div class="info-container">
+      <h2>{{painting.title}}</h2>
+      <p>{{painting.subtitle}}</p>
+      <div class="accordion-container">
+        <p-accordion class="custom-accordion">
+          <p-accordionTab header="Dimension">
+            <p>
+              {{painting.dimension}}
+            </p>
+          </p-accordionTab>
+        </p-accordion>
+        <p-accordion class="custom-accordion">
+          <p-accordionTab header="Characteristics">
+            <p>
+              {{painting.characteristics}}
+            </p>
+          </p-accordionTab>
+        </p-accordion>
+        <p-accordion *ngIf="painting.link.length > 1" class="custom-accordion">
+          <p-accordionTab header="Similar works">
+            <ul>
+              <li><a [href]="painting.link" target="_blank">{{link}}</a></li>
+              <li *ngIf="painting.link2"><a [href]="painting.link2" target="_blank">{{link2}}</a></li>
+            </ul>
+          </p-accordionTab>
+        </p-accordion>
+        <p-accordion class="custom-accordion">
+          <p-accordionTab header="Description">
+            <p>
+              {{painting.description}}
+            </p>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+      <a href="https://wa.me/5491164816622" class="custom-btn">Enquire</a>
+    </div>
+  </div>
+</section>
 <div [innerHTML]="html"></div>

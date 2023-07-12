@@ -62,16 +62,14 @@ export class ContactComponent implements OnInit, OnDestroy {
     this.formGroup = new FormGroup(
       {
         name: new FormControl('', [
-          Validators.required,
-          Validators.maxLength(120)
+          Validators.required
         ]),
         email: new FormControl('', [
           Validators.required,
           Validators.email
         ]),
         subject: new FormControl('', [
-          Validators.required,
-          Validators.maxLength(120)
+          Validators.required
         ]),
         paint: new FormControl('', [
           Validators.required
@@ -93,7 +91,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   contactForm(): void {
     this.loader = true;
     this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Your message is being sent' });
-    /*
     const data = this.formGroup.value;
     this.subscription2 = this._contactService.getContacts(data).subscribe({
       next: () => {
@@ -107,7 +104,6 @@ export class ContactComponent implements OnInit, OnDestroy {
         }
       },
     });
-    */
   }
 
   ngOnDestroy(): void {
