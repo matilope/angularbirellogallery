@@ -50,22 +50,6 @@
           height: 3rem;
         }
 
-        &:hover {
-          outline: none;
-
-          @media (min-width: 575px) {
-            outline: 2px solid #9f9436;
-          }
-        }
-
-        &:focus {
-          outline: none;
-
-          @media (min-width: 575px) {
-            outline: 2px solid #9f9436;
-          }
-        }
-
         span {
           @media (min-width: 767px) {
             font-size: 2rem;

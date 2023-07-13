@@ -83,7 +83,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       next: response => {
         if (response.paintings.paints) {
           this.titles = response.paintings.paints.map((e: { title: string; }) => { return e.title });
-          this.titles.unshift("Select a painting");
+          this.titles.unshift("Select a painting *");
         }
       },
     });

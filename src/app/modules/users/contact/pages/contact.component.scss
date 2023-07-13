@@ -16,22 +16,45 @@ form {
     width: 100%;
     background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2));
 
-    .p-dropdown-label {
-      color: #f2f2e2;
-    }
-
     &:hover {
-      outline: none;
       border-color: #655c28;
-
-      @media (min-width: 575px) {
-        outline: 4px solid #706c49 !important;
-      }
     }
 
     &.p-focus {
       border-color: #655c28;
       box-shadow: 0 0 0 0.2rem #fef5bf;
+    }
+
+    .p-dropdown-label {
+      color: #f2f2e2;
+    }
+
+    p-overlay {
+      div {
+        width: 100%;
+
+        ul {
+          li {
+            @media (max-width:400px) {
+              overflow-x: scroll;
+
+              &::-webkit-scrollbar {
+                width: 1rem;
+                height: 0.75rem;
+              }
+
+              &::-webkit-scrollbar-track {
+                background: #f2f2f2;
+              }
+
+              &::-webkit-scrollbar-thumb {
+                background: rgba(100, 100, 100, .5);
+                border-radius: 2rem;
+              }
+            }
+          }
+        }
+      }
     }
 
     ul {

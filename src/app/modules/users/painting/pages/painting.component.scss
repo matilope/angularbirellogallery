@@ -92,6 +92,7 @@
 
             a {
               text-decoration: underline;
+              border: none;
             }
           }
         }
@@ -99,20 +100,7 @@
 
       a {
         margin-top: 2rem;
-        outline: none !important;
-        border: 2px solid #706c49!important;
-
-        &:hover {
-          outline: none !important;
-        }
-
-        @media (min-width: 575px) {
-          outline: 2px solid #706c49!important;
-
-          &:hover {
-            outline: 4px solid #706c49!important;
-          }
-        }
+        border: 2px solid #706c49;
       }
     }
   }

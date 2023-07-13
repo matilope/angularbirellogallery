@@ -40,10 +40,10 @@ footer {
   .copyright {
     padding: 2rem 0 1rem 0;
     border-top: 2px solid #322f1a;
+    text-align: center;
 
     @media (max-width:575px) {
       padding: 1.5rem 0 1rem;
-      text-align: center;
       line-height: 1.5rem;
     }
   }

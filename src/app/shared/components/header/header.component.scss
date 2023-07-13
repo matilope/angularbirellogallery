@@ -142,44 +142,33 @@ nav {
   }
 
   h1 {
-    font-size: 3rem;
+    display: block;
+    font-size: 4rem;
+    white-space: nowrap;
+    border-right: 4px solid;
+    width: 11ch;
+    animation: typing 2s steps(12), blink .5s infinite step-end alternate;
+    overflow: hidden;
+    margin: 2rem 0;
 
     @media (max-width:767px) {
-      font-size: 2.25rem;
+      font-size: 3rem;
     }
 
     @media (max-width:575px) {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      margin: auto;
     }
 
-    span {
-      display: block;
-      font-size: 4rem;
-      white-space: nowrap;
-      border-right: 4px solid;
-      width: 11.3ch;
-      animation: typing 2s steps(12), blink .5s infinite step-end alternate;
-      overflow: hidden;
-
-      @media (max-width:767px) {
-        font-size: 3rem;
+    @keyframes typing {
+      from {
+        width: 0;
       }
+    }
 
-      @media (max-width:575px) {
-        font-size: 2.5rem;
-        margin: auto;
-      }
-
-      @keyframes typing {
-        from {
-          width: 0;
-        }
-      }
-
-      @keyframes blink {
-        50% {
-          border-color: transparent;
-        }
+    @keyframes blink {
+      50% {
+        border-color: transparent;
       }
     }
   }

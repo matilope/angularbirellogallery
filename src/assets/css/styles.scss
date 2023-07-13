@@ -2,12 +2,26 @@
 
 * {
   font-family: 'Montserrat', sans-serif;
+  outline: none !important;
 }
 
 /* HTML */
 
 html {
   scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #f2f2f2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(100, 100, 100, .5);
+    border-radius: 2rem;
+  }
 }
 
 /* BODY */
@@ -151,14 +165,13 @@ h4 {
   color: #f2f2e2;
   padding: 1rem 1.5rem;
   border-radius: .25rem;
-  border: none;
   font-size: 1.25rem;
   position: relative;
-  outline: 2px solid #706c49 !important;
+  border: 2px solid #706c49 !important;
 
   &:hover {
     cursor: pointer;
-    outline: 4px solid #706c49 !important;
+    border: 3px solid #706c49 !important;
   }
 
   &::before {
@@ -213,12 +226,7 @@ h4 {
     background: transparent !important;
 
     &:hover {
-      outline: none;
       border-color: #655c28 !important;
-
-      @media (min-width:575px) {
-        outline: 4px solid #706c49 !important;
-      }
     }
 
     &:focus {
@@ -296,21 +304,11 @@ h4 {
         }
 
         .btn-update {
-          outline: none;
-          background: #a0751c;
-
-          @media (min-width:575px) {
-            outline: 2px solid #84672b;
-          }
+          background-color: #a0751c;
         }
 
         .btn-delete {
-          outline: none;
-          background: #a01c1c;
-
-          @media (min-width:575px) {
-            outline: 2px solid #842b2b;
-          }
+          background-color: #a01c1c;
         }
       }
     }
@@ -347,23 +345,19 @@ form {
     background-color: #3b1b1b;
     opacity: .5;
     border-color: #4a1f1f;
-    outline: none;
-
-    @media (min-width:575px) {
-      outline: 2px solid #4a1f1f;
-    }
 
     &:hover {
-      outline: none;
       cursor: not-allowed;
-
-      @media (min-width:575px) {
-        outline: 2px solid #4a1f1f;
-      }
 
       &::before {
         width: 0%;
       }
+    }
+  }
+
+  .p-inputwrapper-filled {
+    &+label {
+      color: #f2f2f2 !important;
     }
   }
 
@@ -378,6 +372,21 @@ form {
         &:not(.i-search) {
           animation: shake 1s ease-in-out;
         }
+      }
+    }
+
+    &:hover {
+      border-color: #655c28 !important;
+    }
+
+    &:focus {
+      border-color: #655c28 !important;
+      box-shadow: 0 0 0 0.2rem #fef5bf !important;
+    }
+
+    &.p-filled {
+      &+label {
+        color: #f2f2f2 !important;
       }
     }
 
@@ -410,21 +419,6 @@ form {
           transform: rotate(0deg) translateY(0);
         }
       }
-
-    }
-
-    &:hover {
-      outline: none;
-      border-color: #655c28 !important;
-
-      @media (min-width: 575px) {
-        outline: 4px solid #706c49 !important;
-      }
-    }
-
-    &:focus {
-      border-color: #655c28 !important;
-      box-shadow: 0 0 0 0.2rem #fef5bf !important;
     }
   }
 
