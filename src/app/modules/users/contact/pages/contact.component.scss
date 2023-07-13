@@ -17,12 +17,12 @@ form {
     background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2));
 
     &:hover {
-      border-color: #655c28;
+      border-color: #5c5c5c;
     }
 
     &.p-focus {
-      border-color: #655c28;
-      box-shadow: 0 0 0 0.2rem #fef5bf;
+      border-color: #5c5c5c;
+      box-shadow: 0 0 0 0.2rem #a8a8a8;
     }
 
     .p-dropdown-label {
@@ -58,17 +58,17 @@ form {
     }
 
     ul {
-      background-color: #201e14;
+      background-color: #333333;
 
       li {
         &.p-dropdown-item.p-highlight {
-          background-color: #757575;
+          background-color: #858585;
         }
 
         &:hover,
         &:focus {
-          background-color: #655c28 !important;
-          border-color: #655c28;
+          background-color: #5c5c5c !important;
+          border-color: #444444;
         }
       }
     }

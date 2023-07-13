@@ -1,8 +1,8 @@
 {
   "name": "Birello Gallery",
   "short_name": "Birello Gallery",
-  "theme_color": "#1f1d0e",
-  "background_color": "#1f1d0e",
+  "theme_color": "#131313",
+  "background_color": "#131313",
   "display": "minimal-ui",
   "scope": "./",
   "start_url": "./",
@@ -15,20 +15,8 @@
   ],
   "icons": [
     {
-      "src": "assets/icons/icon-48x48.png",
-      "sizes": "48x48",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
       "src": "assets/icons/icon-60x60.png",
       "sizes": "60x60",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-72x72.png",
-      "sizes": "72x72",
       "type": "image/png",
       "purpose": "maskable any"
     },
@@ -39,32 +27,14 @@
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-114x114.png",
-      "sizes": "114x114",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
       "src": "assets/icons/icon-120x120.png",
       "sizes": "120x120",
       "type": "image/png",
       "purpose": "maskable any"
     },
     {
-      "src": "assets/icons/icon-128x128.png",
-      "sizes": "128x128",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
       "src": "assets/icons/icon-144x144.png",
       "sizes": "144x144",
-      "type": "image/png",
-      "purpose": "maskable any"
-    },
-    {
-      "src": "assets/icons/icon-180x180.png",
-      "sizes": "180x180",
       "type": "image/png",
       "purpose": "maskable any"
     },
@@ -77,6 +47,18 @@
     {
       "src": "assets/icons/icon-256x256.png",
       "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable any"
     }

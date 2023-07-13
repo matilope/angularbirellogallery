@@ -31,8 +31,9 @@ body {
   letter-spacing: 0.5px;
   overflow-x: hidden;
   margin: 0;
-  background: linear-gradient(to top right, #1f190e, #3a361f, #1f1d0e);
+  background: linear-gradient(to top right, #131313, #222222, #131313);
   color: #f2f2e2;
+  line-height: 1.5rem;
 }
 
 .router-animation {
@@ -71,6 +72,7 @@ textarea {
 
 h1 {
   font-size: 2.5rem;
+  line-height: normal;
 }
 
 h2 {
@@ -167,11 +169,10 @@ h4 {
   border-radius: .25rem;
   font-size: 1.25rem;
   position: relative;
-  border: 2px solid #706c49 !important;
+  border: 2px solid #5c5c5c !important;
 
   &:hover {
     cursor: pointer;
-    border: 3px solid #706c49 !important;
   }
 
   &::before {
@@ -263,7 +264,7 @@ h4 {
       align-items: center;
       flex-direction: row;
       justify-content: space-between;
-      border-bottom: 4px solid #55523a;
+      border-bottom: 4px solid #5c5c5c;
       padding: 1rem;
       margin: 1rem 0;
 
@@ -376,12 +377,12 @@ form {
     }
 
     &:hover {
-      border-color: #655c28 !important;
+      border-color: #5c5c5c !important;
     }
 
     &:focus {
-      border-color: #655c28 !important;
-      box-shadow: 0 0 0 0.2rem #fef5bf !important;
+      border-color: #5c5c5c !important;
+      box-shadow: 0 0 0 0.2rem #a8a8a8 !important;
     }
 
     &.p-filled {
