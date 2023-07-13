@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
 import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { Global } from '@global/global';
 import { MessageService } from 'primeng/api';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public loader: boolean = false;
   public search: string = '';
+  private searchSubject: Subject<string> = new Subject<string>();
+  private destroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private _paintingService: PaintingsService,
@@ -79,6 +82,33 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     this.intersectionObserver();
+    this.searchSubject
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((searchTerm: string) => {
+        if (searchTerm.length >= 4) {
+          this.loader = true;
+          this.subscription4 = this._paintingService.search(searchTerm).subscribe({
+            next: (response) => {
+              this.loader = false;
+              if (response.status == 'Success' && response.paints.length > 0) {
+                this.messageService.add({ severity: 'success', summary: 'Success', detail: 'The search query has results' });
+                this.paintings = response.paints;
+              } else {
+                this.messageService.add({ severity: 'warn', summary: 'Warning', detail: `The search query doesn't have results` });
+              }
+            },
+            error: () => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'The search query failed, error code 500' });
+              this.loader = false;
+              this.resetSearch();
+            }
+          });
+        }
+      });
   }
 
   ngAfterViewInit(): void {
@@ -91,30 +121,8 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  searchHttp(form: HTMLFormElement): void {
-    if (form.valid) {
-      this.messageService.add({ severity: 'info', summary: 'Info', detail: 'Searching...' });
-      this.loader = true;
-      this.subscription4 = this._paintingService.search(this.search).subscribe({
-        next: response => {
-          this.loader = false;
-          if (response.status == 'Success' && response.paints.length > 0) {
-            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'The search query has results' });
-            this.paintings = response.paints;
-          } else {
-            this.messageService.add({ severity: 'warn', summary: 'Warning', detail: `The search query doesn't have results` });
-            this.resetSearch();
-          }
-        },
-        error: () => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'The search query failed, error code 500' });
-          this.loader = false;
-          this.resetSearch();
-        }
-      });
-    } else {
-      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Search field is required' });
-    }
+  searchHttp(): void {
+    this.searchSubject.next(this.search);
   }
 
   resetSearch(): void {
@@ -160,5 +168,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     [this.subscription, this.subscription2, this.subscription3, this.subscription4].forEach(e => e?.unsubscribe());
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
