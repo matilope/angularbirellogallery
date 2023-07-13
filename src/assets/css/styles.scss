@@ -33,7 +33,6 @@ body {
   margin: 0;
   background: linear-gradient(to top right, #131313, #222222, #131313);
   color: #f2f2e2;
-  line-height: 1.5rem;
 }
 
 .router-animation {
@@ -68,11 +67,14 @@ textarea {
   resize: none;
 }
 
+p {
+  line-height: 1.5rem;
+}
+
 /* HEADINGS */
 
 h1 {
   font-size: 2.5rem;
-  line-height: normal;
 }
 
 h2 {
@@ -227,18 +229,18 @@ h4 {
     background: transparent !important;
 
     &:hover {
-      border-color: #655c28 !important;
+      border-color: #5c5c5c !important;
     }
 
     &:focus {
-      border-color: #655c28 !important;
-      box-shadow: 0 0 0 0.2rem #fef5bf !important;
+      border-color: #5c5c5c !important;
+      box-shadow: 0 0 0 0.2rem #a8a8a8 !important;
     }
   }
 
   .p-accordion-content {
     color: #f2f2e2;
-    background: #443e1b;
+    background: #5c5c5c;
 
     p {
       a {
