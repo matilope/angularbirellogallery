@@ -1,5 +1,5 @@
 import { Component  } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-refundpolicy',
@@ -9,9 +9,8 @@ import { Title, Meta } from '@angular/platform-browser';
 export class RefundpolicyComponent {
   public title: string;
 
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(private metaService: Meta) {
     this.title = 'IMPORTANT, PLEASE READ CAREFULLY';
-    this.titleService.setTitle('Refund Policy | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Refund Policy',

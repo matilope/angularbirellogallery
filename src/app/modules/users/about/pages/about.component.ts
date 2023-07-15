@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about',
@@ -10,8 +10,7 @@ export class AboutComponent {
   public images: object[] = [];
   public responsiveOptions: object[] = [];
 
-  constructor(private titleService: Title, private metaService: Meta) {
-    this.titleService.setTitle('About | Birello Gallery');
+  constructor(private metaService: Meta) {
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | About',

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Legal } from '@core/models/legal';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-termsofservice',
@@ -10,7 +10,7 @@ import { Title, Meta } from '@angular/platform-browser';
 export class TermsofserviceComponent {
   public termsofservices: Legal[];
 
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(private metaService: Meta) {
     this.termsofservices = [
       new Legal(
         'OVERVIEW',
@@ -131,7 +131,6 @@ export class TermsofserviceComponent {
         'ignaciobirello@hotmail.com'
       ),
     ];
-    this.titleService.setTitle('Terms Of Service | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Terms Of Service',

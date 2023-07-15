@@ -1,7 +1,4 @@
 <nav class="container">
-  <div>
-    <a routerLink="/"><img class="logo" src="/assets/img/favicon/logo.png" alt="Page Logo" /></a>
-  </div>
   <ul #navLinks>
     <li><a routerLink="/">Artworks</a></li>
     <li><a routerLink="/miscellaneous">Miscellaneous</a></li>
@@ -13,38 +10,40 @@
     <span></span>
   </div>
 </nav>
-<div class="container banner" *ngIf="!excludedPaths.includes(path)">
-  <div>
-    <h1>Birello Gallery</h1>
-    <div>
-      <ul class="contact-info">
-        <li>
-          <a href="mailto:ignaciobirello@hotmail.com" target="_blank">ignaciobirello@hotmail.com</a>
-        </li>
-        <li>
-          <a href="tel:+541164816622" target="_blank">+54 11 6481 6622</a>
-        </li>
-      </ul>
-      <ul class="social-icons">
-        <li>
-          <a title="facebook" href="https://www.facebook.com/BirelloGallery" target="_blank">
-            <i class="pi pi-facebook"></i>
-          </a>
-        </li>
-        <li>
-          <a title="instagram" href="https://www.instagram.com/birellogallery/" target="_blank">
-            <i class="pi pi-instagram"></i>
-          </a>
-        </li>
-        <li>
-          <a title="whatsapp" href="https://wa.me/5491164816622" target="_blank">
-            <i class="pi pi-whatsapp"></i>
-          </a>
-        </li>
-      </ul>
+<div class="banner" *ngIf="!excludedPaths.includes(path)">
+  <div class="container">
+    <div class="info-container">
+      <h1>Birello Gallery</h1>
+      <div>
+        <ul class="contact-info">
+          <li>
+            <a href="mailto:ignaciobirello@hotmail.com" target="_blank">ignaciobirello@hotmail.com</a>
+          </li>
+          <li>
+            <a href="tel:+541164816622" target="_blank">+54 11 6481 6622</a>
+          </li>
+        </ul>
+        <ul class="social-icons">
+          <li>
+            <a title="facebook" href="https://www.facebook.com/BirelloGallery" target="_blank">
+              <i class="pi pi-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a title="instagram" href="https://www.instagram.com/birellogallery/" target="_blank">
+              <i class="pi pi-instagram"></i>
+            </a>
+          </li>
+          <li>
+            <a title="whatsapp" href="https://wa.me/5491164816622" target="_blank">
+              <i class="pi pi-whatsapp"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
-  <div *ngIf="portrait">
+  <div class="img-container" *ngIf="portrait">
     <img [src]="portrait.image0url" [alt]="portrait.title" />
   </div>
 </div>

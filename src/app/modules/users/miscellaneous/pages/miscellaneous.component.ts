@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, Vie
 import { Instagram } from '@core/models/instagram';
 import { InstagramService } from '@shared/services/instagram.service';
 import { ActivatedRoute } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Token } from '@core/models/token';
 import { Subscription } from 'rxjs';
 
@@ -36,11 +36,9 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
 
   constructor(
     private _instagramService: InstagramService,
-    private titleService: Title,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
   ) {
-    this.titleService.setTitle('Miscellaneous | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Miscellaneous',

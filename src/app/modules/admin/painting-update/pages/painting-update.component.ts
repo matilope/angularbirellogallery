@@ -3,7 +3,7 @@ import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '@global/global';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -32,11 +32,9 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
     private _router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private titleService: Title,
     private metaService: Meta
   ) {
     this.url = Global.url;
-    this.titleService.setTitle("Edit painting");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

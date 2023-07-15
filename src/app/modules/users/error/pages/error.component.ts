@@ -6,7 +6,7 @@ import {
   Optional,
 } from '@angular/core';
 import { RESPONSE } from '@nguniversal/express-engine/tokens';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { isPlatformServer } from '@angular/common';
 import { Response } from 'express';
@@ -18,13 +18,11 @@ import { Response } from 'express';
 })
 export class ErrorComponent implements OnInit {
   constructor(
-    private titleService: Title,
     private metaService: Meta,
     private router: Router,
     @Optional() @Inject(RESPONSE) private response: Response,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
-    this.titleService.setTitle("Page not found");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

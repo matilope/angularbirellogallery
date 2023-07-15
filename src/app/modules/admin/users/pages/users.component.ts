@@ -3,7 +3,7 @@ import { User } from '@core/models/user';
 import { AdminService } from '@shared/services/admin.service';
 import { Global } from '@global/global';
 import { Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -25,11 +25,9 @@ export class UsersComponent implements OnInit, OnDestroy {
     private _router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
-    private titleService: Title,
     private metaService: Meta
   ) {
     this.url = Global.url;
-    this.titleService.setTitle('Users | Birello Gallery');
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

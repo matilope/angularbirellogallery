@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { Global } from '@global/global';
@@ -39,13 +39,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private _paintingService: PaintingsService,
     private messageService: MessageService,
-    private titleService: Title,
     private metaService: Meta
   ) {
     this.principal = 'Artworks';
     this.subtitulo = "Buying art is buying time of the artist's life.";
     this.url = Global.url;
-    this.titleService.setTitle("Artworks | Birello Gallery");
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Artworks',

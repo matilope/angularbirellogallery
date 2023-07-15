@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Legal } from '@core/models/legal';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-privacypolicy',
@@ -10,7 +10,7 @@ import { Title, Meta } from '@angular/platform-browser';
 export class PrivacypolicyComponent {
   public privacys: Legal[];
 
-  constructor(private titleService: Title, private metaService: Meta) {
+  constructor(private metaService: Meta) {
     this.privacys = [
       new Legal(
         'SECTION 1 - WHAT DO WE DO WITH YOUR INFORMATION?',
@@ -50,7 +50,6 @@ export class PrivacypolicyComponent {
         'We reserve the right to modify this privacy policy at any time, so please review it frequently. Changes and clarifications will take effect immediately upon their posting on the website. If we make material changes to this policy, we will notify you here that it has been updated, so that you are aware of what information we collect, how we use it, and under what circumstances, if any, we use and/or disclose it. If our store is acquired or merged with another company, your information may be transferred to the new owners so that we may continue to sell products to you.'
       ),
     ];
-    this.titleService.setTitle('Privacy Policy | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Privacy Policy',

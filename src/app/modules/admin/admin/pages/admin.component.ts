@@ -7,7 +7,7 @@ import { Token } from '@core/models/token';
 import { InstagramService } from '@shared/services/instagram.service';
 import { Global } from '@global/global';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 
@@ -35,12 +35,10 @@ export class AdminComponent implements OnInit, OnDestroy {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private _router: Router,
-    private titleService: Title,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
   ) {
     this.url = Global.url;
-    this.titleService.setTitle('Admin | Birello Gallery');
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

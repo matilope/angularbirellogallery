@@ -3,7 +3,7 @@ import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { Router } from '@angular/router';
 import { Global } from '@global/global';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -28,10 +28,8 @@ export class PaintingNewComponent implements OnInit, OnDestroy {
     private _paintingsService: PaintingsService,
     private _router: Router,
     private messageService: MessageService,
-    private titleService: Title,
     private metaService: Meta
   ) {
-    this.titleService.setTitle('Create new painting');
     this.url = Global.url;
     this.metaService.addTag({
       name: 'robots',

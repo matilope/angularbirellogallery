@@ -8,6 +8,10 @@
 
     p {
       margin-top: 0;
+
+      @media (max-width:575px) {
+        text-align: center;
+      }
     }
 
     ::ng-deep .custom-carousel {
@@ -20,6 +24,7 @@
         height: 400px;
         border-radius: .25rem;
         object-fit: cover;
+        padding: 0 0.5rem;
 
         @media (max-width:767px) {
           aspect-ratio: 16/9;
@@ -28,18 +33,6 @@
 
         &:not(:last-child) {
           padding-right: 0.5rem;
-        }
-      }
-
-      p {
-        margin: 1rem;
-
-        @media (max-width: 767px) {
-          margin: 1rem 0;
-        }
-
-        @media (max-width: 420px) {
-          font-size: 0.75rem;
         }
       }
 
@@ -78,6 +71,12 @@
     text-align: center;
   }
 
+  p {
+    @media (max-width:575px) {
+      text-align: center;
+    }
+  }
+
   .card-benefits {
     display: flex;
     flex-direction: row;
@@ -104,6 +103,10 @@
 
       i {
         font-size: 3rem;
+      }
+
+      p {
+        text-align: justify;
       }
     }
   }

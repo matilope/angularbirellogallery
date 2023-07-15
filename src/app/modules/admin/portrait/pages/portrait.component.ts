@@ -3,7 +3,7 @@ import { Portrait } from '@core/models/portrait';
 import { PortraitService } from '@shared/services/portrait.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '@global//global';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -30,11 +30,9 @@ export class PortraitComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _router: Router,
     private messageService: MessageService,
-    private titleService: Title,
     private metaService: Meta
   ) {
     this.url = Global.url;
-    this.titleService.setTitle("Change portrait");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

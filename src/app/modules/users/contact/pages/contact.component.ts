@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ContactService } from '@shared/services/contact.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Global } from '@global/global';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -26,11 +26,9 @@ export class ContactComponent implements OnInit, OnDestroy {
     private _contactService: ContactService,
     private _router: Router,
     private messageService: MessageService,
-    private titleService: Title,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
   ) {
-    this.titleService.setTitle('Contact | Birello Gallery');
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Contact',

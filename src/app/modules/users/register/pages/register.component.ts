@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
 import { Router } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { User } from '@core/models/user';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
@@ -22,14 +22,12 @@ export class RegisterComponent implements OnDestroy {
     private _auth: AuthService,
     private _router: Router,
     private messageService: MessageService,
-    private titleService: Title,
     private metaService: Meta
   ) {
     this.registerUserData = {
       email: '',
       password: ''
     };
-    this.titleService.setTitle("Register | Birello Gallery");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',

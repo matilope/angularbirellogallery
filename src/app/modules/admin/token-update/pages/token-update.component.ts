@@ -3,7 +3,7 @@ import { Token } from '@core/models/token';
 import { InstagramService } from '@shared/services/instagram.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Global } from '@global/global';
-import { Title, Meta } from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
@@ -29,11 +29,9 @@ export class TokenUpdateComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _router: Router,
     private messageService: MessageService,
-    private titleService: Title,
     private metaService: Meta
   ) {
     this.url = Global.url;
-    this.titleService.setTitle("Refresh Instagram's token");
     this.metaService.addTag({
       name: 'robots',
       content: 'noindex, nofollow',
