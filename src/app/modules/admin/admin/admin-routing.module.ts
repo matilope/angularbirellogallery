@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PaintingsResolveService } from '@shared/resolve/paintingsresolve.service';
+import { PaintingsResolve } from '@shared/resolve/paintings.resolve';
 import { AdminComponent } from './pages/admin.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    resolve: { paintings: PaintingsResolveService },
-  },
+    resolve: { paintings: PaintingsResolve }
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
-  providers: [PaintingsResolveService],
+  providers: [PaintingsResolve],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

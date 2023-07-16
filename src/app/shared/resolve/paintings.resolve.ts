@@ -8,12 +8,12 @@ import { PaintingsService } from '@shared/services/paintings.service';
 @Injectable({
   providedIn: 'root'
 })
-export class PaintingsResolveService implements Resolve<PaintingsObservable | string> {
+export class PaintingsResolve implements Resolve<PaintingsObservable | string> {
 
-  constructor(private paintingService: PaintingsService) { }
+  constructor(private _paintingService: PaintingsService) { }
 
   resolve(): Observable<PaintingsObservable | string> {
-    return this.paintingService.getPaintings()
+    return this._paintingService.getPaintings()
       .pipe(
         catchError(error => {
           return of('No data found');

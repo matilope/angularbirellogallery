@@ -8,7 +8,7 @@ import { TokenObservable } from '@core/models/token';
 @Injectable({
   providedIn: 'root',
 })
-export class TokenResolveService implements Resolve<TokenObservable | string> {
+export class TokenResolve implements Resolve<TokenObservable | string> {
 
   constructor(private _tokenService: InstagramService) { }
 

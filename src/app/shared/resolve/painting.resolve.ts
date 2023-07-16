@@ -8,15 +8,15 @@ import { PaintingsService } from '@shared/services/paintings.service';
 @Injectable({
   providedIn: 'root',
 })
-export class PaintingResolveService implements Resolve<PaintingObservable | string> {
+export class PaintingResolve implements Resolve<PaintingObservable | string> {
 
-  constructor(private paintingService: PaintingsService) { }
+  constructor(private _paintingService: PaintingsService) { }
 
   resolve(
     route: ActivatedRouteSnapshot
   ): Observable<PaintingObservable | string> {
     let pinturaId = route.params['id'];
-    return this.paintingService.getPainting(pinturaId)
+    return this._paintingService.getPainting(pinturaId)
       .pipe(
         catchError(error => {
           return of('No data found');
