@@ -12,6 +12,15 @@ export class AboutComponent {
 
   constructor(private metaService: Meta) {
     this.metaService.updateTag({
+      property: 'title',
+      content: 'Birello Gallery | About',
+    });
+    this.metaService.updateTag({
+      property: 'description',
+      content:
+        'Birello Gallery is an emerging familiar business searching for the best products thinking in quality, value and exquisiteness. The products we offer not only delight customers regarding decorative value but also considering art itself as an investment for the future.',
+    });
+    this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | About',
     });

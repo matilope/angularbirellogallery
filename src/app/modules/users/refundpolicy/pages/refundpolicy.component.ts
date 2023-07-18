@@ -1,4 +1,4 @@
-import { Component  } from '@angular/core';
+import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
@@ -11,6 +11,14 @@ export class RefundpolicyComponent {
 
   constructor(private metaService: Meta) {
     this.title = 'IMPORTANT, PLEASE READ CAREFULLY';
+    this.metaService.updateTag({
+      property: 'title',
+      content: 'Birello Gallery | Refund Policy',
+    });
+    this.metaService.updateTag({
+      property: 'description',
+      content: 'Read our refund policy',
+    });
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Refund Policy',

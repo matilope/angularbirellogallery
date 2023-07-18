@@ -132,12 +132,20 @@ export class TermsofserviceComponent {
       ),
     ];
     this.metaService.updateTag({
+      property: 'title',
+      content: 'Terms Of Service',
+    });
+    this.metaService.updateTag({
+      property: 'description',
+      content: 'Read our terms of service',
+    });
+    this.metaService.updateTag({
       property: 'og:title',
-      content: 'Birello Gallery | Terms Of Service',
+      content: 'Terms Of Service',
     });
     this.metaService.updateTag({
       property: 'og:description',
-      content: 'Red our terms of service',
+      content: 'Read our terms of service',
     });
     this.metaService.updateTag({
       property: 'og:url',
@@ -145,7 +153,7 @@ export class TermsofserviceComponent {
     });
     this.metaService.updateTag({
       property: 'twitter:title',
-      content: 'Birello Gallery | Terms Of Service',
+      content: 'Terms Of Service',
     });
     this.metaService.updateTag({
       property: 'twitter:description',

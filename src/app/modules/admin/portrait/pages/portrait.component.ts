@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Portrait } from '@core/models/portrait';
 import { PortraitService } from '@shared/services/portrait.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-portrait',
@@ -24,14 +25,17 @@ export class PortraitComponent implements OnInit, OnDestroy {
   public subscription3: Subscription;
   public selectedFile: File | null = null;
   public loader: boolean = false;
+  public isBrowser!: boolean;
 
   constructor(
     private _portraitService: PortraitService,
     private _route: ActivatedRoute,
     private _router: Router,
     private messageService: MessageService,
+    @Inject(PLATFORM_ID) private platformId: object,
     private metaService: Meta
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.url = Global.url;
     this.metaService.addTag({
       name: 'robots',
@@ -87,7 +91,9 @@ export class PortraitComponent implements OnInit, OnDestroy {
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Portrait was successfully updated' });
             setTimeout(() => {
               this._router.navigate(['/admin']).then(() => {
-                window.location.reload();
+                if ((isPlatformBrowser(this.platformId))) {
+                  window.location.reload();
+                }
               });
             }, 1500);
           } else {

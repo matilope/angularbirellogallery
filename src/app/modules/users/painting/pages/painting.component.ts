@@ -19,8 +19,8 @@ export class PaintingComponent implements OnInit, OnDestroy {
   public url: string;
   public subscription: Subscription;
   public subscription2: Subscription;
-  public link: string | string[];
-  public link2: string | string[];
+  public link: string;
+  public link2: string;
   public imageSelected!: string;
 
   constructor(
@@ -42,23 +42,23 @@ export class PaintingComponent implements OnInit, OnDestroy {
           this.titleService.setTitle(this.painting.title);
 
           if (response.painting.paint.link.length > 2) {
-            if (response.painting.paint.link.includes('http://')) {
-              this.link = response.painting.paint.link.split('http://');
-            } else {
-              this.link = response.painting.paint.link.split('https://');
-            }
-            this.link = this.link[1].split('/')[0];
+            const urlFirst = new URL(this.painting.link);
+            this.link = urlFirst.host;
           }
 
           if (response.painting.paint.link2.length > 2) {
-            if (response.painting.paint.link.includes('http://')) {
-              this.link2 = response.painting.paint.link2.split('http://');
-            } else {
-              this.link2 = response.painting.paint.link2.split('https://');
-            }
-            this.link2 = this.link2[1].split('/')[0];
+            const urlSecond = new URL(this.painting.link2);
+            this.link2 = urlSecond.host;
           }
 
+          this.metaService.updateTag({
+            property: 'title',
+            content: 'Birello Gallery | ' + this.painting.title,
+          });
+          this.metaService.updateTag({
+            property: 'description',
+            content: this.painting.description.split(".")[0],
+          });
           this.metaService.updateTag({
             property: 'og:title',
             content: 'Birello Gallery | ' + this.painting.title,
@@ -113,7 +113,7 @@ export class PaintingComponent implements OnInit, OnDestroy {
         "@type": "Review",
         "reviewRating": {
           "@type": "Rating",
-          "ratingValue": Math.random() * (4.9 - 4.5) + 4.5,
+          "ratingValue": parseFloat((Math.random() * (4.9 - 4.5) + 4.5).toFixed(1)),
           "bestRating": 5
         },
         "author": {
@@ -123,8 +123,8 @@ export class PaintingComponent implements OnInit, OnDestroy {
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": Math.random() * (4.9 - 4.3) + 4.3,
-        "reviewCount": Math.floor(Math.random() * (20 - 10) + 10)
+        "ratingValue": parseFloat((Math.random() * (4.9 - 4.3) + 4.3).toFixed(1)),
+        "reviewCount": Math.floor(Math.random() * (20 - 10) + 11)
       }
     };
     this.html = this.getSafeHTML(this.jsonLD);

@@ -39,6 +39,6 @@
     </div>
   </div>
 </section>
-<p-toast [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>
-<p-confirmDialog [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}">
+<p-toast *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}"></p-toast>
+<p-confirmDialog *ngIf="isBrowser" [breakpoints]="{'768px': {width: '100%', right: '0', left: '0'}}">
 </p-confirmDialog>

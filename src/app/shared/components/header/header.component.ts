@@ -70,7 +70,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public closeNavOnLinkTouch(): void {
-    for (const child of this.navLinks.nativeElement.children) {
+    for (const child of Array.from(this.navLinks.nativeElement.children)) {
       this.renderer.listen(child, 'click', () => {
         this.renderer.removeClass(this.button.nativeElement, "active");
         this.renderer.removeClass(this.navLinks.nativeElement, "show");

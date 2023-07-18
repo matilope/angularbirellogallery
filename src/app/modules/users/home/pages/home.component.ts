@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren, PLATFORM_ID, Inject } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
@@ -6,6 +6,7 @@ import { Global } from '@global/global';
 import { MessageService } from 'primeng/api';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,6 @@ import { debounceTime, distinctUntilChanged, takeUntil } from 'rxjs/operators';
   providers: [PaintingsService, MessageService]
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
-  public principal: string;
-  public subtitulo: string;
-
   public paintings: Painting[];
   public url: string;
   public subscription: Subscription;
@@ -35,22 +33,31 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   public search: string = '';
   private searchSubject: Subject<string> = new Subject<string>();
   private destroy$: Subject<void> = new Subject<void>();
+  public isBrowser!: boolean;
 
   constructor(
     private _paintingService: PaintingsService,
     private messageService: MessageService,
+    @Inject(PLATFORM_ID) private platformId: object,
     private metaService: Meta
   ) {
-    this.principal = 'Artworks';
-    this.subtitulo = "Buying art is buying time of the artist's life.";
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.url = Global.url;
+    this.metaService.updateTag({
+      property: 'title',
+      content: 'Birello Gallery | Artworks',
+    });
+    this.metaService.updateTag({
+      property: 'description',
+      content: "Buying art is buying time of the artist's life",
+    });
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Artworks',
     });
     this.metaService.updateTag({
       property: 'og:description',
-      content: this.subtitulo,
+      content: "Buying art is buying time of the artist's life",
     });
     this.metaService.updateTag({
       name: 'keywords',
@@ -63,7 +70,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.metaService.updateTag({
       property: 'twitter:description',
-      content: this.subtitulo,
+      content: "Buying art is buying time of the artist's life",
     });
   }
 
@@ -113,10 +120,16 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscription3 = this.theLastList.changes.subscribe({
       next: (response) => {
         if (response.last) {
-          this.observer.observe(response.last.nativeElement);
+          if ((isPlatformBrowser(this.platformId))) {
+            this.observer.observe(response.last.nativeElement);
+          }
         }
-      },
+      }
     });
+  }
+
+  trackByFn(index: number, item: Painting): string {
+    return item._id;
   }
 
   searchHttp(): void {
@@ -154,19 +167,24 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       threshold: 0
     };
 
-    this.observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (this.currentPage < this.totalPages) {
-          this.currentPage++;
-          this.paintingsData();
+    if ((isPlatformBrowser(this.platformId))) {
+      this.observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          if (this.currentPage < this.totalPages) {
+            this.currentPage++;
+            this.paintingsData();
+          }
         }
-      }
-    }, options);
+      }, options);
+    }
   }
 
   ngOnDestroy(): void {
     [this.subscription, this.subscription2, this.subscription3, this.subscription4].forEach(e => e?.unsubscribe());
     this.destroy$.next();
     this.destroy$.complete();
+    if (isPlatformBrowser(this.platformId)) {
+      this.observer.disconnect();
+    }
   }
 }

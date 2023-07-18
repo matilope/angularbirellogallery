@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, QueryList, ViewChildren } from '@angular/core';
 import { Instagram } from '@core/models/instagram';
 import { InstagramService } from '@shared/services/instagram.service';
 import { ActivatedRoute } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { Token } from '@core/models/token';
 import { Subscription } from 'rxjs';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-miscellaneous',
@@ -29,16 +30,25 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   public theLastList: QueryList<ElementRef>;
 
   private observer: any;
-
   public loader: boolean = false;
-
   public data: any;
+  public isBrowser!: boolean;
 
   constructor(
     private _instagramService: InstagramService,
+    @Inject(PLATFORM_ID) private platformId: object,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    this.metaService.updateTag({
+      property: 'title',
+      content: 'Birello Gallery | Miscellaneous',
+    });
+    this.metaService.updateTag({
+      property: 'description',
+      content: 'Instagram of Birello Gallery, full of amazing paintings',
+    });
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Miscellaneous',
@@ -91,50 +101,56 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
     this.intersectionObserver();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.subscription3 = this.theLastList.changes.subscribe({
       next: (response) => {
         if (response.last) {
-          this.observer.observe(response.last.nativeElement);
+          if ((isPlatformBrowser(this.platformId))) {
+            this.observer.observe(response.last.nativeElement);
+          }
         }
       },
     });
   }
 
-  intersectionObserver() {
+  intersectionObserver(): void {
     let options = {
       root: null,
       rootMargin: '0px',
       threshold: 0
     };
 
-    this.observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        if (this.data.length > 1) {
-          this.loader = true;
-          this.subscription4 = this._instagramService
-            .getInstagramNext(this.content, this.next)
-            .subscribe({
-              next: (response) => {
-                this.loader = false;
-                if (response.paging) {
-                  this.next = response.paging.cursors.after;
-                  this.data = response.data;
-                  response.data.forEach((e: any) => {
-                    this.insta.push(e);
-                  });
-                } else {
-                  this.data = [];
+    if ((isPlatformBrowser(this.platformId))) {
+      this.observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          if (this.data.length > 1) {
+            this.loader = true;
+            this.subscription4 = this._instagramService
+              .getInstagramNext(this.content, this.next)
+              .subscribe({
+                next: (response) => {
+                  this.loader = false;
+                  if (response.paging) {
+                    this.next = response.paging.cursors.after;
+                    this.data = response.data;
+                    response.data.forEach((e: any) => {
+                      this.insta.push(e);
+                    });
+                  } else {
+                    this.data = [];
+                  }
                 }
-              }
-            })
+              })
+          }
         }
-      }
-    }, options);
+      }, options);
+    }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     [this.subscription, this.subscription2, this.subscription3, this.subscription4].forEach(e => e?.unsubscribe());
-    this.loader = false;
+    if (isPlatformBrowser(this.platformId)) {
+      this.observer.disconnect();
+    }
   }
 }

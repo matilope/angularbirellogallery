@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +7,7 @@ import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-painting-update',
@@ -25,15 +26,18 @@ export class PaintingUpdateComponent implements OnInit, OnDestroy {
   public selectedFileSecond: File | null = null;
   public selectedFileThird: File | null = null;
   public loader: boolean = false;
+  public isBrowser!: boolean;
 
   constructor(
     private _paintingsService: PaintingsService,
     private _route: ActivatedRoute,
     private _router: Router,
+    @Inject(PLATFORM_ID) private platformId: object,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
     private metaService: Meta
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.url = Global.url;
     this.metaService.addTag({
       name: 'robots',

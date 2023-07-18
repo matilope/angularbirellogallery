@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { User } from '@core/models/user';
 import { AdminService } from '@shared/services/admin.service';
 import { Global } from '@global/global';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-users',
@@ -19,14 +20,17 @@ export class UsersComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public subscription2: Subscription;
   public loaders: boolean[] = [];
+  public isBrowser!: boolean;
 
   constructor(
     private _adminService: AdminService,
     private _router: Router,
     private messageService: MessageService,
     private confirmationService: ConfirmationService,
+    @Inject(PLATFORM_ID) private platformId: object,
     private metaService: Meta
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.url = Global.url;
     this.metaService.addTag({
       name: 'robots',
@@ -59,7 +63,9 @@ export class UsersComponent implements OnInit, OnDestroy {
               this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'User was deleted' });
               setTimeout(() => {
                 this._router.navigate(['/admin']).then(() => {
-                  window.location.reload();
+                  if ((isPlatformBrowser(this.platformId))) {
+                    window.location.reload();
+                  }
                 });
               }, 1500);
             } else {

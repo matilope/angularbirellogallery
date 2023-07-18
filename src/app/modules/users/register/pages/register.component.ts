@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
@@ -6,6 +6,7 @@ import { User } from '@core/models/user';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MessageService } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -17,13 +18,16 @@ export class RegisterComponent implements OnDestroy {
   public registerUserData: User;
   public subscription: Subscription;
   public loader: boolean = false;
+  public isBrowser!: boolean;
 
   constructor(
     private _auth: AuthService,
     private _router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
     private messageService: MessageService,
     private metaService: Meta
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.registerUserData = {
       email: '',
       password: ''

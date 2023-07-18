@@ -10,12 +10,11 @@ import { TokenInterceptorService } from '@core/interceptors/interceptor.service'
 import { AuthGuard } from '@core/guards/auth.guard';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment.prod';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { SharedModule } from '@shared/shared.module';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { FooterComponent } from '@shared/components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ScrollTopModule} from 'primeng/scrolltop';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -39,9 +38,8 @@ import {ScrollTopModule} from 'primeng/scrolltop';
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
       multi: true,
-    },
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

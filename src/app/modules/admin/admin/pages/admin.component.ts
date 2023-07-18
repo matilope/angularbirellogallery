@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { Portrait } from '@core/models/portrait';
@@ -10,6 +10,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-admin',
@@ -27,6 +28,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   public subscription3: Subscription;
   public subscription4: Subscription;
   public loaders: boolean[] = [];
+  public isBrowser!: boolean;
 
   constructor(
     private _paintingsService: PaintingsService,
@@ -35,9 +37,11 @@ export class AdminComponent implements OnInit, OnDestroy {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private _router: Router,
+    @Inject(PLATFORM_ID) private platformId: object,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.url = Global.url;
     this.metaService.addTag({
       name: 'robots',
@@ -86,7 +90,9 @@ export class AdminComponent implements OnInit, OnDestroy {
               this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'Painting was deleted' });
               setTimeout(() => {
                 this._router.navigate(['/admin']).then(() => {
-                  window.location.reload();
+                  if ((isPlatformBrowser(this.platformId))) {
+                    window.location.reload();
+                  }
                 });
               }, 1500);
             } else {

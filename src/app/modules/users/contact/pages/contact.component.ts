@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { ContactService } from '@shared/services/contact.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
@@ -6,6 +6,7 @@ import { Global } from '@global/global';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
@@ -21,14 +22,25 @@ export class ContactComponent implements OnInit, OnDestroy {
   private subscription2: Subscription;
   public titles!: string[];
   public loader: boolean = false;
+  public isBrowser!: boolean;
 
   constructor(
     private _contactService: ContactService,
     private _router: Router,
+    @Inject(PLATFORM_ID) private platformId: object,
     private messageService: MessageService,
     private metaService: Meta,
     private activatedRoute: ActivatedRoute
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    this.metaService.updateTag({
+      property: 'title',
+      content: 'Birello Gallery | Contact',
+    });
+    this.metaService.updateTag({
+      property: 'description',
+      content: 'Contact us, +54-911-6481-6622 | ignaciobirello@hotmail.com',
+    });
     this.metaService.updateTag({
       property: 'og:title',
       content: 'Birello Gallery | Contact',

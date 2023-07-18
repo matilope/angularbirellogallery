@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   secret: 'secretbirellogallerypasswordtoken9730',
   token: 'token_birello_gallery_admin',
-  backUrl: 'https://backbirellogallery.vercel.app/apirest/'
+  backUrl: 'https://backbirellogallery.vercel.app/api/'
 };
 
 /*

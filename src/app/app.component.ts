@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnDestroy, Renderer2, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Component, ElementRef, Inject, OnDestroy, PLATFORM_ID, Renderer2, ViewChild } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -9,9 +10,15 @@ import { Subscription } from 'rxjs';
 })
 export class AppComponent implements OnDestroy {
   public event: Subscription;
+  public isBrowser!: boolean;
   @ViewChild('animationRoute', { static: false }) public animationRoute: ElementRef;
 
-  constructor(private readonly router: Router, private readonly renderer: Renderer2) {
+  constructor(
+    private readonly router: Router,
+    private readonly renderer: Renderer2,
+    @Inject(PLATFORM_ID) private platformId: object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.event = this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         this.renderer.removeClass(this.animationRoute?.nativeElement, 'router-animation');

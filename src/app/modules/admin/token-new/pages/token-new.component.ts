@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, PLATFORM_ID } from '@angular/core';
 import { Token } from '@core/models/token';
 import { InstagramService } from '@shared/services/instagram.service';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Meta } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-token-new',
@@ -20,13 +21,16 @@ export class TokenNewComponent implements OnInit, OnDestroy {
   public url: string;
   public subscription: Subscription;
   public loader: boolean = false;
+  public isBrowser!: boolean;
 
   constructor(
     private _instagramService: InstagramService,
     private _router: Router,
+    @Inject(PLATFORM_ID) private platformId: object,
     private messageService: MessageService,
     private metaService: Meta
   ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
     this.url = Global.url;
     this.metaService.addTag({
       name: 'robots',
