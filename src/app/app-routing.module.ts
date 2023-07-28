@@ -6,8 +6,8 @@ import { CustomPreloadStrategy } from '@core/strategies/custompreload.service';
 const routes: Routes = [
   { path: '', pathMatch: "full", loadChildren: () => import('@modules/users/home/home.module').then(m => m.HomeModule), title: 'Artworks', data: { preload: true } },
   { path: 'miscellaneous', loadChildren: () => import('@modules/users/miscellaneous/miscellaneous.module').then(m => m.MiscellaneousModule), title: 'Miscellaneous', data: { preload: true } },
-  { path: 'about', loadChildren: () => import('@modules/users/about/about.module').then(m => m.AboutModule), title: 'About', data: { preload: true } },
-  { path: 'contact', loadChildren: () => import('@modules/users/contact/contact.module').then(m => m.ContactModule), title: 'Contact', data: { preload: true } },
+  { path: 'about', loadChildren: () => import('@modules/users/about/about.module').then(m => m.AboutModule), title: 'About' },
+  { path: 'contact', loadChildren: () => import('@modules/users/contact/contact.module').then(m => m.ContactModule), title: 'Contact' },
   { path: 'painting/view/:id', loadChildren: () => import('@modules/users/painting/painting.module').then(m => m.PaintingModule), data: { preload: true } },
   { path: 'admin/create', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/painting-new/painting-new.module').then(m => m.PaintingNewModule), title: 'Create New Painting' },
   { path: 'admin/update/:id', canActivate: [AuthGuard], loadChildren: () => import('@modules/admin/painting-update/painting-update.module').then(m => m.PaintingUpdateModule), title: 'Update Painting' },

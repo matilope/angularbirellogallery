@@ -5,37 +5,37 @@ import { isPlatformBrowser } from '@angular/common';
 export class LocalStorageService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
-  clear() {
+  clear(): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.clear();
     }
   }
 
-  setItem(key: string, value: string) {
+  setItem(key: string, value: string): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.setItem(key, value);
     }
   }
 
-  getItem(key: string) {
+  getItem(key: string): string | void {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.getItem(key);
     }
   }
 
-  removeItem(key: string) {
+  removeItem(key: string): void {
     if (isPlatformBrowser(this.platformId)) {
       localStorage.removeItem(key);
     }
   }
 
-  key(index: number) {
+  key(index: number): string | void {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.key(index);
     }
   }
 
-  length() {
+  length(): number | void {
     if (isPlatformBrowser(this.platformId)) {
       return localStorage.length;
     }

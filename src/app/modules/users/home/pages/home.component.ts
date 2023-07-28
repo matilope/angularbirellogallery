@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public loader: boolean = false;
   public search: string = '';
-  private searchSubject: Subject<string> = new Subject<string>();
+  private search$: Subject<string> = new Subject<string>();
   private destroy$: Subject<void> = new Subject<void>();
   public isBrowser!: boolean;
 
@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       });
     this.intersectionObserver();
-    this.searchSubject
+    this.search$
       .pipe(
         debounceTime(500),
         distinctUntilChanged(),
@@ -133,7 +133,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   searchHttp(): void {
-    this.searchSubject.next(this.search);
+    this.search$.next(this.search);
   }
 
   resetSearch(): void {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Global } from '@global/global';
-import { Painting, PaintingsObservable, PaintingObservable } from '@core/models/painting';
+import { PaintingsObservable, PaintingObservable } from '@core/models/painting';
 
 @Injectable()
 export class PaintingsService {
@@ -17,7 +17,7 @@ export class PaintingsService {
   }
 
   getPaintingsPagination(page: number): Observable<PaintingsObservable> {
-    return this._http.get<PaintingsObservable>(`${this.url}paintings/?page=${page}&limit=6`);
+    return this._http.get<PaintingsObservable>(`${this.url}paintings/?page=${page}&limit=3`);
   }
 
   getPainting(pinturaId: string): Observable<PaintingObservable> {
