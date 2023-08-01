@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 import { ContactRoutingModule } from './contact-routing.module';
 import { ContactComponent } from './pages/contact.component';
-import { PaintingsService } from '@shared/services/paintings.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -13,7 +12,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [ContactComponent],
-  imports: [CommonModule, ContactRoutingModule, ReactiveFormsModule, InputTextModule, InputTextareaModule, DropdownModule, ToastModule, ProgressSpinnerModule],
-  providers: [PaintingsService]
+  imports: [NgIf, ContactRoutingModule, ReactiveFormsModule, InputTextModule, InputTextareaModule, DropdownModule, ToastModule, ProgressSpinnerModule]
 })
 export class ContactModule { }

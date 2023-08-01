@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginComponent } from './pages/login.component';
@@ -11,6 +11,6 @@ import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [LoginComponent],
-  imports: [CommonModule, LoginRoutingModule, FormsModule, ProgressSpinnerModule, ToastModule, InputTextModule, PasswordModule]
+  imports: [NgIf, LoginRoutingModule, FormsModule, ProgressSpinnerModule, ToastModule, InputTextModule, PasswordModule]
 })
 export class LoginModule { }

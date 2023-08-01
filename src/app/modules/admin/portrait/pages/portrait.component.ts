@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-portrait',
   templateUrl: './portrait.component.html',
   styleUrls: ['./portrait.component.scss'],
-  providers: [PortraitService, MessageService]
+  providers: [MessageService]
 })
 
 export class PortraitComponent implements OnInit, OnDestroy {

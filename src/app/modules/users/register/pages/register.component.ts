@@ -7,6 +7,8 @@ import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MessageService } from 'primeng/api';
 import { isPlatformBrowser } from '@angular/common';
+import { NgForm } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +25,8 @@ export class RegisterComponent implements OnDestroy {
   constructor(
     private _auth: AuthService,
     private _router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object,
+    private cookieService: CookieService,
+    @Inject(PLATFORM_ID) private platformId: object,
     private messageService: MessageService,
     private metaService: Meta
   ) {
@@ -38,7 +41,7 @@ export class RegisterComponent implements OnDestroy {
     });
   }
 
-  registerUser(form: HTMLFormElement): void {
+  registerUser(form: NgForm): void {
     if (form.valid) {
       this.loader = true;
       this.subscription = this._auth
@@ -46,11 +49,15 @@ export class RegisterComponent implements OnDestroy {
         .subscribe({
           next: response => {
             if (response.status == 'Success') {
-              localStorage.setItem(environment.token, response.token);
               this.loader = false;
+              this.cookieService.set(environment.token, response.token, 14, "/", "", true, 'Strict');
               this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User was successfully created' });
               setTimeout(() => {
-                this._router.navigate(['/admin']);
+                this._router.navigate(['/admin']).then(() => {
+                  if ((isPlatformBrowser(this.platformId))) {
+                    window.location.reload();
+                  }
+                });
               }, 1500);
             } else {
               this.loader = false;

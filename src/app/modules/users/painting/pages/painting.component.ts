@@ -9,11 +9,10 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-painting',
   templateUrl: './painting.component.html',
-  styleUrls: ['./painting.component.scss'],
-  providers: []
+  styleUrls: ['./painting.component.scss']
 })
 export class PaintingComponent implements OnInit, OnDestroy {
-  public jsonLD: Object;
+  public jsonLD: object;
   public html: SafeHtml;
   public painting: Painting;
   public url: string;
@@ -52,11 +51,11 @@ export class PaintingComponent implements OnInit, OnDestroy {
           }
 
           this.metaService.updateTag({
-            property: 'title',
+            name: 'title',
             content: 'Birello Gallery | ' + this.painting.title,
           });
           this.metaService.updateTag({
-            property: 'description',
+            name: 'description',
             content: this.painting.description.split(".")[0],
           });
           this.metaService.updateTag({

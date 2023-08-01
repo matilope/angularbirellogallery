@@ -10,11 +10,10 @@ import { isPlatformBrowser } from '@angular/common';
 @Component({
   selector: 'app-miscellaneous',
   templateUrl: './miscellaneous.component.html',
-  styleUrls: ['./miscellaneous.component.scss'],
-  providers: [InstagramService],
+  styleUrls: ['./miscellaneous.component.scss']
 })
 export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy {
-  public insta: Instagram[];
+  public insta!: Instagram[];
   public token: Token;
   public next: string;
 
@@ -26,12 +25,10 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   public url: string;
   public content: string;
 
-  @ViewChildren('theLastList', { read: ElementRef })
-  public theLastList: QueryList<ElementRef>;
+  @ViewChildren('theLastList') public theLastList: QueryList<ElementRef>;
 
-  private observer: any;
+  private observer!: IntersectionObserver;
   public loader: boolean = false;
-  public data: any;
   public isBrowser!: boolean;
 
   constructor(
@@ -42,11 +39,11 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.metaService.updateTag({
-      property: 'title',
+      name: 'title',
       content: 'Birello Gallery | Miscellaneous',
     });
     this.metaService.updateTag({
-      property: 'description',
+      name: 'description',
       content: 'Instagram of Birello Gallery, full of amazing paintings',
     });
     this.metaService.updateTag({
@@ -89,7 +86,6 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
               next: response => {
                 this.loader = false;
                 this.insta = response.data;
-                this.data = response.data;
                 if (response.paging.cursors.after) {
                   this.next = response.paging.cursors.after;
                 }
@@ -102,15 +98,15 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
   }
 
   ngAfterViewInit(): void {
-    this.subscription3 = this.theLastList.changes.subscribe({
-      next: (response) => {
-        if (response.last) {
-          if ((isPlatformBrowser(this.platformId))) {
+    if ((isPlatformBrowser(this.platformId))) {
+      this.subscription3 = this.theLastList.changes.subscribe({
+        next: (response) => {
+          if (response.last) {
             this.observer.observe(response.last.nativeElement);
           }
         }
-      },
-    });
+      });
+    }
   }
 
   intersectionObserver(): void {
@@ -123,7 +119,7 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
     if ((isPlatformBrowser(this.platformId))) {
       this.observer = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          if (this.data.length > 1) {
+          if (this.insta.length > 1) {
             this.loader = true;
             this.subscription4 = this._instagramService
               .getInstagramNext(this.content, this.next)
@@ -132,12 +128,9 @@ export class MiscellaneousComponent implements OnInit, AfterViewInit, OnDestroy 
                   this.loader = false;
                   if (response.paging) {
                     this.next = response.paging.cursors.after;
-                    this.data = response.data;
                     response.data.forEach((e: any) => {
                       this.insta.push(e);
                     });
-                  } else {
-                    this.data = [];
                   }
                 }
               })

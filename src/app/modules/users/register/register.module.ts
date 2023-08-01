@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './pages/register.component';
@@ -11,6 +11,6 @@ import { PasswordModule } from 'primeng/password';
 
 @NgModule({
   declarations: [RegisterComponent],
-  imports: [CommonModule, RegisterRoutingModule, FormsModule, ProgressSpinnerModule, ToastModule, InputTextModule, PasswordModule],
+  imports: [NgIf, RegisterRoutingModule, FormsModule, ProgressSpinnerModule, ToastModule, InputTextModule, PasswordModule],
 })
 export class RegisterModule {}

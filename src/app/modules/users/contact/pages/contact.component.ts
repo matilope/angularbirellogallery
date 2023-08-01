@@ -12,7 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
-  providers: [ContactService, MessageService]
+  providers: [MessageService]
 })
 
 export class ContactComponent implements OnInit, OnDestroy {
@@ -34,11 +34,11 @@ export class ContactComponent implements OnInit, OnDestroy {
   ) {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.metaService.updateTag({
-      property: 'title',
+      name: 'title',
       content: 'Birello Gallery | Contact',
     });
     this.metaService.updateTag({
-      property: 'description',
+      name: 'description',
       content: 'Contact us, +54-911-6481-6622 | ignaciobirello@hotmail.com',
     });
     this.metaService.updateTag({

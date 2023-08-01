@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Global } from '@global/global';
 import { UserObservable, UsersObservable } from '@core/models/user';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AdminService {
   public url: string;
 

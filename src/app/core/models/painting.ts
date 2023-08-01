@@ -1,7 +1,7 @@
 export interface PaintingsObservable {
   status: string,
   paints: Painting[],
-  results: Results
+  results?: Results
 }
 
 export interface PaintingObservable {
@@ -13,9 +13,9 @@ export interface Painting {
     _id: string;
     title: string;
     subtitle: string;
-    image0url: string;
-    image1url: string;
-    image2url: string;
+    image0url: string | null;
+    image1url: string | null;
+    image2url: string | null;
     description: string;
     dimension: string;
     characteristics: string;

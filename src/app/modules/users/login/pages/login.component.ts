@@ -2,11 +2,13 @@ import { Component, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { AuthService } from '@shared/services/auth.service';
 import { Router } from '@angular/router';
 import { Meta } from '@angular/platform-browser';
-import { User } from '@core/models/user';
+import { User, UserObservable } from '@core/models/user';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { MessageService } from 'primeng/api';
 import { isPlatformBrowser } from '@angular/common';
+import { NgForm } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,8 @@ export class LoginComponent implements OnDestroy {
   constructor(
     private _auth: AuthService,
     private _router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object,
+    private cookieService: CookieService,
+    @Inject(PLATFORM_ID) private platformId: object,
     private messageService: MessageService,
     private metaService: Meta
   ) {
@@ -38,18 +41,22 @@ export class LoginComponent implements OnDestroy {
     });
   }
 
-  loginUser(form: HTMLFormElement): void {
+  loginUser(form: NgForm): void {
     if (form.valid) {
       this.messageService.add({ severity: 'info', summary: 'Info', detail: 'You are logging in' });
       this.loader = true;
       this.subscription = this._auth.loginUser(this.loginUserData).subscribe({
-        next: response => {
+        next: (response: UserObservable) => {
           if (response.status == 'Success') {
-            localStorage.setItem(environment.token, response.token);
+            this.cookieService.set(environment.token, response.token, 14, "/", "", true, 'Strict');
             this.loader = false;
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'The login credentials provided are correct' });
             setTimeout(() => {
-              this._router.navigate(['/admin']);
+              this._router.navigate(['/admin']).then(() => {
+                if ((isPlatformBrowser(this.platformId))) {
+                  window.location.reload();
+                }
+              });
             }, 1500);
           } else {
             this.loader = false;

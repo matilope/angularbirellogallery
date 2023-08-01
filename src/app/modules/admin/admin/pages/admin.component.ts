@@ -16,7 +16,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss'],
-  providers: [PaintingsService, PortraitService, InstagramService, ConfirmationService, MessageService],
+  providers: [ConfirmationService, MessageService],
 })
 export class AdminComponent implements OnInit, OnDestroy {
   public portrait: Portrait;

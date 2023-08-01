@@ -12,7 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  providers: [PaintingsService, MessageService]
+  providers: [MessageService]
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   public paintings: Painting[];
@@ -24,8 +24,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public currentPage: number = 1;
   public totalPages: number;
-  @ViewChildren('theLastList', { read: ElementRef })
-  public theLastList: QueryList<ElementRef>;
+  @ViewChildren('theLastList') public theLastList: QueryList<ElementRef>;
 
   public observer: IntersectionObserver;
 
@@ -44,11 +43,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isBrowser = isPlatformBrowser(this.platformId);
     this.url = Global.url;
     this.metaService.updateTag({
-      property: 'title',
+      name: 'title',
       content: 'Birello Gallery | Artworks',
     });
     this.metaService.updateTag({
-      property: 'description',
+      name: 'description',
       content: "Buying art is buying time of the artist's life",
     });
     this.metaService.updateTag({
@@ -104,12 +103,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
                 this.paintings = response.paints;
               } else {
                 this.messageService.add({ severity: 'warn', summary: 'Warning', detail: `The search query doesn't have results` });
+                this.resetSearch(null);
               }
             },
             error: () => {
               this.messageService.add({ severity: 'error', summary: 'Error', detail: 'The search query failed, error code 500' });
               this.loader = false;
-              this.resetSearch();
+              this.resetSearch(null);
             }
           });
         }
@@ -136,13 +136,14 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.search$.next(this.search);
   }
 
-  resetSearch(): void {
-    this.currentPage = 1;
-    this.search = '';
-    this.paintings = [];
-    this.paintingsData();
+  resetSearch(event: any): void {
+    if (event === null || event.key === "Escape" || event.type == "click") {
+      this.currentPage = 1;
+      this.search = '';
+      this.paintings = [];
+      this.paintingsData();
+    }
   }
-
   paintingsData(): void {
     this.loader = true;
     this.subscription2 = this._paintingService

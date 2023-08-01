@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Token, TokenObservable, TokensObservable } from '@core/models/token';
 import { Global } from '@global/global';
+import { InstagramObservable } from '@core/models/instagram';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class InstagramService {
   public token: string;
   public url: string;
@@ -31,14 +32,14 @@ export class InstagramService {
     return this._http.put(this.url + 'token/' + id, { token }, { headers: headers, });
   }
 
-  getInstagram(token: string): Observable<any> {
-    return this._http.get(
+  getInstagram(token: string): Observable<InstagramObservable> {
+    return this._http.get<InstagramObservable>(
       `https://graph.instagram.com/v1.0/17841403549294920/media?access_token=${token}&pretty=1&fields=caption%2Cmedia_url%2Cmedia_type%2Cpermalink%2Ctimestamp%2Cusername&limit=6`
     );
   }
 
-  getInstagramNext(token: string, after: string): Observable<any> {
-    return this._http.get(
+  getInstagramNext(token: string, after: string): Observable<InstagramObservable> {
+    return this._http.get<InstagramObservable>(
       `https://graph.instagram.com/v1.0/17841403549294920/media?access_token=${token}&pretty=1&fields=caption%2Cmedia_url%2Cmedia_type%2Cpermalink%2Ctimestamp%2Cusername&limit=20&after=${after}`
     );
   }

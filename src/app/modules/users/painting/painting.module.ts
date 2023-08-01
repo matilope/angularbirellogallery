@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 
 import { PaintingRoutingModule } from './painting-routing.module';
 import { PaintingComponent } from './pages/painting.component';
-import { PaintingsService } from '@shared/services/paintings.service';
-import { SharedModule } from '@shared/shared.module';
 import { AccordionModule } from 'primeng/accordion';
+import { ImgBrokenDirective } from '@shared/directives/img-broken.directive';
 
 @NgModule({
   declarations: [PaintingComponent],
-  imports: [CommonModule, PaintingRoutingModule, SharedModule, AccordionModule],
-  providers: [PaintingsService]
+  imports: [NgIf, PaintingRoutingModule, ImgBrokenDirective, AccordionModule]
 })
 export class PaintingModule { }

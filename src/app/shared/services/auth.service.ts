@@ -6,15 +6,18 @@ import { Global } from '@global/global';
 import { User, UserObservable } from '@core/models/user';
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
+import { Validation } from '@core/models/validation';
+import { CookieService } from 'ngx-cookie-service';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   public url: string;
 
   constructor(
     private _http: HttpClient,
     private _router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private _cookieService: CookieService,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
     this.url = Global.url;
   }
@@ -29,21 +32,22 @@ export class AuthService {
 
   logoutUser(): void {
     if (isPlatformBrowser(this.platformId)) {
-      localStorage.removeItem(environment.token);
+      this._cookieService.delete(environment.token);
       this._router.navigate(['/admin/login']);
     }
   }
 
-  getToken(): string {
+  getToken(): string | void {
     if (isPlatformBrowser(this.platformId)) {
-      return localStorage.getItem(environment.token);
+      return this._cookieService.get(environment.token);
     }
   }
+  cookieExists(): boolean {
+    return this._cookieService.check(environment.token);
+  }
 
-  loggedIn(): boolean {
-    if (isPlatformBrowser(this.platformId)) {
-      return !!localStorage.getItem(environment.token);
-    }
+  loggedIn(): Observable<Validation> {
+    return this._http.get<Validation>(this.url + 'validation');
   }
 
 }

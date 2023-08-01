@@ -5,10 +5,10 @@ import { CustomPreloadStrategy } from '@core/strategies/custompreload.service';
 
 const routes: Routes = [
   { path: '', pathMatch: "full", loadChildren: () => import('@modules/users/home/home.module').then(m => m.HomeModule), title: 'Artworks', data: { preload: true } },
-  { path: 'miscellaneous', loadChildren: () => import('@modules/users/miscellaneous/miscellaneous.module').then(m => m.MiscellaneousModule), title: 'Miscellaneous', data: { preload: true } },
+  { path: 'miscellaneous', loadChildren: () => import('@modules/users/miscellaneous/miscellaneous.module').then(m => m.MiscellaneousModule), title: 'Miscellaneous' },
   { path: 'about', loadChildren: () => import('@modules/users/about/about.module').then(m => m.AboutModule), title: 'About' },
   { path: 'contact', loadChildren: () => import('@modules/users/contact/contact.module').then(m => m.ContactModule), title: 'Contact' },
-  { path: 'painting/view/:id', loadChildren: () => import('@modules/users/painting/painting.module').then(m => m.PaintingModule), data: { preload: true } },
+  { path: 'painting/view/:id', loadChildren: () => import('@modules/users/painting/painting.module').then(m => m.PaintingModule) },
   { path: 'privacypolicy', loadChildren: () => import('@modules/users/privacypolicy/privacypolicy.module').then(m => m.PrivacypolicyModule), title: 'Privacy Policy' },
   { path: 'refundpolicy', loadChildren: () => import('@modules/users/refundpolicy/refundpolicy.module').then(m => m.RefundpolicyModule), title: 'Refund Policy' },
   { path: 'termsofservice', loadChildren: () => import('@modules/users/termsofservice/termsofservice.module').then(m => m.TermsofserviceModule), title: 'Terms Of Service' },
@@ -36,7 +36,6 @@ const routes: Routes = [
       scrollPositionRestoration: 'enabled'
     })
   ],
-  providers: [CustomPreloadStrategy],
   exports: [RouterModule],
 })
 export class AppRoutingModule { }

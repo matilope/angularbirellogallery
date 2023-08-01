@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-token-new',
   templateUrl: './token-new.component.html',
   styleUrls: ['./token-new.component.scss'],
-  providers: [InstagramService, MessageService]
+  providers: [MessageService]
 })
 export class TokenNewComponent implements OnInit, OnDestroy {
   public formGroup!: FormGroup;

@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-painting-update',
   templateUrl: './painting-update.component.html',
   styleUrls: ['./painting-update.component.scss'],
-  providers: [PaintingsService, MessageService, ConfirmationService],
+  providers: [MessageService, ConfirmationService],
 })
 export class PaintingUpdateComponent implements OnInit, OnDestroy {
   public formGroup!: FormGroup;

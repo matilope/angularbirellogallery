@@ -12,11 +12,11 @@ export class RefundpolicyComponent {
   constructor(private metaService: Meta) {
     this.title = 'IMPORTANT, PLEASE READ CAREFULLY';
     this.metaService.updateTag({
-      property: 'title',
+      name: 'title',
       content: 'Birello Gallery | Refund Policy',
     });
     this.metaService.updateTag({
-      property: 'description',
+      name: 'description',
       content: 'Read our refund policy',
     });
     this.metaService.updateTag({

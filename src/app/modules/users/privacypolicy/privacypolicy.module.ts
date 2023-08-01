@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 import { PrivacypolicyRoutingModule } from './privacypolicy-routing.module';
 import { PrivacypolicyComponent } from './pages/privacypolicy.component';
@@ -8,6 +8,6 @@ import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [PrivacypolicyComponent],
-  imports: [CommonModule, PrivacypolicyRoutingModule, AccordionModule, CardModule],
+  imports: [NgFor, NgIf, PrivacypolicyRoutingModule, AccordionModule, CardModule],
 })
 export class PrivacypolicyModule {}

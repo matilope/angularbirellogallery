@@ -132,11 +132,11 @@ export class TermsofserviceComponent {
       ),
     ];
     this.metaService.updateTag({
-      property: 'title',
+      name: 'title',
       content: 'Terms Of Service',
     });
     this.metaService.updateTag({
-      property: 'description',
+      name: 'description',
       content: 'Read our terms of service',
     });
     this.metaService.updateTag({

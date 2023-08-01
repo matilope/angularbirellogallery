@@ -9,8 +9,7 @@ import { AuthService } from '@shared/services/auth.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  providers: [PortraitService]
+  styleUrls: ['./header.component.scss']
 })
 
 export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
@@ -44,7 +43,7 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     });
-    this.isLoggedIn = this._authService.loggedIn();
+    this.isLoggedIn = this._authService.cookieExists();
   }
 
   ngAfterViewInit(): void {
@@ -56,16 +55,18 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
-  public collapse(): void {
-    if (this.button.nativeElement.classList.contains('active')) {
-      this.renderer.removeClass(this.button.nativeElement, "active");
-    } else {
-      this.renderer.addClass(this.button.nativeElement, "active");
-    }
-    if (this.navLinks.nativeElement.classList.contains('show')) {
-      this.renderer.removeClass(this.navLinks.nativeElement, "show");
-    } else {
-      this.renderer.addClass(this.navLinks.nativeElement, "show");
+  public collapse(event: any): void {
+    if(event.key == "Enter" || event.type == 'click') {
+      if (this.button.nativeElement.classList.contains('active')) {
+        this.renderer.removeClass(this.button.nativeElement, "active");
+      } else {
+        this.renderer.addClass(this.button.nativeElement, "active");
+      }
+      if (this.navLinks.nativeElement.classList.contains('show')) {
+        this.renderer.removeClass(this.navLinks.nativeElement, "show");
+      } else {
+        this.renderer.addClass(this.navLinks.nativeElement, "show");
+      }
     }
   }
 

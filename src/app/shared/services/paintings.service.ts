@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Global } from '@global/global';
 import { PaintingsObservable, PaintingObservable } from '@core/models/painting';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class PaintingsService {
   public url: string;
 

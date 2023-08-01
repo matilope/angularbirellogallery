@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-painting-new',
   templateUrl: './painting-new.component.html',
   styleUrls: ['./painting-new.component.scss'],
-  providers: [PaintingsService, MessageService]
+  providers: [MessageService]
 })
 export class PaintingNewComponent implements OnInit, OnDestroy {
   public formGroup!: FormGroup;

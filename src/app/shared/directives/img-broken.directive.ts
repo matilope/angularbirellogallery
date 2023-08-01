@@ -1,7 +1,8 @@
 import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: 'img[appImgBroken]'
+  selector: 'img[appImgBroken]',
+  standalone: true
 })
 export class ImgBrokenDirective {
   constructor(private readonly imgHost: ElementRef, private readonly renderer: Renderer2) { }

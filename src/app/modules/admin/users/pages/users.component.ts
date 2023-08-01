@@ -12,7 +12,7 @@ import { isPlatformBrowser } from '@angular/common';
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
-  providers: [AdminService, MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService]
 })
 export class UsersComponent implements OnInit, OnDestroy {
   public users: User[];

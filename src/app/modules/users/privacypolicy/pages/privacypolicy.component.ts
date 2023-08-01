@@ -51,11 +51,11 @@ export class PrivacypolicyComponent {
       ),
     ];
     this.metaService.updateTag({
-      property: 'title',
+      name: 'title',
       content: 'Birello Gallery | Privacy Policy',
     });
     this.metaService.updateTag({
-      property: 'description',
+      name: 'description',
       content: 'Read our privacy policy',
     });
     this.metaService.updateTag({
