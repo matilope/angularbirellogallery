@@ -30,11 +30,12 @@ export class ErrorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (isPlatformServer(this.platformId)) {
-      this.response.status(410);
+    if (isPlatformServer(this.platformId) && this.response) {
+      this.response?.status(410);
+      this.response.statusCode = 410;
     }
     setTimeout(() => {
       this.router.navigate(['/']);
-    }, 3000);
+    }, 2000);
   }
 }

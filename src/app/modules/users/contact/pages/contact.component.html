@@ -21,8 +21,7 @@
       <label for="subject">Subject *</label>
     </span>
     <div class="mb-5">
-      <p-dropdown styleClass="custom-dropdown" name="paint" id="paint" [options]="titles" formControlName="paint"
-        required></p-dropdown>
+      <p-dropdown styleClass="custom-dropdown" name="paint" id="paint" [options]="titles" formControlName="paint" [required]="true"></p-dropdown>
     </div>
     <span class="p-float-label mb-5">
       <textarea name="textarea" id="textarea" rows="4" formControlName="textarea" pInputTextarea required></textarea>

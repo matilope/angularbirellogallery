@@ -1,4 +1,8 @@
 import { Component, OnDestroy, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { Meta } from '@angular/platform-browser';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Painting } from '@core/models/painting';
 import { PaintingsService } from '@shared/services/paintings.service';
 import { Portrait } from '@core/models/portrait';
@@ -6,11 +10,7 @@ import { PortraitService } from '@shared/services/portrait.service';
 import { Token } from '@core/models/token';
 import { InstagramService } from '@shared/services/instagram.service';
 import { Global } from '@global/global';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Meta } from '@angular/platform-browser';
-import { Subscription } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-admin',

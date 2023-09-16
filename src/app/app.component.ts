@@ -6,12 +6,12 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
   public event: Subscription;
   public isBrowser!: boolean;
-  @ViewChild('animationRoute', { static: false }) public animationRoute: ElementRef;
+  @ViewChild('animationRoute', { static: false }) public animationRoute!: ElementRef;
 
   constructor(
     private readonly router: Router,

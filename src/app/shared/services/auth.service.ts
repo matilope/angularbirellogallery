@@ -6,7 +6,6 @@ import { Global } from '@global/global';
 import { User, UserObservable } from '@core/models/user';
 import { environment } from 'src/environments/environment.prod';
 import { Observable } from 'rxjs';
-import { Validation } from '@core/models/validation';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({ providedIn: 'root' })
@@ -37,17 +36,18 @@ export class AuthService {
     }
   }
 
-  getToken(): string | void {
+  getToken(): string | null {
     if (isPlatformBrowser(this.platformId)) {
       return this._cookieService.get(environment.token);
     }
-  }
-  cookieExists(): boolean {
-    return this._cookieService.check(environment.token);
+    return null;
   }
 
-  loggedIn(): Observable<Validation> {
-    return this._http.get<Validation>(this.url + 'validation');
+  cookieExists(): boolean {
+    if (isPlatformBrowser(this.platformId)) {
+      return this._cookieService.check(environment.token);
+    }
+    return false;
   }
 
 }
